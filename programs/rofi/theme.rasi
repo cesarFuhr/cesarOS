@@ -5,13 +5,13 @@
  *******************************************************************************/
 
 * {
-    font:   "Hasklug Nerd Font Mono 12";
+    font:   "Fira Code Nerd Font Mono 12";
 
     bg0:     #2E3440;
     bg1:     #3B4252;
     fg0:     #D8DEE9;
 
-    accent-color:     #88C0D0;
+    accent-color:     #4698AF;
     urgent-color:     #EBCB8B;
 
     background-color:   transparent;

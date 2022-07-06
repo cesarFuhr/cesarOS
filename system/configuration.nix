@@ -194,7 +194,7 @@
     enableDefaultFonts = true;
 
     fonts = with pkgs; [
-      (nerdfonts.override { fonts = [ "Mononoki" ]; })
+      (nerdfonts.override { fonts = [ "Mononoki" "FiraCode" ]; })
     ];
   };
 

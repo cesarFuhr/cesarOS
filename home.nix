@@ -28,20 +28,21 @@
     # Utils
     spotify
     bitwarden
-    
+
     # Browsers
     brave
     google-chrome
 
-    # Messaging
+    # Comunication
     slack
     skypeforlinux
+    zoom
   ];
 
   # AwesomeWM.
   xsession.windowManager.awesome = {
-      enable = true;
-    };
+    enable = true;
+  };
   xdg.configFile."awesome/rc.lua".source = ./programs/awesome/rc.lua;
 
   # Bigger configurations.
@@ -66,6 +67,11 @@
 
     diff-so-fancy.enable = true;
 
+    signing = {
+      key = "AB688197ABB2A0D4";
+      signByDefault = true;
+    };
+
     extraConfig = {
       core = {
         editor = "nvim";
@@ -73,8 +79,8 @@
       init = {
         defaultBranch = "main";
       };
-      url = { 
-      "ssh://git@github.com/" = { insteadOf = "https://github.com/"; };
+      url = {
+        "ssh://git@github.com/" = { insteadOf = "https://github.com/"; };
       };
     };
   };
