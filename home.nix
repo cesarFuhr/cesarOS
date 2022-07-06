@@ -22,6 +22,27 @@
   # Session Env Vars.
   home.sessionVariables.FZF_DEFAULT_COMMAND = "rg --files -uu -g '!.git'";
 
+  # AwesomeWM.
+  xsession.windowManager.awesome = {
+      enable = true;
+    };
+  xdg.configFile."awesome/rc.lua".source = ./programs/awesome/rc.lua;
+
+  # Packages to install.
+  home.packages = with pkgs; [
+    # Utils
+    spotify
+    bitwarden
+    
+    # Browsers
+    brave
+    google-chrome
+
+    # Messaging
+    slack
+    skypeforlinux
+  ];
+
   # Bigger configurations.
   imports = [
     ./programs/rofi/rofi.nix
@@ -40,10 +61,18 @@
     enable = true;
   };
 
-  services.gpg-agent = {
-    enable = true;
-    defaultCacheTtl = 1800;
-    enableSshSupport = true;
+  services = {
+    gpg-agent = {
+      enable = true;
+      defaultCacheTtl = 1800;
+      enableSshSupport = true;
+    };
+    picom = {
+      enable = true;
+      vSync = true;
+    };
   };
+
 }
+
 

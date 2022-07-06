@@ -106,8 +106,6 @@
     kitty
 
     # Browsers
-    brave
-    google-chrome
     firefox
 
     # Work
@@ -151,11 +149,6 @@
     alsa-utils
     alsa-tools
     pipecontrol
-    bitwarden
-
-    # Messaging
-    slack
-    skypeforlinux
 
     # Utilities
     wget

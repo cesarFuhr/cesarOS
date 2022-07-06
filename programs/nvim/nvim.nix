@@ -12,6 +12,6 @@
   xdg.configFile."nvim/lua/plugins.lua".source = ./lua/plugins.lua;
   xdg.configFile."nvim/lua/settings.lua".source = ./lua/settings.lua;
   xdg.configFile."nvim/lua/snip.lua".source = ./lua/snip.lua;
-  xdg.configFile."nvim/lua/theme.lua".source = ./lua/snip.lua;
+  xdg.configFile."nvim/lua/theme.lua".source = ./lua/theme.lua;
 }
 
