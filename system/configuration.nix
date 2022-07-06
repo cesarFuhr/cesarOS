@@ -151,6 +151,7 @@
     alsa-utils
     alsa-tools
     pipecontrol
+    bitwarden
 
     # Messaging
     slack
