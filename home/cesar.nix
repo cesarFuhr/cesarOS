@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let
+  rofi = import ./programs/rofi.nix;
+in
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -28,6 +31,9 @@
     goBin = "go/bin";
     goPath = "go";
   };
+
+  # Rofi
+  programs.rofi = rofi;
 
   # Zsh
   programs.zsh = {

@@ -17,6 +17,8 @@
       };
 
       lib = nixpkgs.lib;
+
+      cesarHome = import ./home/cesar.nix;
     in
     {
       nixosConfigurations = {
@@ -28,11 +30,10 @@
             home-manager.nixosModules.home-manager {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.cesar = import ./users/cesar/home.nix;
+              home-manager.users.cesar = cesarHome;
             }
           ];
         };
       };
-
     };
 }
