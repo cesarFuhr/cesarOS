@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 {
   # Rofi configuration.
@@ -10,7 +10,7 @@
       combi-modi = "window,drun";
     };
 
-    theme = "Pop-Dark";
+    theme = "./spotlight-dark.rasi";
   };
 }
 

@@ -24,7 +24,7 @@
 
   # Bigger configurations.
   imports = [
-    ./programs/rofi.nix
+    ./programs/rofi/rofi.nix
     ./programs/zsh.nix
     ./programs/nvim/nvim.nix
   ];
