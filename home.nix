@@ -26,6 +26,7 @@
   imports = [
     ./programs/rofi.nix
     ./programs/zsh.nix
+    ./programs/nvim/nvim.nix
   ];
 
   # Golang setup.
