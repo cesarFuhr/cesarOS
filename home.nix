@@ -21,12 +21,7 @@
 
   # Session Env Vars.
   home.sessionVariables.FZF_DEFAULT_COMMAND = "rg --files -uu -g '!.git'";
-
-  # AwesomeWM.
-  xsession.windowManager.awesome = {
-      enable = true;
-    };
-  xdg.configFile."awesome/rc.lua".source = ./programs/awesome/rc.lua;
+  home.sessionVariables.EDITOR = "nvim";
 
   # Packages to install.
   home.packages = with pkgs; [
@@ -43,6 +38,12 @@
     skypeforlinux
   ];
 
+  # AwesomeWM.
+  xsession.windowManager.awesome = {
+      enable = true;
+    };
+  xdg.configFile."awesome/rc.lua".source = ./programs/awesome/rc.lua;
+
   # Bigger configurations.
   imports = [
     ./programs/rofi/rofi.nix
@@ -55,6 +56,27 @@
     enable = true;
     goBin = "go/bin";
     goPath = "go";
+  };
+
+  # Git
+  programs.git = {
+    enable = true;
+    userEmail = "cesar.cara@protonmail.com";
+    userName = "cesarFuhr";
+
+    diff-so-fancy.enable = true;
+
+    extraConfig = {
+      core = {
+        editor = "nvim";
+      };
+      init = {
+        defaultBranch = "main";
+      };
+      url = { 
+      "ssh://git@github.com/" = { insteadOf = "https://github.com/"; };
+      };
+    };
   };
 
   programs.gpg = {
