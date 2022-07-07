@@ -36,7 +36,7 @@
     # Comunication
     slack
     skypeforlinux
-    zoom
+    zoom-us
   ];
 
   # AwesomeWM.
