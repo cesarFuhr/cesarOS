@@ -51,9 +51,10 @@
 
   # Bigger configurations.
   imports = [
-    ./programs/rofi/rofi.nix
+    ./programs/rofi.nix
     ./programs/zsh.nix
     ./programs/nvim/nvim.nix
+    ./programs/kitty.nix
   ];
 
   # Golang setup.
