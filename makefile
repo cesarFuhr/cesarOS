@@ -1,8 +1,8 @@
 rebuild:
-	sudo nixos-rebuild switch --flake .#CesarOS
+	sudo nixos-rebuild switch --flake .#cesarOS
 
 dry-build:
-	sudo nixos-rebuild dry-build --flake .#CesarOS
+	sudo nixos-rebuild dry-build --flake .#cesarOS
 
 update:
 	nix flake update

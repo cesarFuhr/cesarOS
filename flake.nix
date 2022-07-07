@@ -20,7 +20,7 @@
     in
     {
       nixosConfigurations = {
-        CesarOS = nixpkgs.lib.nixosSystem {
+        cesarOS = nixpkgs.lib.nixosSystem {
           inherit system;
 
           modules = [
