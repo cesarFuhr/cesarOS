@@ -65,7 +65,7 @@
     xkbVariant = "";
 
     displayManager = {
-      lightdm = { enable = true; };
+      gdm = { enable = true; };
       defaultSession = "none+awesome";
     };
 
