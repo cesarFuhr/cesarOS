@@ -1,5 +1,5 @@
 {
-  description = "CesarFuhr system config";
+  description = "cesarOS system builds";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -20,11 +20,11 @@
     in
     {
       nixosConfigurations = {
-        cesarOS = nixpkgs.lib.nixosSystem {
+        virtualbox = nixpkgs.lib.nixosSystem {
           inherit system;
 
           modules = [
-            ./system/configuration.nix
+            ./system/virtualbox/configuration.nix
             home-manager.nixosModules.home-manager {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;

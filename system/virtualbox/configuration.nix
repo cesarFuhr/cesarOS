@@ -17,6 +17,9 @@
     experimental-features = nix-command flakes
   '';
 
+  # Setting env var to mark this build as virtualbox.
+  environment.variables.CESAR_OS_BUILD = "virtualbox";
+
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
