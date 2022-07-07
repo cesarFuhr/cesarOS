@@ -12,7 +12,7 @@
       show-icons = true;
       icon-theme = "papirus";
 
-      window-format = "  {c}    {t}";
+      window-format = "● {c}    {t}";
       combi-display-format = "  {text}";
       display-combi = "";
 

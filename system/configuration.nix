@@ -110,6 +110,7 @@
 
     # Work
     git
+    tree-sitter
     rnix-lsp
     docker
     docker-compose
@@ -135,6 +136,7 @@
     gocode-gomod
     godef
     golint
+    nodePackages.typescript-language-server
 
     # Environment
     dunst
