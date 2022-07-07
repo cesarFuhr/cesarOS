@@ -20,8 +20,12 @@
   programs.home-manager.enable = true;
 
   # Session Env Vars.
-  home.sessionVariables.FZF_DEFAULT_COMMAND = "rg --files -uu -g '!.git'";
-  home.sessionVariables.EDITOR = "nvim";
+  home.sessionVariables = {
+    FZF_DEFAULT_COMMAND = "rg --files -uu -g '!.git'";
+    EDITOR = "nvim";
+    TERMINAL = "kitty";
+    BROWSER = "brave";
+  };
 
   # Packages to install.
   home.packages = with pkgs; [
