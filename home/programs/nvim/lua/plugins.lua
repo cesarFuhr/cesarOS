@@ -1,5 +1,21 @@
 _ = vim.cmd [[packadd packer.nvim]]
 
+-- Setting up a packer bootstrap function.
+local fn = vim.fn
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+
+local packer_bootstrap
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap = fn.system({
+    'git',
+    'clone',
+    '--depth',
+    '1',
+    'https://github.com/wbthomason/packer.nvim',
+    install_path })
+end
+
+
 return require 'packer'.startup(function(use)
   -- Adding packer to avoid it prompting to remove itself.
   use 'wbthomason/packer.nvim'
@@ -41,6 +57,10 @@ return require 'packer'.startup(function(use)
     }
   }
 
+  -- If bootstrapping, sync all packages before requiring them.
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 
   -- Setting up lualine.
   require('lualine').setup {
