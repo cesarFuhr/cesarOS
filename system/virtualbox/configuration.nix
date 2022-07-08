@@ -113,7 +113,6 @@
 
     # Work
     git
-    tree-sitter
     rnix-lsp
     docker
     docker-compose
