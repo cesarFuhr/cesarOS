@@ -113,12 +113,15 @@
 
     # Work
     git
+    tree-sitter
     rnix-lsp
     docker
     docker-compose
     gnumake
     clang
     gcc
+    python
+    python3
     cmake
     fzf
     lua5_3

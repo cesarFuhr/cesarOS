@@ -1,5 +1,3 @@
-_ = vim.cmd [[packadd packer.nvim]]
-
 -- Setting up a packer bootstrap function.
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
@@ -15,6 +13,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
     install_path })
 end
 
+_ = vim.cmd [[packadd packer.nvim]]
 
 return require 'packer'.startup(function(use)
   -- Adding packer to avoid it prompting to remove itself.
@@ -79,11 +78,11 @@ return require 'packer'.startup(function(use)
   }
 
   -- Setting up treesitter.
+  require('nvim-treesitter.install').compilers = { "gcc" }
   require('nvim-treesitter.configs').setup {
     ensure_installed = {
       "make",
       "markdown",
-      "html",
       "bash",
       "c",
       "lua",
@@ -94,6 +93,7 @@ return require 'packer'.startup(function(use)
       "graphql",
       "json",
       "yaml",
+      "html",
       "proto",
       "javascript",
       "typescript",
