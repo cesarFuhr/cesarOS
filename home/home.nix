@@ -43,11 +43,11 @@
     zoom-us
   ];
 
-  # AwesomeWM.
-  xsession.windowManager.awesome = {
-    enable = true;
-  };
-  xdg.configFile."awesome/rc.lua".source = ./programs/awesome/rc.lua;
+  # Awesome window manager.
+  # The first build will fail, since lcpz/lain package is 
+  # missing. Clone it to ~/.config/awesome/lain and restart
+  # awesomewm.
+  imports = [ ./programs/awesome.nix ];
 
   # Bigger configurations.
   imports = [
