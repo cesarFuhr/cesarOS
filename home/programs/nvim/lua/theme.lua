@@ -1,5 +1,7 @@
 -- Sets up theming settings.
 
+vim.g.material_style = 'darker'
+local colors = require('material.colors')
 require('material').setup({
 
   async_loading = true,
@@ -35,17 +37,19 @@ require('material').setup({
   },
 
   custom_highlights = {
-    TelescopePromptBorder  = { fg = "#616161" },
-    TelescopeResultsBorder = { fg = "#616161" },
-    TelescopePreviewBorder = { fg = "#616161" },
-    TelescopeSelection     = { fg = "#82AAFF", bg = "#323232" },
-    WinSeparator           = { fg = "#616161" },
+    -- Brighter keywords
+    TSKeyword = { fg = colors.cyan },
+
+    TelescopePromptBorder  = { fg = colors.border },
+    TelescopeResultsBorder = { fg = colors.border },
+    TelescopePreviewBorder = { fg = colors.border },
+    TelescopeSelection     = { fg = colors.white, bg = colors.bg_alt },
+    WinSeparator           = { fg = colors.border },
   }, -- Overwrite highlights with your own
 })
 
 vim.opt.cursorline = true
 vim.opt.termguicolors = true
 
-vim.g.material_style = 'darker'
 vim.cmd([[ colorscheme material ]])
 vim.cmd([[ syntax on ]])
