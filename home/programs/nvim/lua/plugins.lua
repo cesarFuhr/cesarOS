@@ -60,6 +60,25 @@ return require 'packer'.startup(function(use)
 
   -- Setting up treesitter.
   require('nvim-treesitter.configs').setup {
+    ensure_installed = {
+      "make",
+      "markdown",
+      "html",
+      "bash",
+      "c",
+      "lua",
+      "rust",
+      "nix",
+      "go",
+      "gomod",
+      "graphql",
+      "json",
+      "yaml",
+      "proto",
+      "javascript",
+      "typescript",
+      "tsx",
+    },
     highlight = {
       enable = true,
     },
