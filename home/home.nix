@@ -32,6 +32,7 @@
     # Utils
     spotify
     bitwarden
+    simplenote
 
     # Browsers
     brave
@@ -49,7 +50,7 @@
     # The first build will fail, since lcpz/lain package is 
     # missing. Clone it to ~/.config/awesome/lain and restart
     # awesomewm.
-    ./programs/awesome/awesome.nix 
+    ./programs/awesome/awesome.nix
 
     # Neovim will be installed but the plugins must be installed.
     # This will happend in the first neovim run, sometimes
