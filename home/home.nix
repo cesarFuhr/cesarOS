@@ -38,6 +38,9 @@
     brave
     google-chrome
 
+    # Work
+    awscli
+
     # Comunication
     slack
     skypeforlinux
