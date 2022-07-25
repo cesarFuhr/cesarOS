@@ -634,5 +634,6 @@ client.connect_signal("property::urgent", function(c)
   c.minimized = false
   c:jump_to()
 end)
-
 -- }}}
+
+awful.spawn.with_shell("pacmd set-default-sink 3")

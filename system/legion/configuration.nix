@@ -60,6 +60,11 @@
   # Touchpads
   services.xserver.libinput.enable = true;
 
+  # Copy the display script.
+  environment.etc = {
+    "display.py".source = ./display.py;
+  };
+
   # X11
   services.xserver = {
     enable = true;
@@ -73,6 +78,8 @@
     displayManager = {
       gdm = { enable = true; };
       defaultSession = "none+awesome";
+
+      sessionCommands = "python3 /etc/display.py";
     };
 
     windowManager.awesome = {
