@@ -147,7 +147,7 @@ local bat = lain.widget.bat({
   end
 })
 
--- ALSA volume
+-- ALSA
 local volume = lain.widget.alsa({
   --togglechannel = "IEC958,3",
   settings = function()
@@ -362,11 +362,11 @@ local globalkeys = gears.table.join(
     { description = "select previous", group = "layout" }),
 
   -- Audio control
-  awful.key({}, "XF86AudioMute", function() awful.spawn.with_shell("amixer -q set Master toggle") end,
+  awful.key({}, "XF86AudioMute", function() awful.spawn.with_shell("pamixer -t") end,
     { description = "mute master", group = "audio" }),
-  awful.key({}, "XF86AudioLowerVolume", function() awful.spawn.with_shell("amixer -q set Master 5%-") end,
+  awful.key({}, "XF86AudioLowerVolume", function() awful.spawn.with_shell("pamixer -d 5") end,
     { description = "lower master volume", group = "audio" }),
-  awful.key({}, "XF86AudioRaiseVolume", function() awful.spawn.with_shell("amixer -q set Master 5%+") end,
+  awful.key({}, "XF86AudioRaiseVolume", function() awful.spawn.with_shell("pamixer -i 5") end,
     { description = "raise master volume", group = "audio" }),
 
   -- Player control
@@ -417,16 +417,22 @@ clientkeys = gears.table.join(
       c:raise()
     end,
     { description = "toggle fullscreen", group = "client" }),
+
   awful.key({ modkey, }, "q", function(c) c:kill() end,
     { description = "close", group = "client" }),
+
   awful.key({ modkey, "Control" }, "space", awful.client.floating.toggle,
     { description = "toggle floating", group = "client" }),
+
   awful.key({ modkey, }, "Return", function(c) c:swap(awful.client.getmaster()) end,
     { description = "move to master", group = "client" }),
+
   awful.key({ modkey, }, "o", function(c) c:move_to_screen() end,
     { description = "move to screen", group = "client" }),
+
   awful.key({ modkey, }, "t", function(c) c.ontop = not c.ontop end,
     { description = "toggle keep on top", group = "client" }),
+
   awful.key({ modkey, }, "n",
     function(c)
       -- The client currently has the input focus, so it cannot be

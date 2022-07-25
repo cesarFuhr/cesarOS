@@ -33,6 +33,7 @@
     spotify
     bitwarden
     simplenote
+    neofetch
 
     # Browsers
     brave
@@ -45,6 +46,10 @@
     slack
     skypeforlinux
     zoom-us
+
+    # Audio
+    pavucontrol
+    playerctl
   ];
 
   # Bigger configurations.
@@ -68,6 +73,15 @@
     ./programs/kitty.nix
   ];
 
+  gtk = {
+    enable = true;
+    font.name = "Victor Mono SemiBold 12";
+    theme = {
+      name = "SolArc-Dark";
+      package = pkgs.solarc-gtk-theme;
+    };
+  };
+
   # Golang setup.
   programs.go = {
     enable = true;
@@ -83,10 +97,10 @@
 
     diff-so-fancy.enable = true;
 
-    signing = {
-      key = "AB688197ABB2A0D4";
-      signByDefault = true;
-    };
+    # signing = {
+    #   key = "AB688197ABB2A0D4";
+    #   signByDefault = true;
+    # };
 
     extraConfig = {
       core = {
@@ -95,9 +109,9 @@
       init = {
         defaultBranch = "main";
       };
-      url = {
-        "ssh://git@github.com/" = { insteadOf = "https://github.com/"; };
-      };
+      # url = {
+      #   "ssh://git@github.com/" = { insteadOf = "https://github.com/"; };
+      # };
     };
   };
 
@@ -116,7 +130,5 @@
       vSync = true;
     };
   };
-
 }
-
 
