@@ -65,6 +65,12 @@
     "display.py".source = ./display.py;
   };
 
+  environment.variables = {
+    GDK_SCALE = "2";
+    GDK_DPI_SCALE = "0.5";
+    _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
+  };
+
   # X11
   services.xserver = {
     enable = true;
@@ -74,12 +80,18 @@
     # Video drivers
     # Nvidia
     videoDrivers = [ "nvidia" ];
+    dpi = 120;
 
     displayManager = {
       gdm = { enable = true; };
       defaultSession = "none+awesome";
 
-      sessionCommands = "python3 /etc/display.py";
+      sessionCommands = ''
+        python3 /etc/display.py
+      '';
+      setupCommands = ''
+        python3 /etc/display.py
+      '';
     };
 
     windowManager.awesome = {
