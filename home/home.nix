@@ -43,6 +43,9 @@
 
     # Work
     awscli
+    protobuf
+    protoc-gen-go
+    protoc-gen-go-grpc
 
     # Comunication
     slack
