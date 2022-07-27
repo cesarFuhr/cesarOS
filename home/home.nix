@@ -119,6 +119,16 @@
     };
   };
 
+  # SSH
+  home.file.".ssh/config".text = ''
+    AddKeysToAgent yes
+
+    Host github.com
+      HostName github.com
+      User git
+      IdentityFile ~/.ssh/id_ed25519
+  '';
+
   programs.gpg = {
     enable = true;
   };

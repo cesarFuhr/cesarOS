@@ -74,7 +74,7 @@
     # Video drivers
     # Nvidia
     videoDrivers = [ "nvidia" ];
-    dpi = 180;
+    dpi = 120;
 
     displayManager = {
       gdm = { enable = true; };
