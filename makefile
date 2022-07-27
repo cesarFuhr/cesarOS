@@ -7,5 +7,5 @@ dry-build:
 update:
 	nix flake update
 
-clear:
+prune:
 	sudo nix-collect-garbage -d
