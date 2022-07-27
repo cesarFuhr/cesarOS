@@ -290,7 +290,7 @@ local globalkeys = gears.table.join(
   awful.key({ modkey, }, "Escape", awful.tag.history.restore,
     { description = "go back", group = "tag" }),
 
-  awful.key({ modkey, }, "b", spawn("brave"),
+  awful.key({ modkey, }, "b", spawn("firefox"),
     { description = "open browser", group = "apps" }),
   awful.key({ modkey, "Shift" }, "Page_Up", spawn("setxkbmap -model pc104 -layout us"),
     { description = "us keyboard layout", group = "util" }),
