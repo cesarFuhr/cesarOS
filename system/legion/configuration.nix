@@ -186,6 +186,7 @@
     gnome.gnome-screenshot
     gzip
     htop
+    nvtop
     jq
     iftop
     man-db

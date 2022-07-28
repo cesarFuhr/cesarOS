@@ -283,21 +283,29 @@ end
 local globalkeys = gears.table.join(
   awful.key({ modkey, }, "s", hotkeys_popup.show_help,
     { description = "show help", group = "awesome" }),
+
   awful.key({ modkey, }, "Left", awful.tag.viewprev,
     { description = "view previous", group = "tag" }),
+
   awful.key({ modkey, }, "Right", awful.tag.viewnext,
     { description = "view next", group = "tag" }),
+
   awful.key({ modkey, }, "Escape", awful.tag.history.restore,
     { description = "go back", group = "tag" }),
 
   awful.key({ modkey, }, "b", spawn("firefox"),
     { description = "open browser", group = "apps" }),
+
   awful.key({ modkey, "Shift" }, "Page_Up", spawn("setxkbmap -model pc104 -layout us"),
     { description = "us keyboard layout", group = "util" }),
-  awful.key({ modkey, "Shift" }, "Page_Down", spawn("setxkbmap -model pc104 -layout us -variant intl"),
+
+  awful.key({ modkey, "Shift" }, "Page_Down",
+    spawn("setxkbmap -model pc104 -layout us -variant intl -option 'compose:rctrl'"),
     { description = "us variant keyboard layout", group = "util" }),
+
   awful.key({ modkey, }, "p", spawn("rofi -show run"),
     { description = "rofi run command", group = "laucher" }),
+
   awful.key({ modkey, }, "space", spawn("rofi -show combi"),
     { description = "rofi run command", group = "laucher" }),
 
