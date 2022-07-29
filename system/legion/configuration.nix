@@ -135,6 +135,7 @@
     docker-compose
     gnumake
     clang
+    clang-tools
     gcc
     python
     python3
@@ -145,9 +146,11 @@
     sumneko-lua-language-server
     nodejs
     yarn
+    cargo
     rustc
     rustup
     rust-analyzer
+    clippy
     terraform
     gotools
     gopls
