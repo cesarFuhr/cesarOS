@@ -109,7 +109,7 @@ local custom_lsp_attach = function()
   -- Lists all diagnostics on telescope.
   map('n', '<leader>dl', telescopeBuiltin.diagnostics, { buffer = 0 })
   -- Lists code actions on telescope.
-  map('n', '<leader>af', vim.lsp.buf.code_action, { buffer = 0 })
+  map('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = 0 })
   -- Renames the symbol under the cursor. Does not saves all buffers that were changes.
   map('n', '<leader>rn', vim.lsp.buf.rename, { buffer = 0 })
 end
