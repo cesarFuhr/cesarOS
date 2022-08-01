@@ -7,5 +7,5 @@ dry-build:
 update:
 	nix flake update
 
-prune:
-	sudo nix-collect-garbage -d
+trim:
+	sudo bash ./trim-gens.sh
