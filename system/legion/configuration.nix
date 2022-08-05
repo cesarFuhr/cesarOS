@@ -62,6 +62,12 @@
 
   # Copy the display script.
   environment.etc = {
+    # keychron K3 - mediakeys
+    "modprobe.d/hid_apple.conf".text = ''
+      options hid_apple fnmode=1
+    '';
+
+    # Display management.
     "display.py".source = ./display.py;
   };
 
