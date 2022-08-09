@@ -111,6 +111,4 @@ return require 'packer'.startup(function(use)
     },
   }
 
-  -- Setting up floating and persistent terminal.
-  require('FTerm').setup()
 end)

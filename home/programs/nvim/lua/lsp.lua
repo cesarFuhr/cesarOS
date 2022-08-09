@@ -241,7 +241,18 @@ lspconfig.texlab.setup {
 
 -- JSON
 lspconfig.jsonls.setup {
+  -- Next line only for nix users
+  cmd = { "json-languageserver", "--stdio" },
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
 }
 vim.api.nvim_command('autocmd BufWritePre *.json :silent! lua vim.lsp.buf.formatting_sync()')
+
+-- HTML
+lspconfig.html.setup {
+  -- Next line only for nix users
+  cmd = { "html-languageserver", "--stdio" },
+  capabilities = capabilities,
+  on_attach = custom_lsp_attach,
+}
+vim.api.nvim_command('autocmd BufWritePre *.html :silent! lua vim.lsp.buf.formatting_sync()')

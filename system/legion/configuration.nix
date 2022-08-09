@@ -167,6 +167,8 @@
     godef
     golint
     nodePackages.typescript-language-server
+    nodePackages.vscode-json-languageserver-bin
+    nodePackages.vscode-html-languageserver-bin
 
     # Environment
     dunst
