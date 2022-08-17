@@ -102,6 +102,7 @@ return require 'packer'.startup(function(use)
       "typescript",
       "tsx",
       "dockerfile",
+      "python",
     },
     highlight = {
       enable = true,
