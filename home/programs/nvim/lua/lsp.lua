@@ -256,3 +256,9 @@ lspconfig.html.setup {
   on_attach = custom_lsp_attach,
 }
 vim.api.nvim_command('autocmd BufWritePre *.html :silent! lua vim.lsp.buf.formatting_sync()')
+
+lspconfig.pyright.setup {
+  capabilities = capabilities,
+  on_attach = custom_lsp_attach,
+}
+vim.api.nvim_command('autocmd BufWritePre *.py :silent! lua vim.lsp.buf.formatting_sync()')

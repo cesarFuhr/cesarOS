@@ -122,7 +122,11 @@
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile.
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs;
+  let 
+    nd = pkgs.nodePackages;
+  in
+  [
     # Editors
     neovim
     vim
@@ -143,8 +147,6 @@
     clang
     clang-tools
     gcc
-    python
-    python3
     cmake
     fzf
     lua5_3
@@ -166,9 +168,12 @@
     gocode-gomod
     godef
     golint
-    nodePackages.typescript-language-server
-    nodePackages.vscode-json-languageserver-bin
-    nodePackages.vscode-html-languageserver-bin
+    nd.typescript-language-server
+    nd.vscode-json-languageserver-bin
+    nd.vscode-html-languageserver-bin
+    python
+    python3
+    nd.pyright
 
     # Environment
     dunst
