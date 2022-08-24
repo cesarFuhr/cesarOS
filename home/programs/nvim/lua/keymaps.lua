@@ -37,3 +37,9 @@ map('n', '<leader>fc', telBuiltin.current_buffer_fuzzy_find, opts)
 map('n', '<leader>ss', telBuiltin.spell_suggest, opts)
 -- Spell suggest to the word under the cursor.
 map('n', '<leader>ch', telBuiltin.git_commits, opts)
+
+-- Executes current file as lua script.
+map('n', '<leader><leader>x', function()
+  vim.cmd [[silent! write]]
+  vim.cmd [[source %]]
+end)
