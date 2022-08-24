@@ -39,7 +39,7 @@ map('n', '<leader>ss', telBuiltin.spell_suggest, opts)
 map('n', '<leader>ch', telBuiltin.git_commits, opts)
 
 -- Executes current file as lua script.
-map('n', '<leader><leader>x', function()
+map('n', '<leader>lx', function()
   vim.cmd [[silent! write]]
   vim.cmd [[source %]]
 end)
