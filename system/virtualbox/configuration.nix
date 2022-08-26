@@ -56,7 +56,6 @@
 
   # Video drivers
   services.xserver.videoDrivers = [ "modesetting" ];
-  services.xserver.useGlamor = true;
 
   # Touchpads
   services.xserver.libinput.enable = true;
