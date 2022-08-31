@@ -221,6 +221,7 @@
     simplescreenrecorder
     bc
     pciutils
+    psmisc
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
