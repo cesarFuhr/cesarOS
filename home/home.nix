@@ -51,7 +51,6 @@
     slack
     skypeforlinux
     zoom-us
-    teams
 
     # Audio
     pavucontrol

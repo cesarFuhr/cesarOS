@@ -28,6 +28,7 @@ return require 'packer'.startup(function(use)
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   -- better picker for nvim.
   use { 'stevearc/dressing.nvim' }
+  use { 'MunifTanjim/nui.nvim' }
   use 'kyazdani42/nvim-web-devicons'
   use 'numToStr/FTerm.nvim'
   use 'nvim-lualine/lualine.nvim'
