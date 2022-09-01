@@ -36,6 +36,8 @@ return require 'packer'.startup(function(use)
   use 'fladson/vim-kitty'
   use 'marko-cerovac/material.nvim'
 
+  use 'ardanlabs/ardango.nvim'
+
   -- Git integration.
   use 'airblade/vim-gitgutter'
 

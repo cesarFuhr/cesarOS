@@ -136,49 +136,15 @@ lspconfig.gopls.setup {
 -- Formats the file on save.
 vim.api.nvim_command('autocmd BufWritePre *.go :silent! lua vim.lsp.buf.formatting_sync()')
 
--- OrgImports is a function to update imports of a buffer.
-function OrgImports(wait_ms)
-  local params = vim.lsp.util.make_range_params()
-  params.context = { only = { "source.organizeImports" } }
-  local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
-  for _, res in pairs(result or {}) do
-    for _, r in pairs(res.result or {}) do
-      if r.edit then
-        vim.lsp.util.apply_workspace_edit(r.edit, "UTF-8")
-      else
-        vim.lsp.buf.execute_command(r.command)
-      end
-    end
-  end
-end
+local ardango = require("ardango")
+local go_augroup = vim.api.nvim_create_augroup("go_utils", { clear = true })
 
 -- Update imports on save.
-vim.api.nvim_command('autocmd BufWritePre *.go :silent! lua OrgImports(1000)')
-
-function SignatureOnStatusLine(wait_ms)
-  local params = vim.lsp.util.make_position_params()
-  local result = vim.lsp.buf_request_sync(0, "textDocument/hover", params, wait_ms)
-  for _, res in pairs(result or {}) do
-    for _, r in pairs(res or {}) do
-      for _, elem in pairs(r or {}) do
-        if elem.value ~= nil then
-          local lines = elem.value:gmatch("([^\r\n]+)\r?\n?")
-          -- throw away the first line of the iterator.
-          lines()
-          -- print the actual definition.
-          local definition = lines()
-          vim.schedule(function()
-            print(definition)
-          end)
-        end
-      end
-    end
-  end
-end
-
--- Get function signature on cursor hold.
---vim.api.nvim_command('autocmd CursorHold,CursorHoldI *.go lua SignatureOnStatusLine(300)')
-
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = go_augroup,
+  pattern = "*.go",
+  callback = function() ardango.OrgBufImports(1000) end,
+})
 
 -- Rust
 lspconfig.rust_analyzer.setup {
