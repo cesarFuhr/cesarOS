@@ -1,6 +1,6 @@
 -- Setting up a packer bootstrap function.
 local fn = vim.fn
-local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 
 local packer_bootstrap
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -36,6 +36,8 @@ return require 'packer'.startup(function(use)
   use 'fladson/vim-kitty'
   use 'marko-cerovac/material.nvim'
 
+  use 'ThePrimeagen/git-worktree.nvim'
+
   use 'ardanlabs/ardango.nvim'
 
   -- Git integration.
@@ -65,11 +67,11 @@ return require 'packer'.startup(function(use)
 
   -- If bootstrapping, sync all packages before requiring them.
   if packer_bootstrap then
-    require('packer').sync()
+    require 'packer'.sync()
   end
 
   -- Setting up lualine.
-  require('lualine').setup {
+  require 'lualine'.setup {
     options = {
       theme = 'onedark',
       globalstatus = true,
@@ -85,8 +87,8 @@ return require 'packer'.startup(function(use)
   }
 
   -- Setting up treesitter.
-  require('nvim-treesitter.install').compilers = { "gcc" }
-  require('nvim-treesitter.configs').setup {
+  require 'nvim-treesitter.install'.compilers = { "gcc" }
+  require 'nvim-treesitter.configs'.setup {
     playground = { enable = true },
     ensure_installed = {
       "make",

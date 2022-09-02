@@ -1,6 +1,6 @@
 local t = require 'telescope'
 
-t.setup{
+t.setup {
   extensions = {
     fzf = {
       fuzzy = true,
@@ -12,3 +12,4 @@ t.setup{
 }
 
 t.load_extension('fzf')
+t.load_extension('git-worktree')

@@ -35,10 +35,17 @@ map('n', '<leader>fw', telBuiltin.grep_string, opts)
 map('n', '<leader>fc', telBuiltin.current_buffer_fuzzy_find, opts)
 -- Spell suggest to the word under the cursor.
 map('n', '<leader>ss', telBuiltin.spell_suggest, opts)
--- Spell suggest to the word under the cursor.
+-- List current repo commits.
 map('n', '<leader>ch', telBuiltin.git_commits, opts)
 -- Help tags.
 map('n', '<leader>hh', telBuiltin.help_tags, opts)
+
+-- Telescope keymaps.
+local git_worktree = require 'telescope'.extensions.git_worktree
+
+-- Git Worktrees
+map('n', '<leader>wt', git_worktree.git_worktrees, opts)
+map('n', '<leader>cwt', git_worktree.create_git_worktree, opts)
 
 -- Executes current file as lua script.
 map('n', '<leader>lx', function()
