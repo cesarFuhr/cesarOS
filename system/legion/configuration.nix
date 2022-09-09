@@ -123,106 +123,106 @@
 
   # List packages installed in system profile.
   environment.systemPackages = with pkgs;
-  let 
-    nd = pkgs.nodePackages;
-  in
-  [
-    # Editors
-    neovim
-    vim
+    let
+      nd = pkgs.nodePackages;
+    in
+    [
+      # Editors
+      neovim
+      vim
 
-    # Terminal
-    kitty
+      # Terminal
+      kitty
 
-    # Browsers
-    firefox-bin
+      # Browsers
+      firefox-bin
 
-    # Work
-    git
-    tree-sitter
-    rnix-lsp
-    docker
-    docker-compose
-    gnumake
-    clang
-    clang-tools
-    gcc
-    cmake
-    fzf
-    lua5_3
-    lua53Packages.luarocks
-    sumneko-lua-language-server
-    nodejs
-    yarn
-    cargo
-    rustc
-    rustup
-    rust-analyzer
-    clippy
-    terraform
-    gotools
-    gopls
-    go-outline
-    gocode
-    gopkgs
-    gocode-gomod
-    godef
-    golint
-    nd.typescript-language-server
-    nd.vscode-json-languageserver-bin
-    nd.vscode-html-languageserver-bin
-    python
-    python3
-    nd.pyright
+      # Work
+      git
+      tree-sitter
+      rnix-lsp
+      docker
+      docker-compose
+      gnumake
+      clang
+      clang-tools
+      gcc
+      cmake
+      fzf
+      lua5_3
+      lua53Packages.luarocks
+      sumneko-lua-language-server
+      nodejs
+      yarn
+      cargo
+      rustc
+      rustup
+      rust-analyzer
+      clippy
+      terraform
+      gotools
+      gopls
+      go-outline
+      gocode
+      gopkgs
+      gocode-gomod
+      godef
+      golint
+      nd.typescript-language-server
+      nd.vscode-json-languageserver-bin
+      nd.vscode-html-languageserver-bin
+      python
+      python3
+      nd.pyright
 
-    # Environment
-    dunst
-    rofi
-    picom
-    cups
-    dmenu
-    feh
-    materia-theme
-    arc-theme
-    alsa-lib
-    alsa-utils
-    alsa-tools
-    pipecontrol
-    pamixer
-    pulseaudio
-    cudatoolkit
-    cudaPackages.cudnn
-    cudaPackages.cutensor
+      # Environment
+      dunst
+      rofi
+      picom
+      cups
+      dmenu
+      feh
+      materia-theme
+      arc-theme
+      alsa-lib
+      alsa-utils
+      alsa-tools
+      pipecontrol
+      pamixer
+      pulseaudio
+      cudatoolkit
+      cudaPackages.cudnn
+      cudaPackages.cutensor
 
-    # Utilities
-    wget
-    curl
-    arandr
-    xfce.thunar
-    xfce.thunar-volman
-    bat
-    exa
-    gnome.gnome-screenshot
-    gzip
-    htop
-    nvtop
-    jq
-    iftop
-    man-db
-    unzip
-    vlc
-    zip
-    usbutils
-    zoom
-    gparted
-    xclip
-    which
-    ripgrep
-    simplescreenrecorder
-    bc
-    pciutils
-    psmisc
-  ];
+      # Utilities
+      wget
+      curl
+      arandr
+      xfce.thunar
+      xfce.thunar-volman
+      bat
+      exa
+      gnome.gnome-screenshot
+      gzip
+      htop
+      nvtop
+      jq
+      iftop
+      man-db
+      unzip
+      vlc
+      zip
+      usbutils
+      zoom
+      gparted
+      xclip
+      which
+      ripgrep
+      simplescreenrecorder
+      bc
+      pciutils
+      psmisc
+    ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -249,6 +249,13 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  # Enable the printing daemon.
+  services.printing = {
+    enable = true;
+    startWhenNeeded = true;
+    drivers = [ pkgs.hplipWithPlugin ];
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
