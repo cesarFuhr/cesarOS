@@ -10,7 +10,7 @@
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
   # incompatible changes.
-  
+
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
@@ -24,7 +24,8 @@
     FZF_DEFAULT_COMMAND = "rg --files -uu -g '!.git'";
     EDITOR = "nvim";
     TERMINAL = "kitty";
-    BROWSER = "brave";
+    BROWSER = "google-chrome-stable";
+    COMPOSE_COMPATIBILITY = "true";
   };
 
   # Packages to install.
@@ -98,7 +99,7 @@
   programs.git = {
     enable = true;
     userEmail = "cesar.cara@protonmail.com";
-    userName = "cesarFuhr";
+    userName = "Cesar Cara";
 
     diff-so-fancy.enable = true;
 

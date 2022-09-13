@@ -23,6 +23,7 @@ return require 'packer'.startup(function(use)
   use 'nvim-lua/plenary.nvim'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'nvim-treesitter/playground'
+  use 'nvim-treesitter/nvim-treesitter-context'
   use 'nvim-telescope/telescope.nvim'
   -- faster fuzzy support for telescope.
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
@@ -118,5 +119,7 @@ return require 'packer'.startup(function(use)
       enable = true,
     },
   }
+
+  require 'treesitter-context'.setup {}
 
 end)
