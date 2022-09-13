@@ -36,7 +36,12 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking = {
+    networkmanager.enable = true;
+    extraHosts = ''
+      127.0.0.1 aws
+    '';
+  };
 
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";

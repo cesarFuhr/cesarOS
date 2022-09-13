@@ -42,6 +42,7 @@
       export ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg_bold[blue]%})"
       export ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[red]%}•"
       export ZSH_THEME_GIT_PROMPT_CLEAN=" %{$fg[green]%}•"
+      export PATH=$PATH:$(go env GOPATH)/bin
 
       # SyntaxHighlighting
       typeset -A ZSH_HIGHLIGHT_STYLES
