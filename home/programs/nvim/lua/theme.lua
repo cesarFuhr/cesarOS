@@ -8,11 +8,13 @@ require('material').setup({
 
   contrast = {
     cursor_line = true,
+    popup_menu = true,
   },
 
   borders = true, -- Enable borders between verticaly split windows
 
   popup_menu = "dark", -- Popup menu style ( can be: 'dark', 'light', 'colorful' or 'stealth' )
+  lualine_style = 'stealth',
 
   italics = {
     comments = false, -- Enable italic comments
@@ -37,6 +39,8 @@ require('material').setup({
   },
 
   custom_highlights = {
+    --Normal = { bg = '#262626' },
+    --NormalFloat = { bg = '#262626' },
     -- Brighter keywords
     TSKeyword = { fg = colors.cyan },
 
@@ -48,8 +52,22 @@ require('material').setup({
   }, -- Overwrite highlights with your own
 })
 
+-- local grey = "#646568"
+-- require 'onedark'.setup {
+--   style = 'warm',
+--   highlights = {
+--     TelescopePromptBorder = { fg = grey },
+--     TelescopeResultsBorder = { fg = grey },
+--     TelescopePreviewBorder = { fg = grey },
+--   },
+--   diagnostics = {
+--     warmer = true,
+--   }
+-- }
+-- require 'onedark'.load()
+
 vim.opt.cursorline = true
 vim.opt.termguicolors = true
 
-vim.cmd([[ colorscheme material ]])
-vim.cmd([[ syntax on ]])
+vim.cmd 'syntax on'
+vim.cmd 'colorscheme material'

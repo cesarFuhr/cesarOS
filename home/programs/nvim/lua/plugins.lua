@@ -14,7 +14,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
   })
 end
 
-_ = vim.cmd [[packadd packer.nvim]]
+_ = vim.cmd 'packadd packer.nvim'
 
 return require 'packer'.startup(function(use)
   -- Adding packer to avoid it prompting to remove itself.
@@ -36,6 +36,7 @@ return require 'packer'.startup(function(use)
   use 'hashivim/vim-terraform'
   use 'fladson/vim-kitty'
   use 'marko-cerovac/material.nvim'
+  use 'navarasu/onedark.nvim'
 
   use 'ThePrimeagen/git-worktree.nvim'
 
@@ -71,10 +72,14 @@ return require 'packer'.startup(function(use)
     require 'packer'.sync()
   end
 
+  require 'FTerm'.setup {
+    border = 'rounded'
+  }
+
   -- Setting up lualine.
   require 'lualine'.setup {
     options = {
-      theme = 'onedark',
+      theme = 'material',
       globalstatus = true,
     },
     sections = {
