@@ -37,6 +37,7 @@
     simplenote
     neofetch
     rclone
+    gpick
 
     # Browsers
     brave

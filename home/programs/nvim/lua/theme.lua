@@ -1,13 +1,18 @@
 -- Sets up theming settings.
 
 vim.g.material_style = 'darker'
-local colors = require('material.colors')
+
+local colors = vim.tbl_deep_extend("force", require('material.colors'), {
+  bg     = "#262626",
+  gray   = "#404040",
+  border = "#404040",
+})
+
 require('material').setup({
 
   async_loading = true,
 
   contrast = {
-    cursor_line = true,
     popup_menu = true,
   },
 
@@ -38,9 +43,14 @@ require('material').setup({
     eob_lines = false -- Hide the end-of-buffer lines
   },
 
+  custom_colors = {
+    bg = colors.bg,
+    bg_num = colors.bg,
+    bg_sign = colors.bg,
+    border = colors.gray,
+  },
+
   custom_highlights = {
-    --Normal = { bg = '#262626' },
-    --NormalFloat = { bg = '#262626' },
     -- Brighter keywords
     TSKeyword = { fg = colors.cyan },
 
@@ -52,22 +62,8 @@ require('material').setup({
   }, -- Overwrite highlights with your own
 })
 
--- local grey = "#646568"
--- require 'onedark'.setup {
---   style = 'warm',
---   highlights = {
---     TelescopePromptBorder = { fg = grey },
---     TelescopeResultsBorder = { fg = grey },
---     TelescopePreviewBorder = { fg = grey },
---   },
---   diagnostics = {
---     warmer = true,
---   }
--- }
--- require 'onedark'.load()
 
 vim.opt.cursorline = true
-vim.opt.termguicolors = true
 
 vim.cmd 'syntax on'
 vim.cmd 'colorscheme material'
