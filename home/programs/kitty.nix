@@ -29,7 +29,7 @@
     # Slightly modded OneDark
 
     foreground #e7edf7
-    background #202020
+    background #262626
     cursor #cccccc
     color0 #282c34
     color1 #e06c75
