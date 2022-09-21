@@ -44,8 +44,8 @@ map('n', '<leader>hh', telBuiltin.help_tags, opts)
 local git_worktree = require 'telescope'.extensions.git_worktree
 
 -- Git Worktrees
-map('n', '<leader>wt', git_worktree.git_worktrees, opts)
-map('n', '<leader>cwt', git_worktree.create_git_worktree, opts)
+map('n', '<leader>st', git_worktree.git_worktrees, opts)
+map('n', '<leader>ct', git_worktree.create_git_worktree, opts)
 
 -- Executes current file as lua script.
 map('n', '<leader>lx', function()
