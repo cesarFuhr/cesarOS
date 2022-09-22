@@ -40,6 +40,3 @@ opt.listchars = [[tab:→\ ,space:·,nbsp:␣,trail:•,eol:$,precedes:«,extend
 -- Custom shell, remove this if you use bash
 -- or change it to whatever shell you use.
 opt.shell = 'zsh'
-
--- GitGutter
-vim.g.gitgutter_preview_win_floating = 0

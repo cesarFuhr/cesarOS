@@ -178,6 +178,14 @@ vim.api.nvim_command('autocmd BufWritePre *.rs :silent! lua vim.lsp.buf.formatti
 lspconfig.sumneko_lua.setup {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
+  settings = {
+    Lua = {
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = { 'vim' },
+      },
+    },
+  },
 }
 vim.api.nvim_command('autocmd BufWritePre *.lua :silent! lua vim.lsp.buf.formatting_sync()')
 
