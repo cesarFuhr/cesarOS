@@ -2,14 +2,17 @@
 local opt = vim.opt
 
 -- Mouse support
-opt.mouse = 'a'
+opt.mouse = "a"
+
+-- Neovide
+opt.guifont = "Mononoki Nerd Font Mono:h10"
 
 -- Line numbers
 opt.number = true
 opt.relativenumber = true
 
 -- Signcolumn
-opt.signcolumn = 'yes'
+opt.signcolumn = "yes"
 
 -- File encoding
 opt.fileencoding = "utf-8"

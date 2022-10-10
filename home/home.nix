@@ -50,6 +50,7 @@
     protoc-gen-go-grpc
     openconnect
     teams
+    neovide
 
     # Comunication
     slack
