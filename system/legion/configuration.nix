@@ -227,6 +227,7 @@
       bc
       pciutils
       psmisc
+      fd
     ];
 
   # Some programs need SUID wrappers, can be configured further or are

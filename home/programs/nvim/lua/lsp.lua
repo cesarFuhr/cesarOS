@@ -39,7 +39,7 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'path' },
-    { name = "nvim_lsp_signature_help" },
+    { name = 'nvim_lsp_signature_help' },
   }, {
     -- completition buffer is only activated after the 5th char.
     { name = 'buffer', keyword_length = 5, max_item_count = 10 },
