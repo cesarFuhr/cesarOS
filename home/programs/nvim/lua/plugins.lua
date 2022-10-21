@@ -72,7 +72,11 @@ return require 'packer'.startup(function(use)
   end
 
   require 'FTerm'.setup {
-    border = 'rounded'
+    border = 'rounded',
+    dimensions = {
+      height = 0.95,
+      width = 0.95,
+    },
   }
 
   -- Setting up lualine.

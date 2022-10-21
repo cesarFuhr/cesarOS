@@ -2,9 +2,8 @@
 
 vim.g.material_style = 'darker'
 
-local colors = vim.tbl_deep_extend("force", require('material.colors'), {
+local custom_colors = vim.tbl_deep_extend("force", require('material.colors'), {
   bg     = "#262626",
-  gray   = "#404040",
   border = "#404040",
 })
 
@@ -16,50 +15,40 @@ require('material').setup({
     popup_menu = true,
   },
 
-  borders = true, -- Enable borders between verticaly split windows
-
-  popup_menu = "dark", -- Popup menu style ( can be: 'dark', 'light', 'colorful' or 'stealth' )
-  lualine_style = 'stealth',
-
-  italics = {
-    comments = false, -- Enable italic comments
-    keywords = false, -- Enable italic keywords
-    functions = true, -- Enable italic functions
-    strings = false, -- Enable italic strings
-    variables = false -- Enable italic variables
-  },
-
-  contrast_filetypes = {},
-
-  text_contrast = {
-    lighter = false, -- Enable higher contrast text for lighter style
-    darker = false -- Enable higher contrast text for darker style
-  },
-
   disable = {
     colored_cursor = false, -- Disable the colored cursor
+    borders = false, -- Prevent the theme from setting the background (NeoVim then uses your teminal background)
     background = false, -- Prevent the theme from setting the background (NeoVim then uses your teminal background)
     term_colors = false, -- Prevent the theme from setting terminal colors
     eob_lines = false -- Hide the end-of-buffer lines
   },
 
-  custom_colors = {
-    bg = colors.bg,
-    bg_num = colors.bg,
-    bg_sign = colors.bg,
-    border = colors.gray,
+  custom_colors = function(colors)
+    colors.editor.bg = custom_colors.bg
+    colors.editor.bg_num = custom_colors.bg
+    colors.editor.bg_sign = custom_colors.bg
+    colors.editor.border = custom_colors.border
+  end,
+
+  plugins = {
+    "gitsigns",
+    "nvim-cmp",
+    "telescope",
   },
 
   custom_highlights = {
     -- Brighter keywords
-    TSKeyword = { fg = colors.cyan },
+    TSKeyword = { fg = custom_colors.cyan },
 
-    TelescopePromptBorder  = { fg = colors.border },
-    TelescopeResultsBorder = { fg = colors.border },
-    TelescopePreviewBorder = { fg = colors.border },
-    TelescopeSelection     = { fg = colors.white, bg = colors.bg_alt },
-    WinSeparator           = { fg = colors.border },
+    TelescopePromptBorder   = { fg = custom_colors.border },
+    TelescopeResultsBorder  = { fg = custom_colors.border },
+    TelescopePreviewBorder  = { fg = custom_colors.border },
+    TelescopeSelection      = { fg = custom_colors.white },
+    TelescopeSelectionCaret = { fg = custom_colors.cyan, bg = custom_colors.bg },
+    WinSeparator            = { fg = custom_colors.border },
   }, -- Overwrite highlights with your own
+
+  lualine_style = 'stealth',
 })
 
 
