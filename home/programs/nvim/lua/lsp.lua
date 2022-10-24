@@ -74,12 +74,12 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 local lspconfig = require 'lspconfig'
 local telescopeBuiltin = require 'telescope.builtin'
 
+local map = vim.keymap.set
 -- Sets a function that will be called when a buffer with a supported
 -- language is opened. This is how we configure the keybindings to lsp
 -- when the language is supported, but left the keybindings as the default
 -- otherwise.
 local custom_lsp_attach = function()
-  local map = vim.keymap.set
   -- Shows help on hover.
   map('n', 'K', vim.lsp.buf.hover, { buffer = 0 })
   -- Jumps to definition.
@@ -115,14 +115,32 @@ local custom_lsp_attach = function()
 end
 
 -- Go!
--- TODO:
--- - Run tests as a command
--- - Build package as command
+local ardango = require("ardango")
+local go_augroup = vim.api.nvim_create_augroup("go_lsp", { clear = true })
+
+-- Update imports on save.
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = go_augroup,
+  pattern = "*.go",
+  callback = function() ardango.OrgBufImports(1000) end,
+})
+
 lspconfig.gopls.setup {
   -- warns the LSP that it can send snippets suggestions.
   capabilities = capabilities,
-  -- sets up lsp keybindings.
-  on_attach = custom_lsp_attach,
+  -- sets up lsp related functionality.
+  on_attach = function()
+    -- Adds tag element to the field under the cursor field.
+    map('n', '<leader>taf', ardango.AddTagToField, { buffer = 0 })
+    -- Adds tag element to all fields of the struct under the cursor field.
+    map('n', '<leader>tas', ardango.AddTagsToStruct, { buffer = 0 })
+    -- Removes tag element from the field under the cursor.
+    map('n', '<leader>trf', ardango.RemoveTagFromField, { buffer = 0 })
+    -- Removes tag element from the all fields of the struct under the cursor.
+    map('n', '<leader>trs', ardango.RemoveTagsFromStruct, { buffer = 0 })
+
+    custom_lsp_attach()
+  end,
   -- gopls settings.
   settings = {
     gopls = {
@@ -135,16 +153,6 @@ lspconfig.gopls.setup {
 }
 -- Formats the file on save.
 vim.api.nvim_command('autocmd BufWritePre *.go :silent! lua vim.lsp.buf.formatting_sync()')
-
-local ardango = require("ardango")
-local go_augroup = vim.api.nvim_create_augroup("go_utils", { clear = true })
-
--- Update imports on save.
-vim.api.nvim_create_autocmd("BufWritePre", {
-  group = go_augroup,
-  pattern = "*.go",
-  callback = function() ardango.OrgBufImports(1000) end,
-})
 
 -- Rust
 lspconfig.rust_analyzer.setup {
