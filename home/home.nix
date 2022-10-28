@@ -38,6 +38,7 @@
     neofetch
     rclone
     gpick
+    postman
 
     # Browsers
     brave

@@ -205,6 +205,8 @@ lspconfig.rnix.setup {
 
 -- JS/TS
 lspconfig.tsserver.setup {
+  -- Next line only for nix users
+  cmd = { "typescript-language-server", "--stdio" },
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
 }
