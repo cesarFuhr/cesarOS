@@ -36,6 +36,10 @@ require('material').setup({
     "telescope",
   },
 
+  styles = {
+    comments = { bold = true },
+  },
+
   custom_highlights = {
     -- Brighter keywords
     TSKeyword = { fg = custom_colors.cyan },
