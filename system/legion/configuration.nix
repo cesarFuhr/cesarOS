@@ -195,9 +195,6 @@
       pipecontrol
       pamixer
       pulseaudio
-      cudatoolkit
-      cudaPackages.cudnn
-      cudaPackages.cutensor
 
       # Utilities
       wget
