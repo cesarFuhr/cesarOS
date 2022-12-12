@@ -38,6 +38,7 @@
   # Enable networking
   networking = {
     networkmanager.enable = true;
+    enableIPv6 = false;
     extraHosts = ''
       127.0.0.1 aws
     '';
@@ -88,7 +89,10 @@
     dpi = 120;
 
     displayManager = {
-      gdm = { enable = true; };
+      gdm = {
+        enable = true;
+        wayland = false;
+      };
       defaultSession = "none+awesome";
 
       sessionCommands = ''
@@ -167,6 +171,7 @@
       terraform
       gotools
       gopls
+      go-tools
       go-outline
       gocode
       gopkgs
@@ -184,7 +189,6 @@
       dunst
       rofi
       picom
-      cups
       dmenu
       feh
       materia-theme
@@ -252,13 +256,6 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-
-  # Enable the printing daemon.
-  services.printing = {
-    enable = true;
-    startWhenNeeded = true;
-    drivers = [ pkgs.hplipWithPlugin ];
-  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

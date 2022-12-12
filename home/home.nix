@@ -39,6 +39,7 @@
     rclone
     gpick
     postman
+    gnome.gnome-calculator
 
     # Browsers
     brave
