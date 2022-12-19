@@ -145,14 +145,22 @@ lspconfig.gopls.setup {
   settings = {
     gopls = {
       analyses = {
+        shadow = true,
         unusedparams = true,
       },
       staticcheck = true,
     }
   }
 }
+
+local formatter_augroup = vim.api.nvim_create_augroup("lsp_formatters", { clear = true })
 -- Formats the file on save.
-vim.api.nvim_command('autocmd BufWritePre *.go :silent! lua vim.lsp.buf.formatting_sync()')
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = formatter_augroup,
+  pattern = "*.go",
+  callback = function() vim.lsp.buf.formatting_sync() end,
+})
+
 
 -- Rust
 lspconfig.rust_analyzer.setup {
