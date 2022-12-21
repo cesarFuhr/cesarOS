@@ -14,5 +14,5 @@ trim:
 	sudo bash ./trim-gens.sh
 
 clean:
-	nix-store --gc
-	nix-store --optimize
+	sudo nix-store --gc
+	sudo nix-store --optimize
