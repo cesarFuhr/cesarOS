@@ -1,3 +1,3 @@
 require 'zen-mode'.setup {
-  width = 200,
+  width = 700,
 }
