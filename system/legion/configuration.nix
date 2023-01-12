@@ -110,7 +110,11 @@
         luadbi-mysql
       ];
     };
+
+    xkbOptions = "ctrl:nocaps";
   };
+
+  console.useXkbConfig = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
@@ -129,6 +133,11 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # Allow python 2.7
+  nixpkgs.config.permittedInsecurePackages = [
+    "python-2.7.18.6"
+  ];
 
   # List packages installed in system profile.
   environment.systemPackages = with pkgs;
@@ -258,7 +267,7 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 11111 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
