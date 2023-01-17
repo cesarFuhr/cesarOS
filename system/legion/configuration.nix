@@ -213,8 +213,7 @@
       wget
       curl
       arandr
-      xfce.thunar
-      xfce.thunar-volman
+      cinnamon.nemo
       bat
       exa
       gnome.gnome-screenshot
