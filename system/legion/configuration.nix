@@ -63,6 +63,8 @@
   };
 
 
+  # Printing
+  services.printing.enable = true;
   # Touchpads
   services.xserver.libinput.enable = true;
 
