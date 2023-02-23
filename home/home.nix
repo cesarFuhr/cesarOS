@@ -31,7 +31,6 @@
   # Packages to install.
   home.packages = with pkgs; [
     # Utils
-    spotify
     bitwarden
     bitwarden-cli
     simplenote
