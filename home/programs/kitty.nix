@@ -6,7 +6,7 @@
     enable = true;
 
     font = {
-      name = "Mononoki Nerd Font Mono";
+      name = "JetBrainsMono Nerd Font Mono";
       size = 15;
     };
 
