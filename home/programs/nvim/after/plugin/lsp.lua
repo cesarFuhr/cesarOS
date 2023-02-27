@@ -115,7 +115,7 @@ local custom_lsp_attach = function()
 end
 
 -- Go!
-local ardango = require("ardango")
+local ardango = require "ardango"
 local go_augroup = vim.api.nvim_create_augroup("go_lsp", { clear = true })
 
 -- Update imports on save.
@@ -157,7 +157,7 @@ local formatter_augroup = vim.api.nvim_create_augroup("lsp_formatters", { clear 
 -- Formats the file on save.
 vim.api.nvim_create_autocmd("BufWritePre", {
     group = formatter_augroup,
-    pattern = "*.go",
+    pattern = { "*.go", "*.c", "*.lua", "*.rs", "*.nix" },
     callback = function() vim.lsp.buf.formatting_sync() end,
 })
 
@@ -188,7 +188,6 @@ lspconfig.rust_analyzer.setup {
         }
     }
 }
-vim.api.nvim_command('autocmd BufWritePre *.rs :silent! lua vim.lsp.buf.formatting_sync()')
 
 -- Lua
 lspconfig.sumneko_lua.setup {
@@ -203,7 +202,6 @@ lspconfig.sumneko_lua.setup {
         },
     },
 }
-vim.api.nvim_command('autocmd BufWritePre *.lua :silent! lua vim.lsp.buf.formatting_sync()')
 
 -- Nix
 lspconfig.rnix.setup {
@@ -238,7 +236,6 @@ lspconfig.jsonls.setup {
     capabilities = capabilities,
     on_attach = custom_lsp_attach,
 }
-vim.api.nvim_command('autocmd BufWritePre *.json :silent! lua vim.lsp.buf.formatting_sync()')
 
 -- HTML
 lspconfig.html.setup {
@@ -247,10 +244,8 @@ lspconfig.html.setup {
     capabilities = capabilities,
     on_attach = custom_lsp_attach,
 }
-vim.api.nvim_command('autocmd BufWritePre *.html :silent! lua vim.lsp.buf.formatting_sync()')
 
 lspconfig.pyright.setup {
     capabilities = capabilities,
     on_attach = custom_lsp_attach,
 }
-vim.api.nvim_command('autocmd BufWritePre *.py :silent! lua vim.lsp.buf.formatting_sync()')
