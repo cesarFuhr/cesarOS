@@ -12,12 +12,13 @@
   xdg.configFile."nvim/lua/cesar/set.lua".source = ./lua/cesar/set.lua;
   xdg.configFile."nvim/lua/cesar/remap.lua".source = ./lua/cesar/remap.lua;
   xdg.configFile."nvim/lua/cesar/packer.lua".source = ./lua/cesar/packer.lua;
+  xdg.configFile."nvim/lua/cesar/theme.lua".source = ./lua/cesar/theme.lua;
+
 
   # After
   xdg.configFile."nvim/after/plugin/lsp.lua".source = ./after/plugin/lsp.lua;
   xdg.configFile."nvim/after/plugin/snip.lua".source = ./after/plugin/snip.lua;
   xdg.configFile."nvim/after/plugin/fterm.lua".source = ./after/plugin/fterm.lua;
-  xdg.configFile."nvim/after/plugin/theme.lua".source = ./after/plugin/theme.lua;
   xdg.configFile."nvim/after/plugin/gitsigns.lua".source = ./after/plugin/gitsigns.lua;
   xdg.configFile."nvim/after/plugin/lualine.lua".source = ./after/plugin/lualine.lua;
   xdg.configFile."nvim/after/plugin/telescope.lua".source = ./after/plugin/telescope.lua;
