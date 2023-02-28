@@ -35,7 +35,6 @@
     bitwarden-cli
     simplenote
     neofetch
-    rclone
     gpick
     postman
     gnome.gnome-calculator
@@ -45,7 +44,6 @@
     google-chrome
 
     # Work
-    awscli2
     protobuf
     protoc-gen-go
     protoc-gen-go-grpc
