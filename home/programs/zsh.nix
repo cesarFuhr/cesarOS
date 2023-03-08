@@ -32,7 +32,8 @@
       gitc = "git commit -m";
       gitlog = "git log --oneline --graph -n 10";
 
-      dotf = "git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME";
+      renv = "nix develop --profile /tmp/\${\${PWD//\\//:}:1} --command $SHELL";
+      senv = "nix develop /tmp/\${\${PWD//\\//:}:1} --command $SHELL";
     };
 
     initExtra = ''
