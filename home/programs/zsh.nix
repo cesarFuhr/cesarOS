@@ -52,6 +52,9 @@
       ZSH_HIGHLIGHT_STYLES[command]='fg=blue'
       ZSH_HIGHLIGHT_STYLES[alias]='fg=cyan,bold'
       ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
+
+      # zoxide
+      eval "$(zoxide init zsh)"
     '';
   };
 }

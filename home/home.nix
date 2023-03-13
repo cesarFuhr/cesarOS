@@ -38,6 +38,7 @@
     gpick
     postman
     gnome.gnome-calculator
+    zoxide
 
     # Browsers
     brave
