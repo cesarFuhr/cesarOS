@@ -146,6 +146,23 @@
       enable = true;
       vSync = true;
     };
+
+    dunst = {
+      enable = true;
+      settings = {
+        global = {
+          width = 300;
+          height = 300;
+          offset = "30x50";
+          origin = "top-right";
+          transparency = 10;
+        };
+
+        urgency_normal = {
+          timeout = 10;
+        };
+      };
+    };
   };
 }
 

@@ -171,7 +171,7 @@
       fzf
       lua5_3
       lua53Packages.luarocks
-      sumneko-lua-language-server
+      lua-language-server
       nodejs
       yarn
       cargo
@@ -180,15 +180,6 @@
       rust-analyzer
       clippy
       terraform
-      gotools
-      gopls
-      go-tools
-      go-outline
-      gocode
-      gopkgs
-      gocode-gomod
-      godef
-      golint
       nd.typescript-language-server
       nd.vscode-json-languageserver-bin
       nd.vscode-html-languageserver-bin
@@ -197,7 +188,6 @@
       nd.pyright
 
       # Environment
-      dunst
       rofi
       picom
       dmenu
@@ -260,6 +250,7 @@
     fonts = with pkgs; [
       fira-code
       fira-code-symbols
+      input-fonts
       (nerdfonts.override { fonts = [ "JetBrainsMono" "SourceCodePro" "CodeNewRoman" "Mononoki" ]; })
     ];
   };

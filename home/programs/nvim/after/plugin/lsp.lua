@@ -3,68 +3,69 @@ local lspkind = require 'lspkind'
 
 -- cmp is the completition engine.
 cmp.setup({
-    snippet = {
-        expand = function(args)
-          -- here we link the snippet engine with cmp.
-          require('luasnip').lsp_expand(args.body)
-        end,
-    },
-    mapping = {
-        -- Control + K to navigate down in the suggestions list.
-        ['<C-k>'] = cmp.mapping.select_prev_item(),
-        -- Control + K to navigate up in the suggestions list.
-        ['<C-j>'] = cmp.mapping.select_next_item(),
-        -- Control + d to scroll down inside the docs of the suggestion.
-        ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs( -3), { 'i', 'c' }),
-        -- Control + d to scroll up inside the docs of the suggestion.
-        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(3), { 'i', 'c' }),
-        -- Control + space to invoque the autocompletion menu.
-        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-        ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-        -- Control + e to close the suggestion menu/window.
-        ['<C-e>'] = cmp.mapping({
-            i = cmp.mapping.abort(),
-            c = cmp.mapping.close(),
-        }),
-        -- Return to confirm the selected suggestion.
-        ['<Return>'] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Insert,
-            select = true,
-        }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    },
-    -- cmp is a completition engine and it can be configured
-    -- to receive suggestions from many sources.
-    -- here I have: lsp, snippets, path and buffer.
-    sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-        { name = 'path' },
-        { name = 'nvim_lsp_signature_help' },
-    }, {
-        -- completition buffer is only activated after the 5th char.
-        { name = 'buffer', keyword_length = 5, max_item_count = 10 },
+  snippet = {
+    expand = function(args)
+      -- here we link the snippet engine with cmp.
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
+  mapping = {
+    -- Control + K to navigate down in the suggestions list.
+    ['<C-k>'] = cmp.mapping.select_prev_item(),
+    -- Control + K to navigate up in the suggestions list.
+    ['<C-j>'] = cmp.mapping.select_next_item(),
+    -- Control + d to scroll down inside the docs of the suggestion.
+    ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-3), { 'i', 'c' }),
+    -- Control + d to scroll up inside the docs of the suggestion.
+    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(3), { 'i', 'c' }),
+    -- Control + space to invoque the autocompletion menu.
+    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+    -- Control + e to close the suggestion menu/window.
+    ['<C-e>'] = cmp.mapping({
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
     }),
-    view = {
-        entries = "custom"
+    -- Return to confirm the selected suggestion.
+    ['<Return>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  },
+  -- cmp is a completition engine and it can be configured
+  -- to receive suggestions from many sources.
+  -- here I have: lsp, snippets, path and buffer.
+  sources = cmp.config.sources({
+    { name = 'orgmode' },
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+    { name = 'path' },
+    { name = 'nvim_lsp_signature_help' },
+  }, {
+    -- completition buffer is only activated after the 5th char.
+    { name = 'buffer', keyword_length = 5, max_item_count = 10 },
+  }),
+  view = {
+    entries = "custom"
+  },
+  formatting = {
+    -- this sets the completition tags that show the source of the suggestion.
+    format = lspkind.cmp_format {
+      with_text = true,
+      menu = {
+        buffer = "[buf]",
+        nvim_lsp = "[LSP]",
+        nvim_lua = "[api]",
+        path = "[path]",
+        luasnip = "[snip]",
+      },
     },
-    formatting = {
-        -- this sets the completition tags that show the source of the suggestion.
-        format = lspkind.cmp_format {
-            with_text = true,
-            menu = {
-                buffer = "[buf]",
-                nvim_lsp = "[LSP]",
-                nvim_lua = "[api]",
-                path = "[path]",
-                luasnip = "[snip]",
-            },
-        },
-    },
-    -- this is a nice feature that creates virtual text with
-    -- with the top suggestion.
-    experimental = {
-        ghost_text = true,
-    },
+  },
+  -- this is a nice feature that creates virtual text with
+  -- with the top suggestion.
+  experimental = {
+    ghost_text = true,
+  },
 })
 
 -- Setup lspconfig.
@@ -120,132 +121,132 @@ local go_augroup = vim.api.nvim_create_augroup("go_lsp", { clear = true })
 
 -- Update imports on save.
 vim.api.nvim_create_autocmd("BufWritePre", {
-    group = go_augroup,
-    pattern = "*.go",
-    callback = function() ardango.OrgBufImports(1000) end,
+  group = go_augroup,
+  pattern = "*.go",
+  callback = function() ardango.OrgBufImports(1000) end,
 })
 
 lspconfig.gopls.setup {
-    -- warns the LSP that it can send snippets suggestions.
-    capabilities = capabilities,
-    -- sets up lsp related functionality.
-    on_attach = function()
-      -- Adds tag element to the field under the cursor field.
-      map('n', '<leader>taf', ardango.AddTagToField, { buffer = 0 })
-      -- Adds tag element to all fields of the struct under the cursor field.
-      map('n', '<leader>tas', ardango.AddTagsToStruct, { buffer = 0 })
-      -- Removes tag element from the field under the cursor.
-      map('n', '<leader>trf', ardango.RemoveTagFromField, { buffer = 0 })
-      -- Removes tag element from the all fields of the struct under the cursor.
-      map('n', '<leader>trs', ardango.RemoveTagsFromStruct, { buffer = 0 })
+  -- warns the LSP that it can send snippets suggestions.
+  capabilities = capabilities,
+  -- sets up lsp related functionality.
+  on_attach = function()
+    -- Adds tag element to the field under the cursor field.
+    map('n', '<leader>taf', ardango.AddTagToField, { buffer = 0 })
+    -- Adds tag element to all fields of the struct under the cursor field.
+    map('n', '<leader>tas', ardango.AddTagsToStruct, { buffer = 0 })
+    -- Removes tag element from the field under the cursor.
+    map('n', '<leader>trf', ardango.RemoveTagFromField, { buffer = 0 })
+    -- Removes tag element from the all fields of the struct under the cursor.
+    map('n', '<leader>trs', ardango.RemoveTagsFromStruct, { buffer = 0 })
 
-      custom_lsp_attach()
-    end,
-    -- gopls settings.
-    settings = {
-        gopls = {
-            analyses = {
-                shadow = true,
-                unusedparams = true,
-            },
-            staticcheck = true,
-        }
+    custom_lsp_attach()
+  end,
+  -- gopls settings.
+  settings = {
+    gopls = {
+      analyses = {
+        shadow = true,
+        unusedparams = true,
+      },
+      staticcheck = true,
     }
+  }
 }
 
 local formatter_augroup = vim.api.nvim_create_augroup("lsp_formatters", { clear = true })
 -- Formats the file on save.
 vim.api.nvim_create_autocmd("BufWritePre", {
-    group = formatter_augroup,
-    pattern = { "*.go", "*.c", "*.lua", "*.rs", "*.nix" },
-    callback = function() vim.lsp.buf.formatting_sync() end,
+  group = formatter_augroup,
+  pattern = { "*.go", "*.c", "*.lua", "*.rs", "*.nix" },
+  callback = function() vim.lsp.buf.formatting_sync() end,
 })
 
 
 -- Rust
 lspconfig.rust_analyzer.setup {
-    capabilities = capabilities,
-    on_attach = custom_lsp_attach,
-    cmd = { "rustup", "run", "stable", "rust-analyzer" },
-    settings = {
-        ["rust-analyzer"] = {
-            assist = {
-                importMergeBehavior = "last",
-                importPrefix = "by_self",
-            },
-            diagnostics = {
-                disabled = { "unresolved-import" }
-            },
-            cargo = {
-                loadOutDirsFromCheck = true
-            },
-            procMacro = {
-                enable = true
-            },
-            checkOnSave = {
-                command = "clippy"
-            },
-        }
+  capabilities = capabilities,
+  on_attach = custom_lsp_attach,
+  cmd = { "rustup", "run", "stable", "rust-analyzer" },
+  settings = {
+    ["rust-analyzer"] = {
+      assist = {
+        importMergeBehavior = "last",
+        importPrefix = "by_self",
+      },
+      diagnostics = {
+        disabled = { "unresolved-import" }
+      },
+      cargo = {
+        loadOutDirsFromCheck = true
+      },
+      procMacro = {
+        enable = true
+      },
+      checkOnSave = {
+        command = "clippy"
+      },
     }
+  }
 }
 
 -- Lua
-lspconfig.sumneko_lua.setup {
-    capabilities = capabilities,
-    on_attach = custom_lsp_attach,
-    settings = {
-        Lua = {
-            diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = { 'vim' },
-            },
-        },
+lspconfig.lua_ls.setup {
+  capabilities = capabilities,
+  on_attach = custom_lsp_attach,
+  settings = {
+    Lua = {
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = { 'vim' },
+      },
     },
+  },
 }
 
 -- Nix
 lspconfig.rnix.setup {
-    capabilities = capabilities,
-    on_attach = custom_lsp_attach,
+  capabilities = capabilities,
+  on_attach = custom_lsp_attach,
 }
 
 -- JS/TS
 lspconfig.tsserver.setup {
-    -- Next line only for nix users
-    cmd = { "typescript-language-server", "--stdio" },
-    capabilities = capabilities,
-    on_attach = custom_lsp_attach,
+  -- Next line only for nix users
+  cmd = { "typescript-language-server", "--stdio" },
+  capabilities = capabilities,
+  on_attach = custom_lsp_attach,
 }
 
 -- C lang
 lspconfig.clangd.setup {
-    capabilities = capabilities,
-    on_attach = custom_lsp_attach,
+  capabilities = capabilities,
+  on_attach = custom_lsp_attach,
 }
 
 -- Latex
 lspconfig.texlab.setup {
-    capabilities = capabilities,
-    on_attach = custom_lsp_attach,
+  capabilities = capabilities,
+  on_attach = custom_lsp_attach,
 }
 
 -- JSON
 lspconfig.jsonls.setup {
-    -- Next line only for nix users
-    cmd = { "json-languageserver", "--stdio" },
-    capabilities = capabilities,
-    on_attach = custom_lsp_attach,
+  -- Next line only for nix users
+  cmd = { "json-languageserver", "--stdio" },
+  capabilities = capabilities,
+  on_attach = custom_lsp_attach,
 }
 
 -- HTML
 lspconfig.html.setup {
-    -- Next line only for nix users
-    cmd = { "html-languageserver", "--stdio" },
-    capabilities = capabilities,
-    on_attach = custom_lsp_attach,
+  -- Next line only for nix users
+  cmd = { "html-languageserver", "--stdio" },
+  capabilities = capabilities,
+  on_attach = custom_lsp_attach,
 }
 
 lspconfig.pyright.setup {
-    capabilities = capabilities,
-    on_attach = custom_lsp_attach,
+  capabilities = capabilities,
+  on_attach = custom_lsp_attach,
 }

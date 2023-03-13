@@ -23,5 +23,6 @@
   xdg.configFile."nvim/after/plugin/lualine.lua".source = ./after/plugin/lualine.lua;
   xdg.configFile."nvim/after/plugin/telescope.lua".source = ./after/plugin/telescope.lua;
   xdg.configFile."nvim/after/plugin/treesitter.lua".source = ./after/plugin/treesitter.lua;
+  xdg.configFile."nvim/after/plugin/orgmode.lua".source = ./after/plugin/orgmode.lua;
 }
 
