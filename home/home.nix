@@ -39,6 +39,7 @@
     postman
     gnome.gnome-calculator
     zoxide
+    nodePackages.graphite-cli
 
     # Browsers
     brave
@@ -53,6 +54,7 @@
 
     # Comunication
     slack
+    discord
     skypeforlinux
     zoom-us
 
