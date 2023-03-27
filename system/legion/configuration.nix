@@ -135,6 +135,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.input-fonts.acceptLicense = true;
 
   # Allow python 2.7
   nixpkgs.config.permittedInsecurePackages = [

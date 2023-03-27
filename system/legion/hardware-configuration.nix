@@ -42,9 +42,6 @@
   hardware.opengl.enable = true;
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
-  # Hidpi
-  hardware.video.hidpi.enable = false;
-
   # Prevent lid from suspending.
   services.logind.lidSwitchExternalPower = "ignore";
   services.logind.lidSwitchDocked = "ignore";
