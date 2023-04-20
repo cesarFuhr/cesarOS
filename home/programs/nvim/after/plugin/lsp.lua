@@ -98,7 +98,7 @@ local custom_lsp_attach = function()
   -- Lists all the references to the symbols under the cursor.
   map('n', 'gr', telescopeBuiltin.lsp_references, { buffer = 0 })
   -- Applies formatting to the buffer.
-  map('n', '<leader>f', vim.lsp.buf.formatting, { buffer = 0 })
+  map('n', '<leader>f', function() vim.lsp.buf.format({ async = false }) end, { buffer = 0 })
   -- Opens the diagnostic as a floating window.
   map('n', '<leader>de', vim.diagnostic.open_float, { buffer = 0 })
   -- Lists diagnostics in quickfix.
@@ -159,7 +159,7 @@ local formatter_augroup = vim.api.nvim_create_augroup("lsp_formatters", { clear 
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = formatter_augroup,
   pattern = { "*.go", "*.c", "*.lua", "*.rs", "*.nix" },
-  callback = function() vim.lsp.buf.formatting_sync() end,
+  callback = function() vim.lsp.buf.format({ async = false }) end,
 })
 
 
