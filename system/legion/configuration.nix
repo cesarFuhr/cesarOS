@@ -198,7 +198,6 @@
       alsa-lib
       alsa-utils
       alsa-tools
-      pipecontrol
       pamixer
       pulseaudio
 
