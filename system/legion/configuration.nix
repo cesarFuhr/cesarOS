@@ -137,9 +137,11 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.input-fonts.acceptLicense = true;
 
-  # Allow python 2.7
+
+  # Allow python 2.7 and nodejs 16
   nixpkgs.config.permittedInsecurePackages = [
     "python-2.7.18.6"
+    "nodejs-16.20.0"
   ];
 
   # List packages installed in system profile.
@@ -186,7 +188,6 @@
       nd.vscode-html-languageserver-bin
       python
       python3
-      nd.pyright
 
       # Environment
       rofi
