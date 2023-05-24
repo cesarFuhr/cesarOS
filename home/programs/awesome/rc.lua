@@ -25,9 +25,11 @@ local lain = require("lain")
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
-  naughty.notify({ preset = naughty.config.presets.critical,
+  naughty.notify({
+    preset = naughty.config.presets.critical,
     title = "Oops, there were errors during startup!",
-    text = awesome.startup_errors })
+    text = awesome.startup_errors
+  })
 end
 
 -- Handle runtime errors after startup
@@ -38,9 +40,11 @@ do
     if in_error then return end
     in_error = true
 
-    naughty.notify({ preset = naughty.config.presets.critical,
+    naughty.notify({
+      preset = naughty.config.presets.critical,
       title = "Oops, an error happened!",
-      text = tostring(err) })
+      text = tostring(err)
+    })
     in_error = false
   end)
 end
@@ -50,23 +54,23 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 -- styles
-beautiful.useless_gap = 3
+beautiful.useless_gap       = 3
 beautiful.gap_single_client = false
 
 -- This is used later as the default terminal and editor to run.
-local terminal = "kitty"
-local editor = os.getenv("EDITOR") or "nvim"
-local editor_cmd = terminal .. " -e " .. editor
+local terminal              = "kitty"
+local editor                = os.getenv("EDITOR") or "nvim"
+local editor_cmd            = terminal .. " -e " .. editor
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
-local modkey = "Mod4"
+local modkey                = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
-awful.layout.layouts = {
+awful.layout.layouts        = {
   awful.layout.suit.max,
   -- awful.layout.suit.floating,
   awful.layout.suit.tile,
@@ -89,29 +93,30 @@ awful.layout.layouts = {
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
-local myawesomemenu = {
-  { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-  { "manual", terminal .. " -e man awesome" },
+local myawesomemenu         = {
+  { "hotkeys",     function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
+  { "manual",      terminal .. " -e man awesome" },
   { "edit config", editor_cmd .. " " .. awesome.conffile },
-  { "restart", awesome.restart },
-  { "quit", function() awesome.quit() end },
+  { "restart",     awesome.restart },
+  { "quit",        function() awesome.quit() end },
 }
 
-local mymainmenu = awful.menu({ items = {
-  { "awesome", myawesomemenu, beautiful.awesome_icon },
-  { "open terminal", terminal },
-}
+local mymainmenu            = awful.menu({
+  items = {
+    { "awesome",       myawesomemenu, beautiful.awesome_icon },
+    { "open terminal", terminal },
+  }
 })
 
-local markup = lain.util.markup
-local gray   = "#dddddd"
+local markup                = lain.util.markup
+local gray                  = "#dddddd"
 
-local theme     = {}
-theme.fg_normal = "#D7D7D7"
-theme.bg_normal = "#060606"
+local theme                 = {}
+theme.fg_normal             = "#D7D7D7"
+theme.bg_normal             = "#060606"
 
 -- /home fs
-local fs = lain.widget.fs({
+local fs                    = lain.widget.fs({
   notification_preset = { fg = white, bg = theme.bg_normal, font = "Terminus 10.5" },
   settings            = function()
     local fs_header = " FS "
@@ -121,7 +126,7 @@ local fs = lain.widget.fs({
 })
 
 -- CPU
-local cpu = lain.widget.cpu({
+local cpu                   = lain.widget.cpu({
   settings = function()
     local cpu_header = " CPU "
     local cpu_p      = cpu_now.usage
@@ -130,7 +135,7 @@ local cpu = lain.widget.cpu({
 })
 
 -- MEM
-local mem = lain.widget.mem({
+local mem                   = lain.widget.mem({
   settings = function()
     local mem_header = " RAM "
     local mem_p      = mem_now.perc
@@ -139,7 +144,7 @@ local mem = lain.widget.mem({
 })
 
 -- Battery
-local bat = lain.widget.bat({
+local bat                   = lain.widget.bat({
   settings = function()
     local bat_header = " Bat "
     local bat_p      = bat_now.perc .. " "
@@ -148,7 +153,7 @@ local bat = lain.widget.bat({
 })
 
 -- ALSA
-local volume = lain.widget.alsa({
+local volume                = lain.widget.alsa({
   --togglechannel = "IEC958,3",
   settings = function()
     local header = " Vol "
@@ -163,18 +168,18 @@ local volume = lain.widget.alsa({
 })
 
 -- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+menubar.utils.terminal      = terminal -- Set the terminal for applications that require it
 -- }}}
 
 -- Keyboard map indicator and switcher
-local mykeyboardlayout = awful.widget.keyboardlayout()
+local mykeyboardlayout      = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-local mytextclock = wibox.widget.textclock()
+local mytextclock           = wibox.widget.textclock()
 
 -- Create a wibox for each screen and add it
-local taglist_buttons = gears.table.join(
+local taglist_buttons       = gears.table.join(
   awful.button({}, 1, function(t) t:view_only() end),
   awful.button({ modkey }, 1, function(t)
     if client.focus then
@@ -240,14 +245,16 @@ awful.screen.connect_for_each_screen(function(s)
   s.mywibox:setup {
     layout = wibox.layout.align.horizontal,
     expand = "none",
-    { -- Left widgets
+    {
+      -- Left widgets
       layout = wibox.layout.fixed.horizontal,
       s.mylayoutbox,
       s.mytaglist,
       s.mypromptbox,
     },
     s.mytasklist, -- Middle widget
-    { -- Right widgets
+    {
+      -- Right widgets
       layout = wibox.layout.fixed.horizontal,
       cpu,
       spr,
@@ -295,7 +302,6 @@ local globalkeys = gears.table.join(
 
   awful.key({ modkey, }, "b", spawn("firefox"),
     { description = "open browser", group = "apps" }),
-
   awful.key({ modkey, "Shift" }, "Page_Up", spawn("setxkbmap -model pc104 -layout us"),
     { description = "us keyboard layout", group = "util" }),
 
@@ -321,7 +327,7 @@ local globalkeys = gears.table.join(
     end,
     { description = "focus previous by index", group = "client" }
   ),
-  awful.key({ modkey, }, "w", function() mymainmenu:show() end,
+  awful.key({ modkey, "Shift" }, "w", function() mymainmenu:show() end,
     { description = "show main menu", group = "awesome" }),
 
   -- Layout manipulation
@@ -329,10 +335,8 @@ local globalkeys = gears.table.join(
     { description = "swap with next client by index", group = "client" }),
   awful.key({ modkey, "Shift" }, "k", function() awful.client.swap.byidx(-1) end,
     { description = "swap with previous client by index", group = "client" }),
-  awful.key({ modkey, "Control" }, "j", function() awful.screen.focus_relative(1) end,
+  awful.key({ modkey, }, "w", function() awful.screen.focus_relative(1) end,
     { description = "focus the next screen", group = "screen" }),
-  awful.key({ modkey, "Control" }, "k", function() awful.screen.focus_relative(-1) end,
-    { description = "focus the previous screen", group = "screen" }),
   awful.key({ modkey, }, "u", awful.client.urgent.jumpto,
     { description = "jump to urgent client", group = "client" }),
   awful.key({ modkey, }, "Tab",
@@ -351,7 +355,6 @@ local globalkeys = gears.table.join(
     { description = "reload awesome", group = "awesome" }),
   awful.key({ modkey, "Shift" }, "q", awesome.quit,
     { description = "quit awesome", group = "awesome" }),
-
   awful.key({ modkey, }, "l", function() awful.tag.incmwfact(0.03) end,
     { description = "increase master width factor", group = "layout" }),
   awful.key({ modkey, }, "h", function() awful.tag.incmwfact(-0.03) end,
@@ -431,13 +434,10 @@ clientkeys = gears.table.join(
 
   awful.key({ modkey, "Control" }, "space", awful.client.floating.toggle,
     { description = "toggle floating", group = "client" }),
-
   awful.key({ modkey, }, "Return", function(c) c:swap(awful.client.getmaster()) end,
     { description = "move to master", group = "client" }),
-
   awful.key({ modkey, }, "o", function(c) c:move_to_screen() end,
     { description = "move to screen", group = "client" }),
-
   awful.key({ modkey, }, "t", function(c) c.ontop = not c.ontop end,
     { description = "toggle keep on top", group = "client" }),
 
@@ -540,8 +540,10 @@ root.keys(globalkeys)
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
   -- All clients will match this rule.
-  { rule = {},
-    properties = { border_width = beautiful.border_width,
+  {
+    rule = {},
+    properties = {
+      border_width = beautiful.border_width,
       border_color = beautiful.border_normal,
       focus = awful.client.focus.filter,
       raise = true,
@@ -555,39 +557,44 @@ awful.rules.rules = {
   },
 
   -- Floating clients.
-  { rule_any = {
-    instance = {
-      "DTA", -- Firefox addon DownThemAll.
-      "copyq", -- Includes session name in class.
-      "pinentry",
-    },
-    class = {
-      "Arandr",
-      "Blueman-manager",
-      "Gpick",
-      "Kruler",
-      "MessageWin", -- kalarm.
-      "Sxiv",
-      "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
-      "Wpa_gui",
-      "veromix",
-      "xtightvncviewer" },
+  {
+    rule_any = {
+      instance = {
+        "DTA",   -- Firefox addon DownThemAll.
+        "copyq", -- Includes session name in class.
+        "pinentry",
+      },
+      class = {
+        "Arandr",
+        "Blueman-manager",
+        "Gpick",
+        "Kruler",
+        "MessageWin",  -- kalarm.
+        "Sxiv",
+        "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
+        "Wpa_gui",
+        "veromix",
+        "xtightvncviewer" },
 
-    -- Note that the name property shown in xprop might be set slightly after creation of the client
-    -- and the name shown there might not match defined rules here.
-    name = {
-      "Event Tester", -- xev.
+      -- Note that the name property shown in xprop might be set slightly after creation of the client
+      -- and the name shown there might not match defined rules here.
+      name = {
+        "Event Tester", -- xev.
+      },
+      role = {
+        "AlarmWindow",   -- Thunderbird's calendar.
+        "ConfigManager", -- Thunderbird's about:config.
+        "pop-up",        -- e.g. Google Chrome's (detached) Developer Tools.
+      }
     },
-    role = {
-      "AlarmWindow", -- Thunderbird's calendar.
-      "ConfigManager", -- Thunderbird's about:config.
-      "pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
-    }
-  }, properties = { floating = true } },
+    properties = { floating = true }
+  },
 
   -- Add titlebars to normal clients and dialogs
-  { rule_any = { type = { "normal", "dialog" }
-  }, properties = { titlebars_enabled = false }
+  {
+    rule_any = { type = { "normal", "dialog" }
+    },
+    properties = { titlebars_enabled = false }
   },
 
   -- Set Firefox to always map on the tag named "2" on screen 1.
