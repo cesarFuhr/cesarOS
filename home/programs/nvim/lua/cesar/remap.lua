@@ -46,9 +46,9 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 -- Go to quickfix window.
 vim.keymap.set('n', '<leader>ql', '<cmd>copen<cr>', opts)
 -- Go to next quickfix.
-vim.keymap.set('n', '<leader>qk', '<cmd>cn<cr>', opts)
+vim.keymap.set('n', '<leader>qj', '<cmd>cn<cr>', opts)
 -- Go to prev quickfix.
-vim.keymap.set('n', '<leader>qj', '<cmd>cp<cr>', opts)
+vim.keymap.set('n', '<leader>qk', '<cmd>cp<cr>', opts)
 
 -- Executes current file as lua script.
 vim.keymap.set('n', '<leader>lx', function()
