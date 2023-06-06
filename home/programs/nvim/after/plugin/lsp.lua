@@ -246,7 +246,14 @@ lspconfig.html.setup {
   on_attach = custom_lsp_attach,
 }
 
+-- Python
 lspconfig.pyright.setup {
+  capabilities = capabilities,
+  on_attach = custom_lsp_attach,
+}
+
+-- Zig
+lspconfig.zls.setup {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
 }
