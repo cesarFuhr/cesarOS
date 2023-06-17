@@ -135,7 +135,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.input-fonts.acceptLicense = true;
 
 
   # Allow python 2.7 and nodejs 16
@@ -251,7 +250,6 @@
     fonts = with pkgs; [
       fira-code
       fira-code-symbols
-      input-fonts
       (nerdfonts.override { fonts = [ "JetBrainsMono" "SourceCodePro" "CodeNewRoman" "Mononoki" ]; })
     ];
   };

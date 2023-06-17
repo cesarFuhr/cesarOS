@@ -40,6 +40,7 @@
     gnome.gnome-calculator
     zoxide
     nodePackages.graphite-cli
+    entr
 
     # Browsers
     brave
@@ -61,6 +62,7 @@
     # Audio
     pavucontrol
     playerctl
+    spotify
   ];
 
   # Bigger configurations.
