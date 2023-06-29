@@ -257,3 +257,10 @@ lspconfig.zls.setup {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
 }
+
+-- Elixir
+lspconfig.elixirls.setup {
+  cmd = { "elixir-ls" },
+  capabilities = capabilities,
+  on_attach = custom_lsp_attach,
+}
