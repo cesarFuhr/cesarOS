@@ -264,3 +264,9 @@ lspconfig.elixirls.setup {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
 }
+
+-- Terraform
+lspconfig.terraformls.setup {
+  capabilities = capabilities,
+  on_attach = custom_lsp_attach,
+}
