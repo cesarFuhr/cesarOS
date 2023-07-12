@@ -51,10 +51,10 @@
     protoc-gen-go
     protoc-gen-go-grpc
     openconnect
-    teams
 
     # Comunication
     slack
+    teams
     discord
     skypeforlinux
     zoom-us
