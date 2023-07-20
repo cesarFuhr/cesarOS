@@ -14,7 +14,7 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "22.11";
+  home.stateVersion = "23.11";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -39,7 +39,6 @@
     postman
     gnome.gnome-calculator
     zoxide
-    nodePackages.graphite-cli
     entr
 
     # Browsers
@@ -135,6 +134,23 @@
       HostName github.com
       User git
       IdentityFile ~/.ssh/id_ed25519
+
+    Host stable-bastion
+      StrictHostKeyChecking no
+      User ec2-user
+      IdentityFile ~/.ssh/bnet-stable-bastion.pem
+      ProxyCommand bash -c "aws ssm start-session --document-name AWS-StartSSHSession --parameters 'portNumber=%p' --target $(aws ec2 describe-instances --filter "Name=tag:Name,Values=LinuxBastion" "Name=tag:Environment,Values=Stable" "Name=tag:Business Unit,Values=BNET" --query "Reservations[].Instances[?State.Name == 'running'].InstanceId[] | [0]" --output text)"
+    
+    Host i-* mi-*
+      StrictHostKeyChecking no
+      User ec2-user
+      ProxyCommand sh -c "aws --profile stable-bastion ssm start-session --target %h --document-name AWS-StartSSHSession --parameters 'portNumber=%p'"
+    
+    Host prod-bastion
+      StrictHostKeyChecking no
+      User ec2-user
+      IdentityFile ~/.ssh/bnet-prod-bastion.pem
+      ProxyCommand bash -c "aws --profile prod-bastion ssm start-session --document-name AWS-StartSSHSession --parameters 'portNumber=%p' --target $(aws --profile prod-bastion ec2 describe-instances --filter "Name=tag:Name,Values=LinuxBastion" "Name=tag:Environment,Values=Production" "Name=tag:Business Unit,Values=BNET" --query "Reservations[].Instances[?State.Name == 'running'].InstanceId[] | [0]" --output text)"
   '';
 
   programs.gpg = {
@@ -147,6 +163,7 @@
       defaultCacheTtl = 1800;
       enableSshSupport = true;
     };
+
     picom = {
       enable = true;
       vSync = true;
