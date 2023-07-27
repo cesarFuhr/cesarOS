@@ -245,9 +245,8 @@
   };
 
   fonts = {
-    enableDefaultFonts = true;
-
-    fonts = with pkgs; [
+    enableDefaultPackages = true;
+    packages = with pkgs; [
       fira-code
       fira-code-symbols
       (nerdfonts.override { fonts = [ "JetBrainsMono" "SourceCodePro" "CodeNewRoman" "Mononoki" ]; })
