@@ -163,7 +163,7 @@
     xfce.thunar
     xfce.thunar-volman
     bat
-    exa
+    eza
     gnome.gnome-screenshot
     gzip
     htop

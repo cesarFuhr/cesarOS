@@ -22,11 +22,11 @@
       vi = "nvim";
       vim = "nvim";
 
-      ls = "exa";
-      ll = "exa -l";
-      la = "exa -la";
-      lg = "exa -la --git";
-      tree = "exa --tree";
+      ls = "eza";
+      ll = "eza -l";
+      la = "eza -la";
+      lg = "eza -la --git";
+      tree = "eza --tree";
 
       gits = "git status";
       gitc = "git commit -m";

@@ -207,7 +207,7 @@
       arandr
       cinnamon.nemo
       bat
-      exa
+      eza
       gnome.gnome-screenshot
       gzip
       htop
