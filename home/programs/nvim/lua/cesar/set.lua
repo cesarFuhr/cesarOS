@@ -4,9 +4,6 @@ local opt = vim.opt
 -- Mouse support
 opt.mouse = "a"
 
--- Neovide
-opt.guifont = "Mononoki Nerd Font Mono:h10"
-
 -- Line numbers
 opt.number = true
 opt.relativenumber = true

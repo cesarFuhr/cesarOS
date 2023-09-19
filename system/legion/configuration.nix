@@ -229,6 +229,7 @@
       pciutils
       psmisc
       fd
+      openssl
     ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -249,7 +250,7 @@
     packages = with pkgs; [
       fira-code
       fira-code-symbols
-      (nerdfonts.override { fonts = [ "JetBrainsMono" "SourceCodePro" "CodeNewRoman" "Mononoki" ]; })
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     ];
   };
 
