@@ -53,7 +53,6 @@
 
     # Comunication
     slack
-    teams
     discord
     skypeforlinux
     zoom-us
