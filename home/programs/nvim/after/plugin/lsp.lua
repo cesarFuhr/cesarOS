@@ -158,7 +158,7 @@ local formatter_augroup = vim.api.nvim_create_augroup("lsp_formatters", { clear 
 -- Formats the file on save.
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = formatter_augroup,
-  pattern = { "*.go", "*.c", "*.lua", "*.rs", "*.nix" },
+  pattern = { "*.go", "*.c", "*.lua", "*.rs", "*.nix", "*.tf" },
   callback = function() vim.lsp.buf.format({ async = false }) end,
 })
 
