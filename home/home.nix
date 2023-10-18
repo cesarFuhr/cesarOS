@@ -33,7 +33,6 @@
     # Utils
     bitwarden
     bitwarden-cli
-    simplenote
     neofetch
     gpick
     postman
