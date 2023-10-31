@@ -139,7 +139,7 @@
 
   # Allow python 2.7 and nodejs 16
   nixpkgs.config.permittedInsecurePackages = [
-    "python-2.7.18.6"
+    "python-2.7.18.7"
     "nodejs-16.20.0"
   ];
 

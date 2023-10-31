@@ -35,7 +35,6 @@
     bitwarden-cli
     neofetch
     gpick
-    postman
     gnome.gnome-calculator
     zoxide
     entr
