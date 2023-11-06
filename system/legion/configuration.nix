@@ -91,9 +91,18 @@
     dpi = 120;
 
     displayManager = {
-      gdm = {
+      lightdm = {
         enable = true;
-        wayland = false;
+        background = "/home/cesar/Wallpapers/tori-viker-Qx5dR6_n-Qo-unsplash.jpg";
+        greeters = {
+          gtk = {
+            enable = true;
+            theme = {
+              name = "Sierra-dark";
+              package = pkgs.sierra-gtk-theme;
+            };
+          };
+        };
       };
       defaultSession = "none+awesome";
 
@@ -244,6 +253,10 @@
   programs.zsh = {
     enable = true;
   };
+
+  # Manually enabling dconf. 
+  # (needed because gnome is not a dep anymore, moved from gdm to lightdm)
+  programs.dconf.enable = true;
 
   fonts = {
     enableDefaultPackages = true;
