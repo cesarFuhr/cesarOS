@@ -309,6 +309,9 @@ local globalkeys = gears.table.join(
     spawn("setxkbmap -model pc104 -layout us -variant intl -option 'compose:rctrl'"),
     { description = "us variant keyboard layout", group = "util" }),
 
+  awful.key({ modkey, }, ";", spawn("dmenu_run"),
+    { description = "dmenu command", group = "laucher" }),
+
   awful.key({ modkey, }, "p", spawn("rofi -show run"),
     { description = "rofi run command", group = "laucher" }),
 
