@@ -105,13 +105,6 @@
         };
       };
       defaultSession = "none+awesome";
-
-      sessionCommands = ''
-        python3 /etc/display.py
-      '';
-      setupCommands = ''
-        python3 /etc/display.py
-      '';
     };
 
     windowManager.awesome = {
@@ -202,7 +195,6 @@
       picom
       dmenu
       feh
-      materia-theme
       arc-theme
       alsa-lib
       alsa-utils
