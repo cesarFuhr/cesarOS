@@ -33,6 +33,7 @@
       gitlog = "git log --oneline --graph -n 10";
 
       renv = "nix develop --profile /tmp/\${\${PWD//\\//:}:1} --command $SHELL";
+      renvimpure = "nix develop --impure --profile /tmp/\${\${PWD//\\//:}:1} --command $SHELL";
       senv = "nix develop /tmp/\${\${PWD//\\//:}:1} --command $SHELL";
     };
 
