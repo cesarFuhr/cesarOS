@@ -281,6 +281,15 @@
   # Docker service deamon
   virtualisation.docker = {
     enable = true;
+    daemon.settings = {
+      default-ulimits = {
+        nofile = {
+          Hard = 64000;
+          Name = "nofile";
+          Soft = 64000;
+        };
+      };
+    };
   };
 
   # This value determines the NixOS release from which the default
