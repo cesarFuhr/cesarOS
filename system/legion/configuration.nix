@@ -118,6 +118,12 @@
     xkbOptions = "ctrl:nocaps";
   };
 
+  # Picom
+  services.picom = {
+    enable = true;
+    vSync = true;
+  };
+
   console.useXkbConfig = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -128,7 +134,12 @@
       cesar = {
         isNormalUser = true;
         description = "cesar";
-        extraGroups = [ "networkmanager" "wheel" "audio" "docker" ];
+        extraGroups = [
+          "networkmanager"
+          "wheel"
+          "audio"
+          "docker"
+        ];
 
         shell = pkgs.zsh;
       };
@@ -192,7 +203,6 @@
 
       # Environment
       rofi
-      picom
       dmenu
       feh
       arc-theme
@@ -276,6 +286,18 @@
   services.blueman.enable = true;
   hardware = {
     bluetooth.enable = true;
+  };
+
+  # Flatpack
+  services.flatpak.enable = true;
+  xdg.portal = {
+    enable = true;
+    configPackages = with pkgs; [
+      xdg-desktop-portal-gtk
+    ];
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+    ];
   };
 
   # Docker service deamon
