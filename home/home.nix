@@ -36,10 +36,14 @@
     gnome.gnome-calculator
     zoxide
     entr
+    xdg-utils
 
     # Browsers
     brave
     google-chrome
+
+    # Communication
+    slack # couldn't make this work?
 
     # Work
     protobuf
