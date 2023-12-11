@@ -31,8 +31,6 @@
   # Packages to install.
   home.packages = with pkgs; [
     # Utils
-    bitwarden
-    bitwarden-cli
     neofetch
     gpick
     gnome.gnome-calculator
@@ -49,16 +47,9 @@
     protoc-gen-go-grpc
     openconnect
 
-    # Comunication
-    slack
-    discord
-    skypeforlinux
-    zoom-us
-
     # Audio
     pavucontrol
     playerctl
-    spotify
   ];
 
   # Bigger configurations.
