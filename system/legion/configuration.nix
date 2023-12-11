@@ -241,6 +241,7 @@
       psmisc
       fd
       openssl
+      appimage-run
     ];
 
   # Some programs need SUID wrappers, can be configured further or are
