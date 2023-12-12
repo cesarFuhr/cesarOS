@@ -50,6 +50,7 @@
     protoc-gen-go
     protoc-gen-go-grpc
     openconnect
+    bruno
 
     # Audio
     pavucontrol
