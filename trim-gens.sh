@@ -21,7 +21,7 @@ else
     profile="/nix/var/nix/profiles/system"
 fi
 if (( $# < 1 )); then
-    printf "Keeping default: 10 generations OR 7 days, whichever is more\n"
+    printf "Keeping default: 10 generations OR 5 days, whichever is more\n"
 elif [[ $# -le 2 ]]; then
     printf "\nError: Not enough arguments.\n\n" >&2
     usage
