@@ -91,6 +91,7 @@
     dpi = lib.mkForce 120;
 
     displayManager = {
+      startx.enable = true;
       lightdm = {
         enable = true;
         greeters = {
