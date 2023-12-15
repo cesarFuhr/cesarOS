@@ -88,12 +88,11 @@
     # Video drivers
     # Nvidia
     videoDrivers = [ "nvidia" ];
-    dpi = 120;
+    dpi = lib.mkForce 120;
 
     displayManager = {
       lightdm = {
         enable = true;
-        background = "/home/cesar/Wallpapers/tori-viker-Qx5dR6_n-Qo-unsplash.jpg";
         greeters = {
           gtk = {
             enable = true;
