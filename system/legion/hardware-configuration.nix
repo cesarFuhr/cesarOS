@@ -9,10 +9,10 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "nvidia" "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
 
   fileSystems."/" =
     {
@@ -40,7 +40,15 @@
 
   # Nvidia
   hardware.opengl.enable = true;
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+
+    open = false;
+    nvidiaSettings = true;
+  };
 
   # Prevent lid from suspending.
   services.logind.lidSwitchExternalPower = "ignore";
