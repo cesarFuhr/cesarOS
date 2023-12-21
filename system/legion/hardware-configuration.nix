@@ -16,18 +16,18 @@
 
   fileSystems."/" =
     {
-      device = "/dev/disk/by-label/nixos";
+      device = "/dev/disk/by-label/n-nixos";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-label/boot";
+      device = "/dev/disk/by-label/N-BOOT";
       fsType = "vfat";
     };
 
   swapDevices =
-    [{ device = "/dev/disk/by-label/swap"; }];
+    [{ device = "/dev/disk/by-label/n-swap"; }];
 
   services.fstrim.enable = lib.mkDefault true;
 
