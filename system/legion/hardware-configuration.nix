@@ -65,6 +65,9 @@
   services.logind.lidSwitch = "ignore";
 
   # Audio - PulseAudio
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.support32Bit = true;
+  hardware.pulseaudio = {
+    enable = true;
+    support32Bit = true;
+    package = pkgs.pulseaudioFull;
+  };
 }

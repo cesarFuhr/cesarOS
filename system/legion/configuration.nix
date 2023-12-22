@@ -288,8 +288,13 @@
 
   # Bluetooth
   services.blueman.enable = true;
-  hardware = {
-    bluetooth.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+      };
+    };
   };
 
   # Flatpack
@@ -316,6 +321,12 @@
         };
       };
     };
+  };
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
   };
 
   # This value determines the NixOS release from which the default
