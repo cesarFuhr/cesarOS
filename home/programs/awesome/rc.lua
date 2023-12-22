@@ -424,7 +424,7 @@ local globalkeys = gears.table.join(
 --           {description = "show the menubar", group = "launcher"})
 )
 
-clientkeys = gears.table.join(
+local clientkeys = gears.table.join(
   awful.key({ modkey, }, "f",
     function(c)
       c.fullscreen = not c.fullscreen
@@ -521,7 +521,7 @@ for i = 1, 9 do
   )
 end
 
-clientbuttons = gears.table.join(
+local clientbuttons = gears.table.join(
   awful.button({}, 1, function(c)
     c:emit_signal("request::activate", "mouse_click", { raise = true })
   end),
@@ -654,4 +654,6 @@ client.connect_signal("property::urgent", function(c)
 end)
 -- }}}
 
--- awful.spawn.with_shell("pacmd set-default-sink 0")
+-- Hack so xdg portal loads applications from PATH.
+awful.spawn.with_shell("systemctl --user import-environment PATH")
+awful.spawn.with_shell("systemctl --user restart xdg-desktop-portal.service")
