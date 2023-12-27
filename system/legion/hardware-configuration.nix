@@ -64,6 +64,8 @@
   services.logind.lidSwitchDocked = "ignore";
   services.logind.lidSwitch = "ignore";
 
+  hardware.enableAllFirmware = true;
+
   # Audio - PulseAudio
   hardware.pulseaudio = {
     enable = true;
@@ -71,3 +73,4 @@
     package = pkgs.pulseaudioFull;
   };
 }
+
