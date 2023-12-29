@@ -125,6 +125,11 @@
       User git
       IdentityFile ~/.ssh/id_ed25519
 
+    Host *sr.ht
+      User git
+      IdentityFile ~/.ssh/id_ed25519
+      PreferredAuthentications publickey
+
     Host stable-bastion
       StrictHostKeyChecking no
       User ec2-user
