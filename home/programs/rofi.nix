@@ -51,7 +51,7 @@
     window {
         location:   center;
         width:      800;
-        y-offset:   -400;
+        y-offset:   0;
 
         background-color:   @bg0;
     }
