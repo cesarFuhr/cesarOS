@@ -160,11 +160,6 @@
       pinentryFlavor = "tty";
     };
 
-    picom = {
-      enable = true;
-      vSync = true;
-    };
-
     dunst = {
       enable = true;
       settings = {

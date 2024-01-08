@@ -44,12 +44,17 @@
   hardware.opengl =
     {
       enable = true;
+      driSupport = true;
       extraPackages = with pkgs; [
         vaapiVdpau
+        vulkan-validation-layers
       ];
     };
 
   hardware.nvidia = {
+    # Modesetting is required.
+    modesetting.enable = true;
+
     package = config.boot.kernelPackages.nvidiaPackages.stable;
 
     powerManagement.enable = false;
