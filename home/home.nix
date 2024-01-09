@@ -43,6 +43,7 @@
     google-chrome
 
     # Work
+    aerc
     protobuf
     protoc-gen-go
     protoc-gen-go-grpc
