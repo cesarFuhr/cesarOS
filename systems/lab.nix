@@ -8,7 +8,7 @@
   imports =
     [
       # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      ./hardware/legion.nix
     ];
 
   # Making nix ready for flakes.
@@ -68,15 +68,12 @@
   # Touchpads
   services.xserver.libinput.enable = true;
 
-  # Copy the display script.
+  # etc settings
   environment.etc = {
     # keychron K3 - mediakeys
     "modprobe.d/hid_apple.conf".text = ''
       options hid_apple fnmode=1
     '';
-
-    # Display management.
-    "display.py".source = ./display.py;
   };
 
   # X11
