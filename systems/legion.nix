@@ -64,7 +64,10 @@
 
 
   # Printing
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.hplip ];
+  };
   # Touchpads
   services.xserver.libinput.enable = true;
 
@@ -242,6 +245,7 @@
       inxi
       glxinfo
       parted
+      system-config-printer
     ];
 
   # Some programs need SUID wrappers, can be configured further or are
