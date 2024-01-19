@@ -42,6 +42,9 @@
     brave
     google-chrome
 
+    # Communication
+    weechat
+
     # Work
     aerc
     protobuf
