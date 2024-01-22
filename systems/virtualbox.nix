@@ -126,20 +126,7 @@
     lua5_3
     lua53Packages.luarocks
     sumneko-lua-language-server
-    nodejs
-    yarn
-    rustc
-    rustup
     rust-analyzer
-    terraform
-    gotools
-    gopls
-    go-outline
-    gocode
-    gopkgs
-    gocode-gomod
-    godef
-    golint
     nodePackages.typescript-language-server
 
     # Environment
