@@ -23,7 +23,7 @@
   };
 
   # Load the theme in the config folder.
-  xdg.configFile."rofi/theme.rasi".text = ''
+  home.file.".config/rofi/theme.rasi".text = ''
     /******************************************************************************
      * ROFI SQUARED THEME USING THE NORD PALETTE 
      * User                 : LR-Tech               

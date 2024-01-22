@@ -74,9 +74,9 @@
     # user.
     ./programs/nvim/nvim.nix
 
+    ./programs/kitty.nix
     ./programs/rofi.nix
     ./programs/zsh.nix
-    ./programs/kitty.nix
   ];
 
   gtk = {

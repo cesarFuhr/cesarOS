@@ -24,7 +24,7 @@
     '';
   };
 
-  xdg.configFile."kitty/themes/CesarDark.conf".text = ''
+  home.file.".config/kitty/themes/CesarDark.conf".text = ''
     # CesarTheme
     # Slightly modded OneDark
 
