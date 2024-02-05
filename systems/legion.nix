@@ -157,104 +157,98 @@
   ];
 
   # List packages installed in system profile.
-  environment.systemPackages = with pkgs;
+  environment.systemPackages =
     let
+      p = pkgs;
       nd = pkgs.nodePackages;
     in
     [
       # Editors
-      neovim
-      vim
+      p.neovim
+      p.vim
 
       # Terminal
-      kitty
+      p.kitty
 
       # Browsers
-      firefox-bin
+      p.firefox-bin
 
       # Work
-      git
-      tree-sitter
-      rnix-lsp
-      docker
-      docker-compose
-      gnumake
-      clang
-      clang-tools
-      gcc
-      cmake
-      fzf
-      lua5_3
-      lua53Packages.luarocks
-      lua-language-server
-      nodejs
-      yarn
-      cargo
-      rustc
-      rustup
-      rust-analyzer
-      clippy
-      terraform
+      notes-script.packages.${p.system}.notes
+      p.git
+      p.tree-sitter
+      p.rnix-lsp
+      p.docker
+      p.docker-compose
+      p.gnumake
+      p.clang
+      p.clang-tools
+      p.gcc
+      p.cmake
+      p.fzf
+      p.lua5_3
+      p.lua53Packages.luarocks
+      p.lua-language-server
+      p.nodejs
+      p.yarn
+      p.cargo
+      p.rustc
+      p.rustup
+      p.rust-analyzer
+      p.clippy
+      p.terraform
       nd.typescript-language-server
       nd.vscode-json-languageserver-bin
       nd.vscode-html-languageserver-bin
-      python
-      python3
+      p.python
+      p.python3
+      p.marksman
 
       # Environment
-      rofi
-      dmenu
-      feh
-      arc-theme
-      alsa-lib
-      alsa-utils
-      alsa-tools
-      pamixer
-      pulseaudio
+      p.rofi
+      p.dmenu
+      p.feh
+      p.arc-theme
+      p.alsa-lib
+      p.alsa-utils
+      p.alsa-tools
+      p.pamixer
+      p.pulseaudio
 
       # Utilities
-      wget
-      curl
-      arandr
-      cinnamon.nemo
-      bat
-      eza
-      gnome.gnome-screenshot
-      gzip
-      htop
-      nvtop
-      jq
-      iftop
-      man-db
-      unzip
-      vlc
-      zip
-      usbutils
-      zoom
-      gparted
-      xclip
-      which
-      ripgrep
-      simplescreenrecorder
-      bc
-      pciutils
-      psmisc
-      fd
-      openssl
-      lshw
-      inxi
-      glxinfo
-      parted
-      system-config-printer
+      p.wget
+      p.curl
+      p.arandr
+      p.cinnamon.nemo
+      p.bat
+      p.eza
+      p.gzip
+      p.htop
+      p.nvtop
+      p.jq
+      p.iftop
+      p.man-db
+      p.unzip
+      p.vlc
+      p.zip
+      p.usbutils
+      p.zoom
+      p.gparted
+      p.xclip
+      p.which
+      p.ripgrep
+      p.simplescreenrecorder
+      p.bc
+      p.pciutils
+      p.psmisc
+      p.fd
+      p.openssl
+      p.lshw
+      p.inxi
+      p.glxinfo
+      p.parted
+      p.system-config-printer
     ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
 
   # Zsh
   programs.zsh = {

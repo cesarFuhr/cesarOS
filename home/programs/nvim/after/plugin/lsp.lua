@@ -270,3 +270,9 @@ lspconfig.terraformls.setup {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
 }
+
+-- Markdown
+lspconfig.marksman.setup {
+  capabilities = capabilities,
+  on_attach = custom_lsp_attach,
+}

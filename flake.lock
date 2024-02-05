@@ -36,10 +36,43 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1706925685,
+        "narHash": "sha256-hVInjWMmgH4yZgA4ZtbgJM1qEAel72SYhP5nOWX4UIM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "79a13f1437e149dc7be2d1290c74d378dad60814",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "notes-script": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1707154916,
+        "narHash": "sha256-AxTRyUFTsFS4T9S0+UUlYDsKeJ+10D9DzM2ldaMg86M=",
+        "owner": "cesarFuhr",
+        "repo": "notes-script",
+        "rev": "a6eb91d347cbfbcbe6e361ee2c294e395c4efb23",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cesarFuhr",
+        "repo": "notes-script",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "notes-script": "notes-script"
       }
     }
   },

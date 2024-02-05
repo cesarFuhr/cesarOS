@@ -2,21 +2,22 @@
   description = "cesarOS system builds";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs = {
+      url = "github:nixos/nixpkgs/nixos-unstable";
+    };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    notes-script = {
+      url = "github:cesarFuhr/notes-script";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, notes-script, ... }:
     let
       system = "x86_64-linux";
-
-      pgks = import nixpkgs {
-        inherit system;
-        config = { allowUnfree = true; };
-      };
-
-      lib = nixpkgs.lib;
     in
     {
       nixosConfigurations = {
@@ -40,6 +41,7 @@
         legion = nixpkgs.lib.nixosSystem {
           inherit system;
 
+          specialArgs = { inherit notes-script; };
           modules = [
             ./systems/legion.nix
             home-manager.nixosModules.home-manager
