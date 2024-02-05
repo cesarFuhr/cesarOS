@@ -29,33 +29,34 @@
   };
 
   # Packages to install.
-  home.packages = with pkgs; [
-    # Utils
-    neofetch
-    gpick
-    gnome.gnome-calculator
-    zoxide
-    entr
-    xdg-utils
+  home.packages = let p = pkgs; in
+    [
+      # Utils
+      p.neofetch
+      p.gpick
+      p.gnome.gnome-calculator
+      p.zoxide
+      p.entr
+      p.xdg-utils
 
-    # Browsers
-    brave
-    google-chrome
+      # Browsers
+      p.brave
+      p.google-chrome
 
-    # Communication
-    weechat
+      # Communication
+      p.weechat
 
-    # Work
-    protobuf
-    protoc-gen-go
-    protoc-gen-go-grpc
-    openconnect
-    bruno
+      # Work
+      p.protobuf
+      p.protoc-gen-go
+      p.protoc-gen-go-grpc
+      p.openconnect
+      p.bruno
 
-    # Audio
-    pavucontrol
-    playerctl
-  ];
+      # Audio
+      p.pavucontrol
+      p.playerctl
+    ];
 
   # Bigger configurations.
   imports = [
@@ -160,7 +161,8 @@
       enable = true;
       defaultCacheTtl = 1800;
       enableSshSupport = true;
-      pinentryFlavor = "tty";
+      enableZshIntegration = true;
+      pinentryFlavor = "gtk2";
     };
 
     dunst = {
