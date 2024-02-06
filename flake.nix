@@ -12,6 +12,7 @@
 
     notes-script = {
       url = "github:cesarFuhr/notes-script";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
