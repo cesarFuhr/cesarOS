@@ -43,11 +43,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1707229202,
-        "narHash": "sha256-plyzdPIHjBTYw2osLL+cl+Ose4zX8SzB4vezDechzx0=",
+        "lastModified": 1707269132,
+        "narHash": "sha256-V+KVSiMt8C2+dyfggteeHrtBd0SQWl5VfWY6pmBncNI=",
         "owner": "cesarFuhr",
         "repo": "notes-script",
-        "rev": "a080a30a1cb1bb23d4bf4b2e54cacfca248f8b76",
+        "rev": "f3324045f9004098d3534d2c2af2392ebb13f844",
         "type": "github"
       },
       "original": {
