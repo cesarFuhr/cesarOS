@@ -175,6 +175,8 @@
 
       # Work
       notes-script.packages.${p.system}.notes
+      notes-script.packages.${p.system}.todo
+      notes-script.packages.${p.system}.todo-done
       p.git
       p.tree-sitter
       p.rnix-lsp
@@ -225,6 +227,7 @@
       p.gzip
       p.htop
       p.nvtop
+      p.btop
       p.jq
       p.iftop
       p.man-db
