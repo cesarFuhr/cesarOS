@@ -37,13 +37,14 @@ return packer.startup(function(use)
   use 'hashivim/vim-terraform'
   use 'fladson/vim-kitty'
   use 'marko-cerovac/material.nvim'
+  use 'ThePrimeagen/harpoon'
 
   use 'ardanlabs/ardango.nvim'
 
   -- Focus mode.
   use("folke/zen-mode.nvim")
 
-  -- Undo tree.
+  -- Undo tree. Do I ever use this?
   use('mbbill/undotree')
 
   -- Git integration.
@@ -71,9 +72,6 @@ return packer.startup(function(use)
       'saadparwaiz1/cmp_luasnip',
     }
   }
-
-  -- Org mode? is this something now?
-  use { 'nvim-orgmode/orgmode' }
 
   -- If bootstrapping, sync all packages.
   if packer_bootstrap then

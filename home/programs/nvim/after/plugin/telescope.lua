@@ -13,6 +13,7 @@ t.setup {
 
 t.load_extension('fzf')
 t.load_extension('git_worktree')
+t.load_extension('harpoon')
 
 local opts = { noremap = true, silent = true }
 
@@ -37,7 +38,11 @@ vim.keymap.set('n', '<leader>hh', telBuiltin.help_tags, opts)
 
 -- Telescope maps.
 local git_worktree = require 'telescope'.extensions.git_worktree
+local harpoon = require 'telescope'.extensions.harpoon
 
 -- Git Worktrees
 vim.keymap.set('n', '<leader>st', git_worktree.git_worktrees, opts)
 vim.keymap.set('n', '<leader>ct', git_worktree.create_git_worktree, opts)
+
+-- Harpoon
+vim.keymap.set('n', '<leader>ms', harpoon.marks)
