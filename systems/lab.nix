@@ -79,8 +79,11 @@
   # X11
   services.xserver = {
     enable = true;
-    layout = "us";
-    xkbVariant = "";
+    xkb = {
+      options = "ctrl:nocaps";
+      layout = "us";
+      variant = "";
+    };
 
     # Video drivers
     # Nvidia
