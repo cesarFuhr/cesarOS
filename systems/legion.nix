@@ -117,8 +117,6 @@
         luadbi-mysql
       ];
     };
-
-    xkbOptions = "ctrl:nocaps";
   };
 
   # Picom
