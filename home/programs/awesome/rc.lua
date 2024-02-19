@@ -58,7 +58,7 @@ beautiful.useless_gap       = 3
 beautiful.gap_single_client = false
 
 -- This is used later as the default terminal and editor to run.
-local terminal              = "kitty"
+local terminal              = "alacritty"
 local editor                = os.getenv("EDITOR") or "nvim"
 local editor_cmd            = terminal .. " -e " .. editor
 

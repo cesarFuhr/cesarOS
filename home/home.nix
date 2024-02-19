@@ -75,6 +75,7 @@
     ./programs/nvim/nvim.nix
 
     ./programs/kitty.nix
+    ./programs/alacritty.nix
     ./programs/rofi.nix
     ./programs/zsh.nix
   ];
