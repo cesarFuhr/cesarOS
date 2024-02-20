@@ -23,7 +23,7 @@
   home.sessionVariables = {
     FZF_DEFAULT_COMMAND = "rg --files -uu -g '!.git'";
     EDITOR = "nvim";
-    TERMINAL = "kitty";
+    TERMINAL = "alacritty";
     BROWSER = "google-chrome-stable";
     COMPOSE_COMPATIBILITY = "true";
   };
