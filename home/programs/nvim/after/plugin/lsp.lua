@@ -10,24 +10,23 @@ cmp.setup({
     end,
   },
   mapping = {
-    -- Control + K to navigate down in the suggestions list.
-    ['<C-k>'] = cmp.mapping.select_prev_item(),
-    -- Control + K to navigate up in the suggestions list.
-    ['<C-j>'] = cmp.mapping.select_next_item(),
+    -- Control + j to navigate down in the suggestions list.
+    ['<C-j>'] = cmp.mapping.select_prev_item(),
+    -- Control + k to navigate up in the suggestions list.
+    ['<C-k>'] = cmp.mapping.select_next_item(),
     -- Control + d to scroll down inside the docs of the suggestion.
     ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-3), { 'i', 'c' }),
-    -- Control + d to scroll up inside the docs of the suggestion.
+    -- Control + f to scroll up inside the docs of the suggestion.
     ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(3), { 'i', 'c' }),
     -- Control + space to invoque the autocompletion menu.
     ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-    ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     -- Control + e to close the suggestion menu/window.
     ['<C-e>'] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     }),
     -- Return to confirm the selected suggestion.
-    ['<Return>'] = cmp.mapping.confirm({
+    ['<C-;>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
     }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
@@ -36,7 +35,6 @@ cmp.setup({
   -- to receive suggestions from many sources.
   -- here I have: lsp, snippets, path and buffer.
   sources = cmp.config.sources({
-    { name = 'orgmode' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'path' },
