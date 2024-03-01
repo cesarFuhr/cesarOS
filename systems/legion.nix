@@ -114,7 +114,6 @@
       enable = true;
       luaModules = with pkgs.luaPackages; [
         luarocks
-        luadbi-mysql
       ];
     };
   };
@@ -170,6 +169,7 @@
 
       # Terminal
       p.kitty
+      p.alacritty
 
       # Browsers
       p.firefox-bin
