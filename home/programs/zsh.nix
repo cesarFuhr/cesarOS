@@ -56,6 +56,9 @@
 
       # zoxide
       eval "$(zoxide init zsh)"
+
+      # vi mode
+      set -o vi
     '';
   };
 }
