@@ -59,6 +59,9 @@
 
       # vi mode
       set -o vi
+
+      # Accept autosuggestions with Ctrl+;
+      bindkey '^ ' autosuggest-accept
     '';
   };
 }
