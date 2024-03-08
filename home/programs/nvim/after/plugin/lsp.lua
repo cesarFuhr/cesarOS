@@ -11,9 +11,9 @@ cmp.setup({
   },
   mapping = {
     -- Control + j to navigate down in the suggestions list.
-    ['<C-j>'] = cmp.mapping.select_prev_item(),
+    ['<C-k>'] = cmp.mapping.select_prev_item(),
     -- Control + k to navigate up in the suggestions list.
-    ['<C-k>'] = cmp.mapping.select_next_item(),
+    ['<C-j>'] = cmp.mapping.select_next_item(),
     -- Control + d to scroll down inside the docs of the suggestion.
     ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-3), { 'i', 'c' }),
     -- Control + f to scroll up inside the docs of the suggestion.
