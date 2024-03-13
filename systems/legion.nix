@@ -180,7 +180,7 @@
       notes-script.packages.${p.system}.todo-done
       p.git
       p.tree-sitter
-      p.rnix-lsp
+      p.nixd
       p.docker
       p.docker-compose
       p.gnumake

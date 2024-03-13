@@ -203,7 +203,7 @@ lspconfig.lua_ls.setup {
 }
 
 -- Nix
-lspconfig.rnix.setup {
+lspconfig.nixd.setup {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
 }
