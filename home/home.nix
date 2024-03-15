@@ -163,7 +163,7 @@
       defaultCacheTtl = 1800;
       enableSshSupport = true;
       enableZshIntegration = true;
-      pinentryFlavor = "gtk2";
+      pinentryPackage = pkgs.pinentry-gtk2;
     };
 
     dunst = {
