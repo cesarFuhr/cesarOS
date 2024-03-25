@@ -252,6 +252,7 @@
       p.glxinfo
       p.parted
       p.system-config-printer
+      p.dig
     ];
 
   # Zsh
