@@ -10,6 +10,10 @@ local toggle = function()
       height = 1, -- height of the Zen window
     },
     plugins = {
+      alacritty = {
+        enabled = true,
+        font = "+1", -- font size
+      },
       kitty = {
         enabled = true,
         font = "+1", -- font size increment
