@@ -227,7 +227,7 @@
       p.eza
       p.gzip
       p.htop
-      p.nvtop
+      p.nvtopPackages.full
       p.btop
       p.jq
       p.iftop
