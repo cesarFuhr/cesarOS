@@ -38,6 +38,16 @@
           ];
         };
 
+        # Inspiron!
+        inspiron = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          specialArgs = { inherit notes-script; };
+          modules = [
+            ./systems/inspiron.nix
+          ];
+        };
+
         # Currently, is what I am using on a daily basis.
         legion = nixpkgs.lib.nixosSystem {
           inherit system;
@@ -54,7 +64,7 @@
           ];
         };
 
-        # Little laboratory, only exisits to keed the main config more stable.
+        # Little laboratory, only exisits to keep the main config more stable.
         lab = nixpkgs.lib.nixosSystem {
           inherit system;
 
