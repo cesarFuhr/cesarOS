@@ -39,14 +39,20 @@
         };
 
         # Inspiron!
-        inspiron = nixpkgs.lib.nixosSystem {
-          inherit system;
+        inspiron = nixpkgs.lib.nixosSystem
+          {
+            inherit system;
 
-          specialArgs = { inherit notes-script; };
-          modules = [
-            ./systems/inspiron.nix
-          ];
-        };
+            specialArgs = { inherit notes-script; };
+            modules = [
+              ./systems/inspiron.nix
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.cesar = import ./home/cesar.nix;
+              }
+            ];
+          };
 
         # Currently, is what I am using on a daily basis.
         legion = nixpkgs.lib.nixosSystem {
@@ -62,6 +68,7 @@
               home-manager.users.cesar = { config, pkgs, ... }: {
                 imports = [
                   ./home/cesar.nix
+                  # With window manager.
                   ./home/programs/awesome/awesome.nix
                   ./home/programs/rofi.nix
                 ];

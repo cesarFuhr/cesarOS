@@ -39,9 +39,6 @@
   networking = {
     networkmanager.enable = true;
     enableIPv6 = false;
-    extraHosts = ''
-      127.0.0.1 aws
-    '';
   };
 
   # Set your time zone.

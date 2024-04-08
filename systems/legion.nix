@@ -153,6 +153,7 @@
   # Allow python 2.7 and nodejs 16
   nixpkgs.config.permittedInsecurePackages = [
     "python-2.7.18.7"
+    "python-2.7.18.8"
     "nodejs-16.20.0"
   ];
 
@@ -168,7 +169,6 @@
       p.vim
 
       # Terminal
-      p.kitty
       p.alacritty
 
       # Browsers
@@ -180,6 +180,9 @@
       notes-script.packages.${p.system}.todo-done
       p.git
       p.tree-sitter
+      p.nixd
+      p.nixpkgs-fmt
+      p.nixpkgs-lint
       p.nixd
       p.docker
       p.docker-compose
