@@ -61,10 +61,8 @@
   # Bigger configurations.
   imports = [
     # Awesome window manager.
-    # The first build will fail, since lcpz/lain package is 
-    # missing. Clone it to ~/.config/awesome/lain and restart
-    # awesomewm.
     ./programs/awesome/awesome.nix
+    ./programs/rofi.nix
 
     # Neovim will be installed but the plugins must be installed.
     # This will happend in the first neovim run, sometimes
@@ -73,10 +71,7 @@
     # This should be done after setting up the git ssh keys to the
     # user.
     ./programs/nvim/nvim.nix
-
-    ./programs/kitty.nix
     ./programs/alacritty.nix
-    ./programs/rofi.nix
     ./programs/zsh.nix
   ];
 

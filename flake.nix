@@ -33,7 +33,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.cesar = import ./home/home.nix;
+              home-manager.users.cesar = import ./home/cesar.nix;
             }
           ];
         };
@@ -59,7 +59,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.cesar = import ./home/home.nix;
+              home-manager.users.cesar = import ./home/cesar.nix;
             }
           ];
         };
@@ -74,7 +74,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.cesar = import ./home/home.nix;
+              home-manager.users.cesar = import ./home/cesar.nix;
             }
           ];
         };
