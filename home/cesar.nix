@@ -60,10 +60,6 @@
 
   # Bigger configurations.
   imports = [
-    # Awesome window manager.
-    ./programs/awesome/awesome.nix
-    ./programs/rofi.nix
-
     # Neovim will be installed but the plugins must be installed.
     # This will happend in the first neovim run, sometimes
     # some plugins will fail to be downloaded in the first try,
