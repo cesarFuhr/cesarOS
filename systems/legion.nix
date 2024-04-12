@@ -69,8 +69,6 @@
     enable = true;
     drivers = [ pkgs.hplip ];
   };
-  # Touchpads
-  services.xserver.libinput.enable = true;
 
   # etc settings
   environment.etc = {
@@ -81,41 +79,46 @@
   };
 
   # X11
-  services.xserver = {
-    enable = true;
-    xkb = {
-      layout = "us";
-      variant = "";
-      options = "ctrl:nocaps";
-    };
+  services = {
+    displayManager.defaultSession = "none+awesome";
+    xserver = {
+      enable = true;
+      xkb = {
+        layout = "us";
+        variant = "";
+        options = "ctrl:nocaps";
+      };
 
-    # Video drivers
-    # Nvidia
-    videoDrivers = [ "nvidia" ];
-    dpi = lib.mkForce 120;
+      # Touchpads
+      libinput.enable = true;
 
-    displayManager = {
-      startx.enable = true;
-      lightdm = {
-        enable = true;
-        greeters = {
-          gtk = {
-            enable = true;
-            theme = {
-              name = "Sierra-dark";
-              package = pkgs.sierra-gtk-theme;
+      # Video drivers
+      # Nvidia
+      videoDrivers = [ "nvidia" ];
+      dpi = lib.mkForce 120;
+
+      displayManager = {
+        startx.enable = true;
+        lightdm = {
+          enable = true;
+          greeters = {
+            gtk = {
+              enable = true;
+              theme = {
+                name = "Sierra-dark";
+                package = pkgs.sierra-gtk-theme;
+              };
             };
           };
         };
       };
-      defaultSession = "none+awesome";
-    };
 
-    windowManager.awesome = {
-      enable = true;
-      luaModules = with pkgs.luaPackages; [
-        luarocks
-      ];
+      windowManager.awesome = {
+        enable = true;
+        luaModules = with pkgs.luaPackages; [
+          luarocks
+        ];
+      };
     };
   };
 
