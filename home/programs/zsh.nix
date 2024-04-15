@@ -21,6 +21,7 @@
 
       vi = "nvim";
       vim = "nvim";
+      e = "$EDITOR";
 
       ls = "eza";
       ll = "eza -l";
