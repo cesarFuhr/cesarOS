@@ -176,7 +176,7 @@
       p.alacritty
 
       # Browsers
-      p.firefox-bin
+      p.firefox
 
       # Work
       notes-script.packages.${p.system}.notes
