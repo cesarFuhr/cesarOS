@@ -81,6 +81,9 @@
   # X11
   services = {
     displayManager.defaultSession = "none+awesome";
+    # Touchpads
+    libinput.enable = true;
+
     xserver = {
       enable = true;
       xkb = {
@@ -88,9 +91,6 @@
         variant = "";
         options = "ctrl:nocaps";
       };
-
-      # Touchpads
-      libinput.enable = true;
 
       # Video drivers
       # Nvidia
