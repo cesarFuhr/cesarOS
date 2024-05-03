@@ -274,3 +274,9 @@ lspconfig.marksman.setup {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
 }
+
+-- Bash
+lspconfig.bashls.setup {
+  capabilities = capabilities,
+  on_attach = custom_lsp_attach,
+}

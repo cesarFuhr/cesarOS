@@ -210,6 +210,7 @@
       nd.typescript-language-server
       nd.vscode-json-languageserver-bin
       nd.vscode-html-languageserver-bin
+      nd.bash-language-server
       p.python
       p.python3
       p.marksman
