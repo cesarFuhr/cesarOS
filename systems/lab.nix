@@ -8,7 +8,7 @@
   imports =
     [
       # Include the results of the hardware scan.
-      ./hardware/legion.nix
+      ./hardware/lab.nix
     ];
 
   # Making nix ready for flakes.
@@ -62,11 +62,8 @@
     LC_TIME = "pt_BR.UTF-8";
   };
 
-
-  # Printing
-  services.printing.enable = true;
   # Touchpads
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 
   # etc settings
   environment.etc = {
@@ -74,6 +71,11 @@
     "modprobe.d/hid_apple.conf".text = ''
       options hid_apple fnmode=1
     '';
+  };
+
+  programs.hyprland = {
+    enable = true;
+    enableNvidiaPatches = true;
   };
 
   # X11
@@ -92,7 +94,6 @@
 
     displayManager.gdm = {
       wayland = true;
-      nvidiaWayland = true;
     };
   };
 
@@ -125,6 +126,7 @@
   # Allow python 2.7 and nodejs 16
   nixpkgs.config.permittedInsecurePackages = [
     "python-2.7.18.7"
+    "python-2.7.18.8"
     "nodejs-16.20.0"
   ];
 
@@ -193,7 +195,6 @@
       p.eza
       p.gzip
       p.htop
-      p.nvtopPackages.full
       p.btop
       p.jq
       p.iftop

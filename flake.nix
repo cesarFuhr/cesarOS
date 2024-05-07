@@ -91,7 +91,7 @@
                 imports = [
                   ./home/cesar.nix
                   # With Wayland.
-                  ./home/programs/sway.nix
+                  ./home/programs/hyprland.nix
                 ];
               };
             }
