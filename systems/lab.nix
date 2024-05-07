@@ -17,8 +17,11 @@
     experimental-features = nix-command flakes
   '';
 
-  # Setting env var to mark this build as legion.
-  environment.variables.CESAR_OS_BUILD = "legion";
+  # Setting env var to mark this build as lab.
+  environment.variables = {
+    CESAR_OS_BUILD = "lab";
+    WLR_NO_HARDWARE_CURSORS = "1";
+  };
 
   # Latest kernel.
   boot.kernelPackages = pkgs.linuxPackages;
@@ -28,7 +31,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "cesar"; # Define your hostname.
+  networking.hostName = "lab"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -87,36 +90,10 @@
     videoDrivers = [ "nvidia" ];
     dpi = lib.mkForce 120;
 
-    displayManager = {
-      startx.enable = true;
-      lightdm = {
-        enable = true;
-        greeters = {
-          gtk = {
-            enable = true;
-            theme = {
-              name = "Sierra-dark";
-              package = pkgs.sierra-gtk-theme;
-            };
-          };
-        };
-      };
-      defaultSession = "none+awesome";
+    displayManager.gdm = {
+      wayland = true;
+      nvidiaWayland = true;
     };
-
-    windowManager.awesome = {
-      enable = true;
-      luaModules = with pkgs.luaPackages; [
-        luarocks
-        luadbi-mysql
-      ];
-    };
-  };
-
-  # Picom
-  services.picom = {
-    enable = true;
-    vSync = true;
   };
 
   console.useXkbConfig = true;
@@ -152,94 +129,95 @@
   ];
 
   # List packages installed in system profile.
-  environment.systemPackages = with pkgs;
+  environment.systemPackages =
     let
+      p = pkgs;
       nd = pkgs.nodePackages;
     in
     [
       # Editors
-      neovim
-      vim
+      p.neovim
+      p.vim
 
       # Terminal
-      kitty
+      p.alacritty
 
       # Browsers
-      firefox-bin
+      p.firefox
+
+      # Wayland
+      p.glxinfo
+      p.vulkan-tools
+      p.glmark2
 
       # Work
-      git
-      tree-sitter
-      rnix-lsp
-      docker
-      docker-compose
-      gnumake
-      clang
-      clang-tools
-      gcc
-      cmake
-      fzf
-      lua5_3
-      lua53Packages.luarocks
-      lua-language-server
-      nodejs
-      yarn
-      cargo
-      rustc
-      rustup
-      rust-analyzer
-      clippy
-      terraform
+      p.git
+      p.tree-sitter
+      p.nixd
+      p.nixpkgs-fmt
+      p.nixpkgs-lint
+      p.nixd
+      p.docker
+      p.docker-compose
+      p.gnumake
+      p.clang
+      p.clang-tools
+      p.gcc
+      p.cmake
+      p.fzf
+      p.lua5_3
+      p.lua53Packages.luarocks
+      p.lua-language-server
+      p.nodejs
+      p.yarn
+      p.cargo
+      p.rustc
+      p.rustup
+      p.rust-analyzer
+      p.clippy
+      p.terraform
       nd.typescript-language-server
       nd.vscode-json-languageserver-bin
       nd.vscode-html-languageserver-bin
-      python
-      python3
-
-      # Environment
-      rofi
-      dmenu
-      feh
-      arc-theme
-      alsa-lib
-      alsa-utils
-      alsa-tools
-      pamixer
-      pulseaudio
+      nd.bash-language-server
+      p.python
+      p.python3
+      p.marksman
 
       # Utilities
-      wget
-      curl
-      arandr
-      cinnamon.nemo
-      bat
-      eza
-      gnome.gnome-screenshot
-      gzip
-      htop
-      nvtop
-      jq
-      iftop
-      man-db
-      unzip
-      vlc
-      zip
-      usbutils
-      zoom
-      gparted
-      xclip
-      which
-      ripgrep
-      simplescreenrecorder
-      bc
-      pciutils
-      psmisc
-      fd
-      openssl
-      lshw
-      inxi
-      glxinfo
-      parted
+      p.wget
+      p.curl
+      p.arandr
+      p.cinnamon.nemo
+      p.bat
+      p.eza
+      p.gzip
+      p.htop
+      p.nvtopPackages.full
+      p.btop
+      p.jq
+      p.iftop
+      p.man-db
+      p.unzip
+      p.vlc
+      p.zip
+      p.usbutils
+      p.zoom
+      p.gparted
+      p.xclip
+      p.which
+      p.ripgrep
+      p.bc
+      p.pciutils
+      p.psmisc
+      p.fd
+      p.openssl
+      p.lshw
+      p.inxi
+      p.glxinfo
+      p.parted
+      p.system-config-printer
+      p.dig
     ];
 
   # Some programs need SUID wrappers, can be configured further or are

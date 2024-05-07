@@ -67,14 +67,6 @@
     ./programs/zsh.nix
   ];
 
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Sierra-dark";
-      package = pkgs.sierra-gtk-theme;
-    };
-  };
-
   # Golang setup.
   programs.go = {
     enable = true;

@@ -1,5 +1,13 @@
 { config, lib, pkgs, modulesPath, ... }:
 
+let
+  nverStable = config.boot.kernelPackages.nvidiaPackages.stable.version;
+  nverBeta = config.boot.kernelPackages.nvidiaPackages.beta.version;
+  nvidiaPackage =
+    if (lib.versionOlder nverBeta nverStable)
+    then config.boot.kernelPackages.nvidiaPackages.stable
+    else config.boot.kernelPackages.nvidiaPackages.beta;
+in
 {
   imports =
     [
@@ -9,22 +17,21 @@
   boot.initrd.availableKernelModules = [ "nvidia" "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
 
   fileSystems."/" =
     {
-      device = "/dev/disk/by-label/n-nixos";
+      device = "/dev/disk/by-label/nixos";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-label/N-BOOT";
+      device = "/dev/disk/by-label/boot";
       fsType = "vfat";
     };
 
   swapDevices =
-    [{ device = "/dev/disk/by-label/n-swap"; }];
+    [{ device = "/dev/disk/by-label/swap"; }];
 
   services.fstrim.enable = lib.mkDefault true;
 
@@ -37,31 +44,16 @@
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  # Nvidia
-  hardware.opengl =
-    {
-      enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
-      extraPackages = with pkgs; [
-        vaapiVdpau
-        vulkan-validation-layers
-      ];
-    };
-
   hardware.nvidia = {
     # Modesetting is required.
     modesetting.enable = true;
 
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = nvidiaPackage;
 
     powerManagement = {
       enable = false;
       finegrained = false;
     };
-
-    open = false;
-    nvidiaSettings = true;
   };
 
   # Prevent lid from suspending.
@@ -70,12 +62,5 @@
   services.logind.lidSwitch = "ignore";
 
   hardware.enableAllFirmware = true;
-
-  # Audio - PulseAudio
-  hardware.pulseaudio = {
-    enable = true;
-    support32Bit = true;
-    package = pkgs.pulseaudioFull;
-  };
 }
 

@@ -226,6 +226,10 @@
       p.pamixer
       p.pulseaudio
 
+      # Audio
+      p.pavucontrol
+      p.playerctl
+
       # Utilities
       p.wget
       p.curl

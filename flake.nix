@@ -87,7 +87,13 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.cesar = import ./home/cesar.nix;
+              home-manager.users.cesar = { config, pkgs, ... }: {
+                imports = [
+                  ./home/cesar.nix
+                  # With Wayland.
+                  ./home/programs/sway.nix
+                ];
+              };
             }
           ];
         };
