@@ -41,6 +41,9 @@ return packer.startup(function(use)
 
   use 'ardanlabs/ardango.nvim'
 
+  -- Better file manipulation.
+  use { "stevearc/oil.nvim" }
+
   -- Focus mode.
   use("folke/zen-mode.nvim")
 
