@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ notes-script, config, pkgs, lib, ... }:
+{ notes-script, pkgs, lib, ... }:
 
 {
   imports =
@@ -21,7 +21,7 @@
   environment.variables.CESAR_OS_BUILD = "legion";
 
   # Latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Bootloader.
   # Use the systemd-boot EFI boot loader.
