@@ -20,7 +20,6 @@
   # Setting env var to mark this build as lab.
   environment.variables = {
     CESAR_OS_BUILD = "vaio";
-    WLR_NO_HARDWARE_CURSORS = "1";
   };
 
   # Latest kernel.
@@ -73,10 +72,33 @@
     '';
   };
 
+  # Sway
   programs.sway = {
     enable = true;
+    wrapperFeatures.gtk = true; # so that gtk works properly
     xwayland.enable = true;
+    extraPackages = with pkgs; [
+      swaylock
+      swayidle
+      wl-clipboard
+      wf-recorder
+      grim
+      slurp
+      nwg-bar
+      micro
+      wofi
+    ];
+    extraSessionCommands = ''
+      export SDL_VIDEODRIVER=wayland
+      export QT_QPA_PLATFORM=wayland
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+      export _JAVA_AWT_WM_NONREPARENTING=1
+      export MOZ_ENABLE_WAYLAND=1
+    '';
   };
+
+  # Gnome keyring
+  services.gnome.gnome-keyring.enable = true;
 
   # X11
   services.xserver = {

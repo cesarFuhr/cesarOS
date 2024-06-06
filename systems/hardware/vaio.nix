@@ -43,6 +43,15 @@
   services.logind.lidSwitchDocked = "ignore";
   services.logind.lidSwitch = "ignore";
 
-  hardware.enableAllFirmware = true;
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware = {
+    enableAllFirmware = true;
+    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+      extraPackages = with pkgs; [ mesa ];
+    };
+  };
+
 }
