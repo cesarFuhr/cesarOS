@@ -8,7 +8,7 @@
   imports =
     [
       # Include the results of the hardware scan.
-      ./hardware/lab.nix
+      ./hardware/vaio.nix
     ];
 
   # Making nix ready for flakes.
