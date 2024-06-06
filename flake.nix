@@ -38,7 +38,7 @@
           ];
         };
 
-        # Inspiron!
+        # Inspiron
         inspiron = nixpkgs.lib.nixosSystem
           {
             inherit system;
@@ -50,6 +50,28 @@
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users.cesar = import ./home/cesar.nix;
+              }
+            ];
+          };
+
+        # Vaio
+        vaio = nixpkgs.lib.nixosSystem
+          {
+            inherit system;
+
+            specialArgs = { inherit notes-script; };
+            modules = [
+              ./systems/vaio.nix
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.cesar = { config, pkgs, ... }: {
+                  imports = [
+                    ./home/cesar.nix
+                    # With Wayland.
+                    ./home/programs/sway.nix
+                  ];
+                };
               }
             ];
           };
