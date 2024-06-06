@@ -10,7 +10,14 @@
     swaynag.enable = true;
 
     config = {
+      modifier = "Mod4";
       terminal = "alacritty";
+
+      input = {
+        "type:keyboard" = {
+          xkb_options = "caps:ctrl_modifier";
+        };
+      };
     };
   };
 }

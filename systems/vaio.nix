@@ -112,6 +112,8 @@
     displayManager.gdm = {
       wayland = true;
     };
+
+    videoDriver = "amdgpu";
   };
 
   console.useXkbConfig = true;
