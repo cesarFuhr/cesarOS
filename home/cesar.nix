@@ -34,7 +34,7 @@
       # Utils
       p.neofetch
       p.gpick
-      p.gnome.gnome-calculator
+      p.gnome-calculator
       p.zoxide
       p.entr
       p.xdg-utils
