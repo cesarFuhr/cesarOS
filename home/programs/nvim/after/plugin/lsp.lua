@@ -138,6 +138,9 @@ lspconfig.gopls.setup {
     -- Removes tag element from the all fields of the struct under the cursor.
     map('n', '<leader>trs', ardango.RemoveTagsFromStruct, { buffer = 0 })
 
+    -- Runs the test under the cursor.
+    map('n', '<leader>rt', ardango.RunCurrTest, { buffer = 0 })
+
     custom_lsp_attach()
   end,
   -- gopls settings.
