@@ -264,6 +264,7 @@
       p.parted
       p.system-config-printer
       p.dig
+      p.outils
     ];
 
   # Zsh
@@ -290,12 +291,23 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 11111 ];
+  networking.firewall = lib.mkMerge [
+    # Work
+    { allowedTCPPorts = [ 11111 6443 ]; }
+
+    # Steam
+    {
+      allowedTCPPorts = [ 27036 27015 27040 ];
+      allowedUDPPorts = [ 27015 ];
+      allowedUDPPortRanges = [{
+        from = 27031;
+        to = 27035;
+      }];
+    }
+  ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
-  sound.enable = true;
 
   # Bluetooth
   services.blueman.enable = true;

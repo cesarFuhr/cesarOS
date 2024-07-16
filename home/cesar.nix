@@ -45,6 +45,7 @@
 
       # Communication
       p.weechat
+      p.slack
 
       # Work
       p.protobuf
