@@ -38,6 +38,11 @@
       senv = "nix develop /tmp/\${\${PWD//\\//:}:1} --command $SHELL";
 
       nterm = "alacritty msg create-window --working-directory=\${PWD}";
+
+      # Notes/Todo system
+      na = "notes .";
+      nn = "notes 0-Inbox";
+      td = "todo .";
     };
 
     initExtra = ''
