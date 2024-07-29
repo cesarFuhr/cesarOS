@@ -39,7 +39,7 @@ return packer.startup(function(use)
   use 'marko-cerovac/material.nvim'
   use 'ThePrimeagen/harpoon'
 
-  use '/home/cesar/work/ardanlabs/ardango.nvim/w/feat/struct_tags'
+  use 'ardanlabs/ardango.nvim'
 
   -- Better file manipulation.
   use { "stevearc/oil.nvim" }
@@ -51,7 +51,7 @@ return packer.startup(function(use)
   use('mbbill/undotree')
 
   -- Git integration.
-  use '~/work/mine/git-worktree.nvim'
+  use 'ThePrimeagen/git-worktree.nvim'
   use 'lewis6991/gitsigns.nvim'
 
   -- Lsp.
