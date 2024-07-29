@@ -13,6 +13,10 @@
       modifier = "Mod4";
       terminal = "alacritty";
 
+      bars = [{
+        command = "waybar";
+      }];
+
       input = {
         "type:keyboard" = {
           xkb_options = "caps:ctrl_modifier";

@@ -6,12 +6,13 @@
     mainBar = {
       layer = "top";
       position = "top";
-      height = 26;
+      height = 20;
       output = [
         "eDP-1"
       ];
 
       modules-left = [ "custom/logo" "sway/workspaces" "sway/mode" ];
+      modules-center = [ "sway/window" ];
       modules-right = [ "sway/language" "clock" "battery" ];
 
       "custom/logo" = {
@@ -34,7 +35,7 @@
       };
 
       "sway/mode" = {
-        tooltip = true;
+        tooltip = false;
       };
 
       "sway/language" = {
