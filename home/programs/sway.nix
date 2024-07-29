@@ -17,6 +17,11 @@
         "type:keyboard" = {
           xkb_options = "caps:ctrl_modifier";
         };
+
+        "type:touchpad" = {
+          tap = "enable";
+          drag = "enable";
+        };
       };
     };
   };
