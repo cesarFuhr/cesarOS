@@ -190,7 +190,7 @@
       p.wget
       p.curl
       p.arandr
-      p.cinnamon.nemo
+      p.nemo
       p.bat
       p.eza
       p.gzip

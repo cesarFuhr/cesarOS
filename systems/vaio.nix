@@ -198,8 +198,7 @@
       p.clippy
       p.terraform
       nd.typescript-language-server
-      nd.vscode-json-languageserver-bin
-      nd.vscode-html-languageserver-bin
+      p.vscode-langservers-extracted
       p.bash-language-server
       p.python
       p.python3
@@ -209,7 +208,7 @@
       p.wget
       p.curl
       p.arandr
-      p.cinnamon.nemo
+      p.nemo
       p.bat
       p.eza
       p.gzip
@@ -276,8 +275,6 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
-  sound.enable = true;
 
   # Bluetooth
   services.blueman.enable = true;
