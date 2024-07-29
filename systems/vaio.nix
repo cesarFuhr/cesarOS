@@ -86,7 +86,7 @@
       slurp
       nwg-bar
       micro
-      wofi
+      tofi
     ];
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland
@@ -100,17 +100,22 @@
   # Gnome keyring
   services.gnome.gnome-keyring.enable = true;
 
-  # X11
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.greetd}/bin/agreety --cmd sway";
+      };
+    };
+  };
+
+  # X Server
   services.xserver = {
     enable = true;
     xkb = {
       options = "ctrl:nocaps";
       layout = "us";
       variant = "";
-    };
-
-    displayManager.gdm = {
-      wayland = true;
     };
 
     videoDriver = "amdgpu";

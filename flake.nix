@@ -72,6 +72,7 @@
                     ./home/cesar.nix
                     # With Wayland.
                     ./home/programs/sway.nix
+                    ./home/programs/waybar.nix
                   ];
                 };
               }
