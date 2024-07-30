@@ -31,7 +31,9 @@
 
       input = {
         "type:keyboard" = {
-          xkb_options = "caps:ctrl_modifier";
+          xkb_options = "caps:ctrl_modifier,compose:rctrl";
+          xkb_layout = "us,us";
+          xkb_variant = ",intl";
         };
 
         "type:touchpad" = {
@@ -63,6 +65,7 @@
         {
           "${modifier}+Return" = "exec ${terminal}";
           "${modifier}+space" = "exec $(${p.tofi}/bin/tofi-run)";
+          "${modifier}+Shift+Prior" = ''input "1:1:AT_Translated_Set_2_keyboard" xkb_switch_layout next'';
 
           "${modifier}+Shift+q" = "kill";
           "${modifier}+Shift+c" = "reload";
@@ -132,12 +135,11 @@
 
           # Audio
           XF86AudioMute = "exec ${p.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
-          XF86AudioPlay = "exec ${p.playerctl}/bin/playerctl play";
-          XF86AudioPause = "exec ${p.playerctl}/bin/playerctl pause";
+          XF86AudioPlay = "exec ${p.playerctl}/bin/playerctl play-pause";
           XF86AudioNext = "exec ${p.playerctl}/bin/playerctl next";
           XF86AudioPrev = "exec ${p.playerctl}/bin/playerctl previous";
-          XF86AudioRaiseVolume = "exec ${p.pulseaudio}/bin/pactl  set-sink-volume @DEFAULT_SINK@ +5%";
-          XF86AudioLowerVolume = "exec ${p.pulseaudio}/bin/pactl  set-sink-volume @DEFAULT_SINK@ -5%";
+          XF86AudioRaiseVolume = "exec ${p.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
+          XF86AudioLowerVolume = "exec ${p.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
         };
     };
   };
