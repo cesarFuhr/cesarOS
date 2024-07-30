@@ -1,7 +1,6 @@
 { config, ... }:
 
 {
-  # Kitty terminal configuration.
   programs.alacritty = {
     enable = true;
     settings = {

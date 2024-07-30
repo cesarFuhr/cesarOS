@@ -1,4 +1,8 @@
 { config, pkgs, ... }:
+let
+  hdmiOut = "HDMI-A-1";
+  edpOut = "eDP-1";
+in
 {
   programs.waybar.enable = true;
 
@@ -6,9 +10,10 @@
     mainBar = {
       layer = "top";
       position = "top";
-      height = 20;
+      height = 26;
       output = [
-        "eDP-1"
+        hdmiOut
+        edpOut
       ];
 
       modules-left = [ "custom/logo" "sway/workspaces" "sway/mode" ];
@@ -25,11 +30,12 @@
         disable-scroll = true;
         all-outputs = true;
         persistent_workspaces = {
-          "1" = [ ];
-          "2" = [ ];
-          "3" = [ ];
-          "4" = [ ];
-          "5" = [ ];
+          "0" = [ hdmiOut ];
+          "1" = [ hdmiOut ];
+          "2" = [ hdmiOut ];
+          "3" = [ hdmiOut ];
+          "4" = [ hdmiOut ];
+          "5" = [ edpOut ];
         };
         disable-click = false;
       };

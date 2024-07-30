@@ -77,16 +77,18 @@
     enable = true;
     wrapperFeatures.gtk = true; # so that gtk works properly
     xwayland.enable = true;
-    extraPackages = with pkgs; [
-      swaylock
-      swayidle
-      wl-clipboard
-      wf-recorder
-      grim
-      slurp
-      nwg-bar
-      micro
-      tofi
+    extraPackages = let p = pkgs; in [
+      p.swaylock
+      p.swayidle
+      p.wl-clipboard
+      p.wf-recorder
+      p.grim
+      p.slurp
+      p.nwg-bar
+      p.micro
+      p.tofi
+      p.wdisplays
+      p.wofi
     ];
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland
@@ -100,13 +102,34 @@
   # Gnome keyring
   services.gnome.gnome-keyring.enable = true;
 
+  # Display Manager
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.greetd}/bin/agreety --cmd sway";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember-session --cmd sway";
       };
     };
+  };
+
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal"; # Without this errors will spam on screen
+    # Without these bootlogs will spam on screen
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
+  };
+
+  # Pipewire
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
   };
 
   # X Server
@@ -296,11 +319,14 @@
   services.flatpak.enable = true;
   xdg.portal = {
     enable = true;
+    wlr.enable = true;
     configPackages = with pkgs; [
       xdg-desktop-portal-gtk
+      xdg-desktop-portal-wlr
     ];
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
+      xdg-desktop-portal-wlr
     ];
   };
 
