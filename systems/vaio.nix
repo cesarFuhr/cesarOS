@@ -88,7 +88,6 @@
       p.micro
       p.tofi
       p.wdisplays
-      p.wofi
     ];
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland
