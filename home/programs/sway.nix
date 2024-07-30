@@ -129,6 +129,15 @@
           # Scratchpad
           "${modifier}+Shift+minus" = "move scratchpad";
           "${modifier}+minus" = "scratchpad show";
+
+          # Audio
+          XF86AudioMute = "exec ${p.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
+          XF86AudioPlay = "exec ${p.playerctl}/bin/playerctl play";
+          XF86AudioPause = "exec ${p.playerctl}/bin/playerctl pause";
+          XF86AudioNext = "exec ${p.playerctl}/bin/playerctl next";
+          XF86AudioPrev = "exec ${p.playerctl}/bin/playerctl previous";
+          XF86AudioRaiseVolume = "exec ${p.pulseaudio}/bin/pactl  set-sink-volume @DEFAULT_SINK@ +5%";
+          XF86AudioLowerVolume = "exec ${p.pulseaudio}/bin/pactl  set-sink-volume @DEFAULT_SINK@ -5%";
         };
     };
   };

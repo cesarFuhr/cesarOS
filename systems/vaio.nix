@@ -265,6 +265,8 @@
       p.parted
       p.system-config-printer
       p.dig
+      p.pavucontrol
+      p.playerctl
     ];
 
   # Some programs need SUID wrappers, can be configured further or are
