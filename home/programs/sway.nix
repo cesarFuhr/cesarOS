@@ -73,11 +73,11 @@
             "kxec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
 
           # Gaps
-          "${modifier}+Shift+o" = "gaps horizontal current plus 60";
-          "${modifier}+Shift+i" = "gaps horizontal current minus 60";
+          "${modifier}+Shift+period" = "gaps horizontal current plus 60";
+          "${modifier}+Shift+comma" = "gaps horizontal current minus 60";
 
           # Focus
-          "${modifier}+w" = "focus output next";
+          "${modifier}+w" = "focus output right";
 
           "${modifier}+${left}" = "focus left";
           "${modifier}+${down}" = "focus down";
@@ -90,7 +90,7 @@
           "${modifier}+Right" = "focus right";
 
           # Move
-          "${modifier}+Shift+w" = "move container to output next";
+          "${modifier}+Shift+w" = "move output right";
 
           "${modifier}+Shift+${left}" = "move left";
           "${modifier}+Shift+${down}" = "move down";

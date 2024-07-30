@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, notes-script, ... }:
 
 {
   imports =
@@ -199,6 +199,9 @@
       p.glmark2
 
       # Work
+      notes-script.packages.${p.system}.notes
+      notes-script.packages.${p.system}.todo
+      notes-script.packages.${p.system}.todo-done
       p.git
       p.tree-sitter
       p.nixd
