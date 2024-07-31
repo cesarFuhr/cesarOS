@@ -67,13 +67,15 @@
               {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
-                home-manager.users.cesar = { config, pkgs, ... }: {
+                home-manager.users.cesar = { config, pkgs, lib, ... }: {
                   imports = [
                     ./home/cesar.nix
                     # With Wayland.
                     ./home/programs/sway.nix
                     ./home/programs/waybar.nix
                   ];
+
+                  programs.alacritty.settings.font.size = lib.mkForce 15;
                 };
               }
             ];

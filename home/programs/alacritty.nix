@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 {
   programs.alacritty = {
@@ -14,7 +14,7 @@
           style = "Regular";
         };
 
-        size = 10;
+        size = lib.mkDefault 10;
       };
 
       colors = {

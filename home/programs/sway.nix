@@ -63,7 +63,7 @@
           down = "j";
         in
         {
-          "${modifier}+Return" = "exec ${terminal}";
+          "${modifier}+Shift+Return" = "exec ${terminal}";
           "${modifier}+space" = "exec $(${p.tofi}/bin/tofi-run)";
           "${modifier}+Shift+Prior" = ''input "1:1:AT_Translated_Set_2_keyboard" xkb_switch_layout next'';
 
@@ -106,7 +106,7 @@
           # Layout
           "${modifier}+f" = "fullscreen toggle";
           "${modifier}+e" = "layout toggle split";
-          "${modifier}+t" = "layout tabbed";
+          "${modifier}+t" = "layout toggle tabbed";
 
           "${modifier}+1" = "workspace number 1";
           "${modifier}+2" = "workspace number 2";
