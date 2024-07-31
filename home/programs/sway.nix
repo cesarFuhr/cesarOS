@@ -147,7 +147,7 @@
 
   gtk.font = {
     name = "Sans";
-    size = 12;
+    size = 11;
   };
 
   programs.tofi = {

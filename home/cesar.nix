@@ -26,6 +26,7 @@
     TERMINAL = "alacritty";
     BROWSER = "google-chrome-stable";
     COMPOSE_COMPATIBILITY = "true";
+    GTK_THEME = "Sierra-dark";
   };
 
   home.pointerCursor = {
@@ -91,13 +92,13 @@
 
     gtk3.extraConfig = {
       Settings = ''
-        gtk-application-prefer-dark-theme=1
+        gtk-application-prefer-dark-theme=true
       '';
     };
 
     gtk4.extraConfig = {
       Settings = ''
-        gtk-application-prefer-dark-theme=1
+        gtk-application-prefer-dark-theme=true
       '';
     };
   };
@@ -111,6 +112,11 @@
     };
   };
 
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
 
   # Golang setup.
   programs.go = {
