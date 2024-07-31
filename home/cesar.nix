@@ -28,6 +28,13 @@
     COMPOSE_COMPATIBILITY = "true";
   };
 
+  home.pointerCursor = {
+    package = pkgs.apple-cursor;
+    name = "macOS-BigSur";
+    size = 24;
+    x11.defaultCursor = "macOS-BigSur";
+  };
+
   # Packages to install.
   home.packages = let p = pkgs; in
     [
@@ -75,7 +82,35 @@
       name = "Sierra-dark";
       package = pkgs.sierra-gtk-theme;
     };
+
+    cursorTheme = {
+      package = pkgs.apple-cursor;
+      name = "macOS-BigSur";
+      size = 24;
+    };
+
+    gtk3.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+
+    gtk4.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
   };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "adawaita";
+    style = {
+      name = "Sierra-dark";
+      package = pkgs.sierra-gtk-theme;
+    };
+  };
+
 
   # Golang setup.
   programs.go = {
@@ -164,6 +199,8 @@
           offset = "30x50";
           origin = "top-right";
           transparency = 10;
+          frame_color = "#111111";
+          font = "Droid Sans 12";
         };
 
         urgency_normal = {

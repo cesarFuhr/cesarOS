@@ -145,17 +145,9 @@
     };
   };
 
-  gtk.cursorTheme = {
-    package = pkgs.apple-cursor;
-    name = "macOS-BigSur";
-    size = 24;
-  };
-
-  home.pointerCursor = {
-    package = pkgs.apple-cursor;
-    name = "macOS-BigSur";
-    size = 24;
-    x11.defaultCursor = "macOS-BigSur";
+  gtk.font = {
+    name = "Sans";
+    size = 12;
   };
 
   programs.tofi = {
