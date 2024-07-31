@@ -67,17 +67,18 @@
           "${modifier}+space" = "exec $(${p.tofi}/bin/tofi-run)";
           "${modifier}+Shift+Prior" = ''input "1:1:AT_Translated_Set_2_keyboard" xkb_switch_layout next'';
 
-          "${modifier}+Shift+q" = "kill";
           "${modifier}+Shift+c" = "reload";
+          "${modifier}+Shift+q" = "kill";
           "${modifier}+Shift+e" =
             "kxec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
+          "${modifier}+Shift+p" = "exec wlogout";
 
           # Gaps
           "${modifier}+Shift+period" = "gaps horizontal current plus 60";
           "${modifier}+Shift+comma" = "gaps horizontal current minus 60";
 
           # Focus
-          "${modifier}+w" = "focus output right";
+          "${modifier}+o" = "focus output right";
 
           "${modifier}+${left}" = "focus left";
           "${modifier}+${down}" = "focus down";
@@ -90,7 +91,7 @@
           "${modifier}+Right" = "focus right";
 
           # Move
-          "${modifier}+Shift+w" = "move output right";
+          "${modifier}+Shift+o" = "move output right";
 
           "${modifier}+Shift+${left}" = "move left";
           "${modifier}+Shift+${down}" = "move down";
