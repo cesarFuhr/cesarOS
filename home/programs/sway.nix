@@ -106,7 +106,7 @@
           # Layout
           "${modifier}+f" = "fullscreen toggle";
           "${modifier}+e" = "layout toggle split";
-          "${modifier}+t" = "layout toggle tabbed";
+          "${modifier}+t" = "layout tabbed";
 
           "${modifier}+1" = "workspace number 1";
           "${modifier}+2" = "workspace number 2";
