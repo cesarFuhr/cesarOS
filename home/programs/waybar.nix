@@ -18,7 +18,13 @@ in
 
       modules-left = [ "custom/logo" "sway/workspaces" "sway/mode" ];
       modules-center = [ "sway/window" ];
-      modules-right = [ "sway/language" "clock" "battery" ];
+      modules-right = [ "tray" "sway/language" "clock" "battery" ];
+
+      tray = {
+        icon-size = 21;
+        spacing = 10;
+        passive = true;
+      };
 
       "custom/logo" = {
         format = "";

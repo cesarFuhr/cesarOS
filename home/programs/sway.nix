@@ -65,13 +65,19 @@
         {
           "${modifier}+Shift+Return" = "exec ${terminal}";
           "${modifier}+space" = "exec $(${p.tofi}/bin/tofi-run)";
-          "${modifier}+Shift+Prior" = ''input "1:1:AT_Translated_Set_2_keyboard" xkb_switch_layout next'';
 
           "${modifier}+Shift+c" = "reload";
           "${modifier}+Shift+q" = "kill";
           "${modifier}+Shift+e" =
             "kxec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
           "${modifier}+Shift+p" = "exec wlogout";
+
+          # Screenshot
+          "${modifier}+home" = "exec grimshot copy area";
+          "${modifier}+Shift+home" = "exec grimshot save area";
+
+          # Switching keyboard layout/variant
+          "${modifier}+Shift+Prior" = ''input "1:1:AT_Translated_Set_2_keyboard" xkb_switch_layout next'';
 
           # Gaps
           "${modifier}+Shift+period" = "gaps horizontal current plus 60";
