@@ -41,7 +41,7 @@ local git_worktree = require 'telescope'.extensions.git_worktree
 local harpoon = require 'telescope'.extensions.harpoon
 
 -- Git Worktrees
-vim.keymap.set('n', '<leader>st', git_worktree.git_worktrees, opts)
+vim.keymap.set('n', '<leader>st', git_worktree.git_worktree, opts)
 vim.keymap.set('n', '<leader>ct', git_worktree.create_git_worktree, opts)
 
 -- Harpoon

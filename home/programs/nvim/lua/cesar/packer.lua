@@ -51,7 +51,7 @@ return packer.startup(function(use)
   use('mbbill/undotree')
 
   -- Git integration.
-  use 'ThePrimeagen/git-worktree.nvim'
+  use { 'cesarFuhr/git-worktree.nvim', branch = 'fix/telescope-highlights' }
   use 'lewis6991/gitsigns.nvim'
 
   -- Lsp.
