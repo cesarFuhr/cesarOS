@@ -18,7 +18,27 @@ in
 
       modules-left = [ "custom/logo" "sway/workspaces" "sway/mode" ];
       modules-center = [ "sway/window" ];
-      modules-right = [ "tray" "sway/language" "clock" "battery" ];
+      modules-right = [
+        "tray"
+        "custom/sep"
+        "cpu"
+        "custom/sep"
+        "memory"
+        "custom/sep"
+        "disk"
+        "custom/sep"
+        "network"
+        "custom/sep"
+        "sway/language"
+        "custom/sep"
+        "clock"
+        "battery"
+      ];
+
+      network = {
+        format = "{ifname} ↑{bandwidthUpBytes} ↓{bandwidthDownBytes}";
+        interval = 30;
+      };
 
       tray = {
         icon-size = 21;
@@ -26,10 +46,26 @@ in
         passive = true;
       };
 
+      "cpu" = {
+        format = "CPU {usage}%";
+      };
+
+      "memory" = {
+        format = "MEM {percentage}%";
+      };
+
+      "disk" = {
+        format = "FS {percentage_used}%";
+      };
+
+      "custom/sep" = {
+        format = " | ";
+        tooltip = false;
+      };
+
       "custom/logo" = {
         format = "";
         tooltip = false;
-        on-click = ''bemenu-run --accept-single  -n -p "Launch" --hp 4 --hf "#ffffff" --sf "#ffffff" --tf "#ffffff" '';
       };
 
       "sway/workspaces" = {
@@ -51,7 +87,7 @@ in
       };
 
       "sway/language" = {
-        format = "{shortDescription}";
+        format = "  {shortDescription}";
         tooltip = false;
         on-click = ''swaymsg input "1:1:AT_Translated_Set_2_keyboard" xkb_switch_layout next'';
       };
@@ -74,7 +110,7 @@ in
     border-radius: 0;
     padding: 0;
     margin: 0;
-    font-size: 11px;
+    font-size: 13px;
   }
 
   window#waybar {
@@ -95,10 +131,12 @@ in
     margin-right: 10px;
     color: #ffffff;
   }
+  
   #workspaces button:hover, #workspaces button:active {
     background-color: #292828;
     color: #ffffff;
   }
+
   #workspaces button.focused {
     background-color: #383737;
   }
