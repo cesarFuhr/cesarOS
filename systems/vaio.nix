@@ -41,6 +41,10 @@
   networking = {
     networkmanager.enable = true;
     enableIPv6 = false;
+    extraHosts = ''
+      127.0.0.1 aws
+      127.0.0.1 local-site.bnet.run
+    '';
   };
 
   # Set your time zone.
