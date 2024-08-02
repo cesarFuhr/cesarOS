@@ -12,7 +12,7 @@
 
     config = rec {
       modifier = "Mod4";
-      terminal = "alacritty";
+      terminal = "foot";
       menu = "tofi";
       defaultWorkspace = "1";
 
