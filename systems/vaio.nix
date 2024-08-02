@@ -197,7 +197,7 @@
       p.vim
 
       # Terminal
-      p.alacritty
+      p.foot
 
       # Browsers
       p.firefox
