@@ -94,6 +94,7 @@
       p.tofi
       p.wdisplays
       p.wlogout
+      p.wallutils
     ];
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland

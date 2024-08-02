@@ -5,7 +5,17 @@
     enable = true;
 
     settings = {
-      font = "JetBrainsMono Nerd Font Mono:size=15";
+      main = {
+        font = "JetBrainsMono Nerd Font Mono:size=15";
+      };
+
+      cursor = {
+        style = "underline";
+      };
+
+      mouse = {
+        hide-when-typing = "yes";
+      };
     };
   };
 }
