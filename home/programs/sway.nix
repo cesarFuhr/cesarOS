@@ -64,6 +64,7 @@
         in
         {
           "${modifier}+Shift+Return" = "exec ${terminal}";
+          "${modifier}+Return" = "exec ${terminal}";
           "${modifier}+space" = "exec $(${p.tofi}/bin/tofi-run)";
 
           "${modifier}+Shift+c" = "reload";

@@ -95,6 +95,8 @@
       p.wdisplays
       p.wlogout
       p.wallutils
+      p.vial
+      p.via
     ];
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland
@@ -106,6 +108,12 @@
       export XDG_SESSION_DESKTOP=sway
     '';
   };
+
+  # Vial
+  services.udev.packages = with pkgs; [
+    vial
+    via
+  ];
 
   # Gnome keyring
   services.gnome.gnome-keyring.enable = true;
