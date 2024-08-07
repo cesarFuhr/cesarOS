@@ -66,6 +66,7 @@
           "${modifier}+Shift+Return" = "exec ${terminal}";
           "${modifier}+Return" = "exec ${terminal}";
           "${modifier}+space" = "exec $(${p.tofi}/bin/tofi-run)";
+          "${modifier}+semicolon" = "exec $(${p.tofi}/bin/tofi-run)";
 
           "${modifier}+Shift+c" = "reload";
           "${modifier}+Shift+q" = "kill";
@@ -75,7 +76,9 @@
 
           # Screenshot
           "${modifier}+home" = "exec grimshot copy area";
+          "Print" = "exec grimshot copy area";
           "${modifier}+Shift+home" = "exec grimshot save area";
+          "Shift+Print" = "exec grimshot copy area";
 
           # Switching keyboard layout/variant
           "${modifier}+Shift+Prior" = ''input "1:1:AT_Translated_Set_2_keyboard" xkb_switch_layout next'';
