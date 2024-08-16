@@ -29,11 +29,18 @@ in
         "custom/sep"
         "network"
         "custom/sep"
+        "pulseaudio"
+        "custom/sep"
         "sway/language"
         "custom/sep"
         "clock"
         "battery"
       ];
+
+      pulseaudio = {
+        format = "V {volume}%";
+        format-muted = "V Mute";
+      };
 
       network = {
         format = "{ifname} ↑{bandwidthUpBytes} ↓{bandwidthDownBytes}";

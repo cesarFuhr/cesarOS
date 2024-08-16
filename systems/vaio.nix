@@ -95,8 +95,7 @@
       p.wdisplays
       p.wlogout
       p.wallutils
-      p.vial
-      p.via
+      p.swww
     ];
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland
@@ -243,7 +242,6 @@
       p.rustup
       p.rust-analyzer
       p.clippy
-      p.terraform
       nd.typescript-language-server
       p.vscode-langservers-extracted
       p.bash-language-server
@@ -286,6 +284,8 @@
       p.dig
       p.pavucontrol
       p.playerctl
+      p.vial
+      p.via
     ];
 
   # Some programs need SUID wrappers, can be configured further or are

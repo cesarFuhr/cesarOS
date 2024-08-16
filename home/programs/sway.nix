@@ -10,11 +10,21 @@
     swaynag.enable = true;
     xwayland = true;
 
+    checkConfig = true;
     config = rec {
       modifier = "Mod4";
       terminal = "foot";
       menu = "tofi";
       defaultWorkspace = "1";
+
+      startup = [
+        {
+          command = ''
+            exec swww-daemon
+            exec ${pkgs.swww}/bin/swww img $(find ~/wallpapers -maxdepth 1 -type f | shuf -n 1)
+          '';
+        }
+      ];
 
       bars = [{
         command = "${pkgs.waybar}/bin/waybar";
