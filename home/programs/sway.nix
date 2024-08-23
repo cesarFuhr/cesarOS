@@ -86,7 +86,7 @@
 
           # Screenshot
           "${modifier}+home" = "exec grimshot copy area";
-          "Print" = "exec grimshot copy area";
+          "Print" = ''exec grim -g "$(slurp)" - | swappy -f -  '';
           "${modifier}+Shift+home" = "exec grimshot save area";
           "Shift+Print" = "exec grimshot copy area";
 

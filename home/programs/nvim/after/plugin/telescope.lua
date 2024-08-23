@@ -20,9 +20,9 @@ local opts = { noremap = true, silent = true }
 -- Telescope keymaps.
 local telBuiltin = require 'telescope.builtin'
 -- File fuzzy finder.
-vim.keymap.set('n', '<leader><leader>', telBuiltin.find_files, opts)
+vim.keymap.set('n', '<leader>ff', telBuiltin.find_files, opts)
 -- Open buffers fuzzy finder.
-vim.keymap.set('n', '<leader>fb', telBuiltin.buffers, opts)
+vim.keymap.set('n', '<leader><leader>', telBuiltin.buffers, opts)
 -- Workspace live greping in all files.
 vim.keymap.set('n', '<leader>fg', telBuiltin.live_grep, opts)
 -- Grep word under the cursor in current dir.

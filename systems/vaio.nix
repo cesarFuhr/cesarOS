@@ -96,6 +96,7 @@
       p.wlogout
       p.wallutils
       p.swww
+      p.swappy
     ];
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland
@@ -238,12 +239,6 @@
       p.nodejs
       p.yarn
       p.cargo
-      p.rustc
-      p.rustup
-      p.rust-analyzer
-      p.clippy
-      nd.typescript-language-server
-      p.vscode-langservers-extracted
       p.bash-language-server
       p.python
       p.python3
