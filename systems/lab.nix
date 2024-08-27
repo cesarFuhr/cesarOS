@@ -73,9 +73,64 @@
     '';
   };
 
-  programs.hyprland = {
+  # Sway
+  programs.sway = {
     enable = true;
-    enableNvidiaPatches = true;
+    wrapperFeatures.gtk = true; # so that gtk works properly
+    xwayland.enable = true;
+    extraPackages = let p = pkgs; in [
+      p.swaylock
+      p.swayidle
+      p.wl-clipboard
+      p.wf-recorder
+      p.grim
+      p.sway-contrib.grimshot
+      p.slurp
+      p.nwg-bar
+      p.micro
+      p.tofi
+      p.wdisplays
+      p.wlogout
+      p.wallutils
+      p.swww
+      p.swappy
+      p.foot
+    ];
+    extraSessionCommands = ''
+      export SDL_VIDEODRIVER=wayland
+      export QT_QPA_PLATFORM=wayland
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+      export _JAVA_AWT_WM_NONREPARENTING=1
+      export MOZ_ENABLE_WAYLAND=1
+      export XDG_CURRENT_DESKTOP=sway
+      export XDG_SESSION_DESKTOP=sway
+      export XWAYLAND_NO_GLAMOR=1
+      export WLR_RENDERER=vulkan
+    '';
+  };
+
+  # Gnome keyring
+  services.gnome.gnome-keyring.enable = true;
+
+  # Display Manager
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember-session --cmd 'sway --unsupported-gpu'";
+      };
+    };
+  };
+
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal"; # Without this errors will spam on screen
+    # Without these bootlogs will spam on screen
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
   };
 
   # X11
@@ -90,11 +145,9 @@
     # Video drivers
     # Nvidia
     videoDrivers = [ "nvidia" ];
-    dpi = lib.mkForce 120;
 
-    displayManager.gdm = {
-      wayland = true;
-    };
+    # displayManager.gdm.enable = true;
+    # desktopManager.gnome.enable = true;
   };
 
   console.useXkbConfig = true;
@@ -178,9 +231,6 @@
       p.rust-analyzer
       p.clippy
       p.terraform
-      nd.typescript-language-server
-      nd.vscode-json-languageserver-bin
-      nd.vscode-html-languageserver-bin
       p.bash-language-server
       p.python
       p.python3
@@ -258,8 +308,6 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  sound.enable = true;
-
   # Bluetooth
   services.blueman.enable = true;
   hardware.bluetooth = {
@@ -275,10 +323,13 @@
   services.flatpak.enable = true;
   xdg.portal = {
     enable = true;
+    wlr.enable = true;
     configPackages = with pkgs; [
+      xdg-desktop-portal-wlr
       xdg-desktop-portal-gtk
     ];
     extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr
       xdg-desktop-portal-gtk
     ];
   };

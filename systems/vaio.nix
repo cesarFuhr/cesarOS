@@ -97,6 +97,7 @@
       p.wallutils
       p.swww
       p.swappy
+      p.foot
     ];
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland
@@ -203,9 +204,6 @@
       # Editors
       p.neovim
       p.vim
-
-      # Terminal
-      p.foot
 
       # Browsers
       p.firefox
