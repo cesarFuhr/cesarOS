@@ -97,7 +97,8 @@
                 imports = [
                   ./home/cesar.nix
                   # With window manager.
-                  ./home/programs/awesome/awesome.nix
+                  ./home/programs/i3.nix
+                  ./home/programs/polybar/polybar.nix
                   ./home/programs/rofi.nix
                 ];
               };

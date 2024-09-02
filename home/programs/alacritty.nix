@@ -1,11 +1,11 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   programs.alacritty = {
     enable = true;
     settings = {
       shell = {
-        program = "/etc/profiles/per-user/cesar/bin/zsh";
+        program = "${pkgs.zsh}/bin/zsh";
       };
 
       font = {

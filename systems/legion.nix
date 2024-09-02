@@ -119,6 +119,10 @@
           luarocks
         ];
       };
+
+      windowManager.i3 = {
+        enable = true;
+      };
     };
   };
 
@@ -265,6 +269,7 @@
       p.system-config-printer
       p.dig
       p.outils
+      p.xorg.xev
     ];
 
   # Zsh
