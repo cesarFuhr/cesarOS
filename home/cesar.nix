@@ -32,7 +32,6 @@
   home.pointerCursor = {
     package = pkgs.apple-cursor;
     name = "macOS-BigSur";
-    size = 24;
     x11.defaultCursor = "macOS-BigSur";
   };
 
@@ -87,7 +86,6 @@
     cursorTheme = {
       package = pkgs.apple-cursor;
       name = "macOS-BigSur";
-      size = 24;
     };
 
     gtk3.extraConfig = {

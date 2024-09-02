@@ -78,6 +78,8 @@
     '';
   };
 
+  environment.variables.XCURSOR_SIZE = "24";
+
   # X11
   services = {
     displayManager.defaultSession = "none+awesome";

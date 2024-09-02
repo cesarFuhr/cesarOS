@@ -4,9 +4,8 @@
   services.polybar = {
     enable = true;
     script = ''
-      for m in $(${pkgs.polybar}/bin/polybar --list-monitors | cut -d":" -f1); do
-        MONITOR=$m ${pkgs.polybar}/bin/polybar --reload bar &
-      done
+        ${pkgs.polybar}/bin/polybar --reload internal &
+        ${pkgs.polybar}/bin/polybar --reload external &
     '';
 
     config = ./config.ini;

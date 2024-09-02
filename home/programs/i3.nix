@@ -13,10 +13,27 @@
 
       startup = [
         {
+          command = "exec i3-msg workspace 1";
+          always = true;
+          notification = false;
+        }
+        {
+          command = "exec sh ~/.screenlayout/default.sh";
+          always = true;
+          notification = false;
+        }
+        {
+          command = "systemctl --user restart polybar.service";
+          always = true;
+          notification = false;
+        }
+        {
           command = ''
             feh -z --bg-fill $HOME/Wallpapers
           '';
-        }
+          always = true;
+          notification = false;
+         }
       ];
 
       bars = [];
