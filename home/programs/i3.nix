@@ -18,19 +18,17 @@
           notification = false;
         }
         {
-          command = "exec sh ~/.screenlayout/default.sh";
-          always = true;
-          notification = false;
-        }
-        {
           command = "systemctl --user restart polybar.service";
           always = true;
           notification = false;
         }
         {
-          command = ''
-            feh -z --bg-fill $HOME/Wallpapers
-          '';
+          command = "sh ~/.screenlayout/default.sh";
+          always = true;
+          notification = false;
+        }
+        {
+          command = "feh -z --bg-fill $HOME/Wallpapers";
           always = true;
           notification = false;
          }
@@ -66,10 +64,10 @@
           "${modifier}+Shift+p" = "exec wlogout";
 
           # Screenshot
-          "${modifier}+home" = "exec grimshot copy area";
-          "Print" = ''exec grim -g "$(slurp)" - | swappy -f -  '';
-          "${modifier}+Shift+home" = "exec grimshot save area";
-          "Shift+Print" = "exec grimshot copy area";
+          # "${modifier}+home" = "exec grimshot copy area";
+          # "Print" = ''exec grim -g "$(slurp)" - | swappy -f -  '';
+          # "${modifier}+Shift+home" = "exec grimshot save area";
+          # "Shift+Print" = "exec grimshot copy area";
 
           # Switching keyboard layout/variant
           "${modifier}+Shift+Prior" = ''input "1:1:AT_Translated_Set_2_keyboard" xkb_switch_layout next'';

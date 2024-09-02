@@ -82,7 +82,8 @@
 
   # X11
   services = {
-    displayManager.defaultSession = "none+awesome";
+    displayManager.defaultSession = "none+i3";
+
     # Touchpads
     libinput.enable = true;
 
@@ -113,6 +114,8 @@
             };
           };
         };
+
+        sessionCommands = "${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr";
       };
 
       windowManager.awesome = {
