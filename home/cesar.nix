@@ -56,11 +56,11 @@
       p.slack
 
       # Work
-      p.protobuf
-      p.protoc-gen-go
-      p.protoc-gen-go-grpc
       p.openconnect
       p.bruno
+
+      # Utils
+      p.vial  
     ];
 
   # Bigger configurations.
