@@ -99,22 +99,6 @@
       # Nvidia
       videoDrivers = [ "nvidia" ];
 
-      screenSection = ''
-        Identifier     "Screen0"
-        Device         "Device0"
-        Monitor        "Monitor0"
-        DefaultDepth    24
-        Option         "Stereo" "0"
-        Option         "nvidiaXineramaInfoOrder" "HDMI-0"
-        Option         "metamodes" "DP-4: nvidia-auto-select +3840+1080, HDMI-0: nvidia-auto-select +0+0 {ForceCompositionPipeline=On}"
-        Option         "SLI" "Off"
-        Option         "MultiGPU" "Off"
-        Option         "BaseMosaic" "off"
-        SubSection     "Display"
-            Depth       24
-        EndSubSection
-      '';
-
       dpi = lib.mkForce 120;
 
       displayManager = {
