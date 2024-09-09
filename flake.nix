@@ -123,6 +123,7 @@
                   # With Sway.
                   ./home/programs/sway.nix
                   ./home/programs/waybar.nix
+                  ./home/programs/foot.nix
                 ];
               };
             }
