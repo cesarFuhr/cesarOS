@@ -64,13 +64,10 @@
           "${modifier}+Shift+p" = "exec wlogout";
 
           # Screenshot
-          # "${modifier}+home" = "exec grimshot copy area";
-          # "Print" = ''exec grim -g "$(slurp)" - | swappy -f -  '';
-          # "${modifier}+Shift+home" = "exec grimshot save area";
-          # "Shift+Print" = "exec grimshot copy area";
+          # Using flameshot.
 
           # Switching keyboard layout/variant
-          "${modifier}+Shift+Prior" = ''input "1:1:AT_Translated_Set_2_keyboard" xkb_switch_layout next'';
+          # Using xkeyboard config.
 
           # Gaps
           "${modifier}+Shift+period" = "gaps horizontal current plus 60";

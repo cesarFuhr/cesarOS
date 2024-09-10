@@ -58,9 +58,6 @@
       # Work
       p.openconnect
       p.bruno
-
-      # Utils
-      p.vial  
     ];
 
   # Bigger configurations.

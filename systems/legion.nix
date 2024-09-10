@@ -90,9 +90,9 @@
     xserver = {
       enable = true;
       xkb = {
-        layout = "us";
-        variant = "";
-        options = "ctrl:nocaps";
+        layout = "us,us";
+        variant = ",intl";
+        options = "grp:alt_shift_toggle,ctrl:nocaps,compose:rctrl";
       };
 
       # Video drivers
@@ -188,6 +188,14 @@
       # Browsers
       p.firefox
 
+      # OBS
+      (p.wrapOBS {
+        plugins = with p.obs-studio-plugins; [
+          obs-backgroundremoval
+          obs-pipewire-audio-capture
+        ];
+      })
+
       # Work
       notes-script.packages.${p.system}.notes
       notes-script.packages.${p.system}.todo
@@ -276,6 +284,7 @@
       p.dig
       p.outils
       p.xorg.xev
+      p.vial  
     ];
 
   # Zsh
@@ -297,6 +306,16 @@
   };
 
   # List services that you want to enable:
+
+  # Pipewire.
+  services.pipewire = {
+    enable = true;
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
+    pulse.enable = true;
+  };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
