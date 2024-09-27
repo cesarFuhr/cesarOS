@@ -133,7 +133,6 @@
     dunst
     rofi
     picom
-    cups
     dmenu
     feh
     materia-theme
