@@ -209,6 +209,13 @@ lspconfig.lua_ls.setup {
 lspconfig.nixd.setup {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
+  settings = {
+    nixd = {
+      formatting = {
+        command = { "nixfmt" },
+      },
+    },
+  },
 }
 
 -- JS/TS
