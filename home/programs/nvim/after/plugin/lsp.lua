@@ -168,7 +168,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 lspconfig.rust_analyzer.setup {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
-  cmd = { "rustup", "run", "stable", "rust-analyzer" },
+  cmd = { "rust-analyzer" },
   settings = {
     ["rust-analyzer"] = {
       assist = {
