@@ -45,7 +45,6 @@
       p.zoxide
       p.entr
       p.xdg-utils
-      p.bitwarden-desktop
 
       # Browsers
       p.brave
