@@ -241,7 +241,7 @@ lspconfig.texlab.setup {
 -- JSON
 lspconfig.jsonls.setup {
   -- Next line only for nix users
-  cmd = { "json-languageserver", "--stdio" },
+  cmd = { "vscode-json-language-server", "--stdio" },
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
 }
@@ -249,7 +249,15 @@ lspconfig.jsonls.setup {
 -- HTML
 lspconfig.html.setup {
   -- Next line only for nix users
-  cmd = { "html-languageserver", "--stdio" },
+  cmd = { "vscode-html-language-server", "--stdio" },
+  capabilities = capabilities,
+  on_attach = custom_lsp_attach,
+}
+
+-- CSS
+lspconfig.html.setup {
+  -- Next line only for nix users
+  cmd = { "vscode-css-language-server", "--stdio" },
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
 }
