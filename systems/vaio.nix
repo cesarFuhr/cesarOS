@@ -244,6 +244,7 @@
       p.yarn
       p.cargo
       p.bash-language-server
+      p.vscode-langservers-extracted
       p.python
       p.python3
       p.marksman
