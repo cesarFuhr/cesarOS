@@ -94,7 +94,6 @@
         p.swaylock
         p.swayidle
         p.wl-clipboard
-        p.wf-recorder
         p.grim
         p.sway-contrib.grimshot
         p.slurp
