@@ -298,3 +298,9 @@ lspconfig.bashls.setup {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
 }
+
+-- C#
+lspconfig.csharp_ls.setup {
+  capabilities = capabilities,
+  on_attach = custom_lsp_attach,
+}
