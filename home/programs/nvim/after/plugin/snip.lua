@@ -47,7 +47,7 @@ ls.add_snippets("go", {
   }, fmt(
     [[func {}({}) {} {{
   {}
-}}]] , { i(1, "name"), i(2), i(3), i(0) })),
+}}]], { i(1, "name"), i(2), i(3), i(0) })),
   -- Method
   s({
     dscr = "meth expands a method.",
@@ -55,7 +55,7 @@ ls.add_snippets("go", {
   }, fmt(
     [[func ({} {}) {}({}) {} {{
   {}
-}}]] , { i(1, "r"), i(2, "Receiver"), i(3, "name"), i(4), i(5), i(0) })),
+}}]], { i(1, "r"), i(2, "Receiver"), i(3, "name"), i(4), i(5), i(0) })),
   -- Defered function
   s({
     dscr = "df expands a defered anonymous func.",
@@ -79,7 +79,7 @@ ls.add_snippets("go", {
   }, fmt(
     [[for {} := {}; {} {}; {}{} {{
   {}
-}}]] , { i(1), i(2), rep(1), i(3), rep(1), i(4), i(0) })),
+}}]], { i(1), i(2), rep(1), i(3), rep(1), i(4), i(0) })),
   -- For range loop, has some options.
   s({
     dscr = "forr expands a for loop\nhas 3 options: slice, map, custom.",
@@ -87,7 +87,7 @@ ls.add_snippets("go", {
   }, fmt(
     [[for {} := range {} {{
   {}
-}}]] ,
+}}]],
     {
       c(1, { t "i, v", t "k, v", sn(nil, { i(1) }) }),
       i(2),
@@ -99,7 +99,7 @@ ls.add_snippets("go", {
   }, fmt(
     [[if {} {{
   {}
-}}]] , { i(1), i(0) })),
+}}]], { i(1), i(0) })),
   -- If err != nil
   s({
     dscr = [[iferr expands in a if err != nil statement.
@@ -108,15 +108,15 @@ It has two options: err != nil and inline err declaration.]],
   }, fmt(
     [[if {} {{
   return {}
-}}]] , {
-    c(1,
-      {
-        t "err != nil",
-        sn(nil, { i(1, "err"), t " := ", i(2, "funcCall()"), t "; ", rep(1), t " != nil" }),
-        sn(nil, { i(1), t ", ", i(2, "err"), t " := ", i(3, "funcCall()"), t "; ", rep(2), t " != nil" }),
-      }),
-    i(0),
-  })),
+}}]], {
+      c(1,
+        {
+          t "err != nil",
+          sn(nil, { i(1, "err"), t " := ", i(2, "funcCall()"), t "; ", rep(1), t " != nil" }),
+          sn(nil, { i(1), t ", ", i(2, "err"), t " := ", i(3, "funcCall()"), t "; ", rep(2), t " != nil" }),
+        }),
+      i(0),
+    })),
 
   -- Testing
   -- Test function
@@ -126,7 +126,7 @@ It has two options: err != nil and inline err declaration.]],
   }, fmt(
     [[func Test{}(t *testing.T) {{
   {}
-}}]] , { i(1, "Name"), i(0) })),
+}}]], { i(1, "Name"), i(0) })),
   -- t.Run()
   s({
     dscr = "tr expands in a test function.",
@@ -144,7 +144,7 @@ It has two options: err != nil and inline err declaration.]],
   }, fmt(
     [[type {} struct {{
   {}
-}}]] , { i(1, "Name"), i(0) })),
+}}]], { i(1, "Name"), i(0) })),
   -- interface declaration
   s({
     dscr = "tyi expands in a type interface declaration.",
@@ -152,5 +152,5 @@ It has two options: err != nil and inline err declaration.]],
   }, fmt(
     [[type {} interface {{
   {}
-}}]] , { i(1, "Name"), i(0) })),
+}}]], { i(1, "Name"), i(0) })),
 })

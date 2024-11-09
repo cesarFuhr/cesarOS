@@ -1,6 +1,6 @@
 require 'cesar.remap'
 require 'cesar.set'
-require 'cesar.packer'
+require 'cesar.lazy'
 
 function R(name)
   require 'plenary.reload'.reload_module(name)
