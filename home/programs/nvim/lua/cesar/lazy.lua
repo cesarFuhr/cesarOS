@@ -23,7 +23,7 @@ return require 'lazy'.setup({
     { 'nvim-treesitter/nvim-treesitter-context' },
     { 'nvim-telescope/telescope.nvim',            lazy = false },
     -- faster fuzzy support for telescope.
-    { 'nvim-telescope/telescope-fzf-native.nvim' },
+    { 'nvim-telescope/telescope-fzf-native.nvim', lazy = false,                              build = 'make' },
 
     -- Better file manipulation.
     { "stevearc/oil.nvim" },
@@ -38,7 +38,7 @@ return require 'lazy'.setup({
 
     -- Git integration.
     { 'lewis6991/gitsigns.nvim' },
-    { 'ThePrimeagen/git-worktree.nvim' },
+    { 'awerebea/git-worktree.nvim',               branch = 'handle_changes_in_telescope_api' },
     { 'ThePrimeagen/harpoon' },
 
     { 'ardanlabs/ardango.nvim' },
