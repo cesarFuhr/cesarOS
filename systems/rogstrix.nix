@@ -95,6 +95,7 @@
       p.swww
       p.swappy
       p.foot
+      p.wlr-randr
     ];
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland

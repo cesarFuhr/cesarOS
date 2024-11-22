@@ -41,9 +41,9 @@
 
       input = {
         "type:keyboard" = {
-          xkb_options = "caps:ctrl_modifier,compose:rctrl";
           xkb_layout = "us,us";
           xkb_variant = ",intl";
+          xkb_options = "grp:alt_shift_toggle,ctrl:nocaps,compose:rctrl";
         };
 
         "type:touchpad" = {
@@ -91,7 +91,7 @@
           "Shift+Print" = "exec grimshot copy area";
 
           # Switching keyboard layout/variant
-          "${modifier}+Shift+Prior" = ''input "1:1:AT_Translated_Set_2_keyboard" xkb_switch_layout next'';
+          #"${modifier}+Shift+Prior" = ''input "1:1:AT_Translated_Set_2_keyboard" xkb_switch_layout next'';
 
           # Gaps
           "${modifier}+Shift+period" = "gaps horizontal current plus 60";
