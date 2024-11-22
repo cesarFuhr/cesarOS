@@ -63,13 +63,6 @@
     LC_TIME = "pt_BR.UTF-8";
   };
 
-
-  # Printing
-  services.printing = {
-    enable = true;
-    drivers = [ pkgs.hplip ];
-  };
-
   # etc settings
   environment.etc = {
     # keychron K3 - mediakeys

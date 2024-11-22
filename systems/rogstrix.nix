@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+{ notes-script, pkgs, lib, ... }:
 
 {
   imports =
@@ -62,90 +62,57 @@
     LC_TIME = "pt_BR.UTF-8";
   };
 
-  # Touchpads
-  services.libinput.enable = true;
+  environment.variables.XCURSOR_SIZE = "24";
 
-  # etc settings
-  environment.etc = {
-    # keychron K3 - mediakeys
-    "modprobe.d/hid_apple.conf".text = ''
-      options hid_apple fnmode=1
-    '';
-  };
+  # X11
+  services = {
+    displayManager.defaultSession = "none+i3";
 
-  # Sway
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true; # so that gtk works properly
-    xwayland.enable = true;
-    extraPackages = let p = pkgs; in [
-      p.swaylock
-      p.swayidle
-      p.wl-clipboard
-      p.wf-recorder
-      p.grim
-      p.sway-contrib.grimshot
-      p.slurp
-      p.nwg-bar
-      p.micro
-      p.tofi
-      p.wdisplays
-      p.wlogout
-      p.wallutils
-      p.swww
-      p.swappy
-      p.foot
-      p.wlr-randr
-    ];
-    extraSessionCommands = ''
-      export SDL_VIDEODRIVER=wayland
-      export QT_QPA_PLATFORM=wayland
-      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-      export _JAVA_AWT_WM_NONREPARENTING=1
-      export MOZ_ENABLE_WAYLAND=1
-      export XDG_CURRENT_DESKTOP=sway
-      export XDG_SESSION_DESKTOP=sway
-      export XWAYLAND_NO_GLAMOR=1
-      export WLR_RENDERER=vulkan
-    '';
-  };
+    # Touchpads
+    libinput.enable = true;
 
-  # Gnome keyring
-  services.gnome.gnome-keyring.enable = true;
+    xserver = {
+      enable = true;
+      xkb = {
+        layout = "us,us";
+        variant = ",intl";
+        options = "grp:alt_shift_toggle,ctrl:nocaps,compose:rctrl";
+      };
 
-  # Display Manager
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember-session --cmd 'sway --unsupported-gpu'";
+      # Video drivers
+      # Nvidia
+      videoDrivers = [ "nvidia" ];
+
+      dpi = lib.mkForce 120;
+
+      displayManager = {
+        startx.enable = true;
+        lightdm = {
+          enable = true;
+          greeters = {
+            gtk = {
+              enable = true;
+              theme = {
+                name = "Sierra-dark";
+                package = pkgs.sierra-gtk-theme;
+              };
+            };
+          };
+        };
+
+        sessionCommands = "${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr";
+      };
+
+      windowManager.i3 = {
+        enable = true;
       };
     };
   };
 
-  systemd.services.greetd.serviceConfig = {
-    Type = "idle";
-    StandardInput = "tty";
-    StandardOutput = "tty";
-    StandardError = "journal"; # Without this errors will spam on screen
-    # Without these bootlogs will spam on screen
-    TTYReset = true;
-    TTYVHangup = true;
-    TTYVTDisallocate = true;
-  };
-
-  # X11
-  services.xserver = {
+  # Picom
+  services.picom = {
     enable = true;
-    xkb = {
-      layout = "us,us";
-      variant = ",intl";
-      options = "grp:alt_shift_toggle,ctrl:nocaps,compose:rctrl";
-    };
-
-    # Video drivers
-    # Nvidia
-    videoDrivers = [ "nvidia" ];
+    vSync = true;
   };
 
   console.useXkbConfig = true;
@@ -197,12 +164,18 @@
       # Browsers
       p.firefox
 
-      # Wayland
-      p.glxinfo
-      p.vulkan-tools
-      p.glmark2
+      # OBS
+      (p.wrapOBS {
+        plugins = with p.obs-studio-plugins; [
+          obs-backgroundremoval
+          obs-pipewire-audio-capture
+        ];
+      })
 
       # Work
+      notes-script.packages.${p.system}.notes
+      notes-script.packages.${p.system}.todo
+      notes-script.packages.${p.system}.todo-done
       p.git
       p.tree-sitter
       p.nixd
@@ -228,10 +201,27 @@
       p.rust-analyzer
       p.clippy
       p.terraform
+      nd.typescript-language-server
+      p.vscode-langservers-extracted
       p.bash-language-server
       p.python
       p.python3
       p.marksman
+
+      # Environment
+      p.rofi
+      p.dmenu
+      p.feh
+      p.arc-theme
+      p.alsa-lib
+      p.alsa-utils
+      p.alsa-tools
+      p.pamixer
+      p.pulseaudio
+
+      # Audio
+      p.pavucontrol
+      p.playerctl
 
       # Utilities
       p.wget
@@ -242,6 +232,7 @@
       p.eza
       p.gzip
       p.htop
+      p.nvtopPackages.full
       p.btop
       p.jq
       p.iftop
@@ -255,6 +246,7 @@
       p.xclip
       p.which
       p.ripgrep
+      p.simplescreenrecorder
       p.bc
       p.pciutils
       p.psmisc
@@ -266,6 +258,9 @@
       p.parted
       p.system-config-printer
       p.dig
+      p.outils
+      p.xorg.xev
+      p.vial  
     ];
 
   # Some programs need SUID wrappers, can be configured further or are

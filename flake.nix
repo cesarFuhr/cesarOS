@@ -133,6 +133,7 @@
 	rogstrix = nixpkgs.lib.nixosSystem {
           inherit system;
 
+          specialArgs = { inherit notes-script; };
           modules = [
             ./systems/rogstrix.nix
             home-manager.nixosModules.home-manager
@@ -142,10 +143,10 @@
               home-manager.users.cesar = { config, pkgs, ... }: {
                 imports = [
                   ./home/cesar.nix
-                  # With Sway.
-                  ./home/programs/sway.nix
-                  ./home/programs/waybar.nix
-                  ./home/programs/foot.nix
+                  # With window manager.
+                  ./home/programs/i3.nix
+                  ./home/programs/polybar/polybar.nix
+                  ./home/programs/rofi.nix
                 ];
               };
             }
