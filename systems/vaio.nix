@@ -161,9 +161,9 @@
   services.xserver = {
     enable = true;
     xkb = {
-      options = "ctrl:nocaps";
-      layout = "us";
-      variant = "";
+      layout = "us,us";
+      variant = ",intl";
+      options = "grp:alt_shift_toggle,ctrl:nocaps,compose:rctrl";
     };
 
     videoDriver = "amdgpu";

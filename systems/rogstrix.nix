@@ -137,17 +137,14 @@
   services.xserver = {
     enable = true;
     xkb = {
-      options = "ctrl:nocaps";
-      layout = "us";
-      variant = "";
+      layout = "us,us";
+      variant = ",intl";
+      options = "grp:alt_shift_toggle,ctrl:nocaps,compose:rctrl";
     };
 
     # Video drivers
     # Nvidia
     videoDrivers = [ "nvidia" ];
-
-    # displayManager.gdm.enable = true;
-    # desktopManager.gnome.enable = true;
   };
 
   console.useXkbConfig = true;
