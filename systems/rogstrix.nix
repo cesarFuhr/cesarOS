@@ -2,13 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ notes-script, pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
     [
       # Include the results of the hardware scan.
-      ./hardware/legion.nix
+      ./hardware/rogstrix.nix
     ];
 
   # Making nix ready for flakes.
@@ -17,18 +17,21 @@
     experimental-features = nix-command flakes
   '';
 
-  # Setting env var to mark this build as legion.
-  environment.variables.CESAR_OS_BUILD = "legion";
+  # Setting env var to mark this build as rogstrix.
+  environment.variables = {
+    CESAR_OS_BUILD = "rogstrix";
+    WLR_NO_HARDWARE_CURSORS = "1";
+  };
 
   # Latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages;
 
   # Bootloader.
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "cesar"; # Define your hostname.
+  networking.hostName = "rogstrix"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -39,10 +42,6 @@
   networking = {
     networkmanager.enable = true;
     enableIPv6 = false;
-    extraHosts = ''
-      127.0.0.1 aws
-      127.0.0.1 local-site.bnet.run
-    '';
   };
 
   # Set your time zone.
@@ -63,12 +62,8 @@
     LC_TIME = "pt_BR.UTF-8";
   };
 
-
-  # Printing
-  services.printing = {
-    enable = true;
-    drivers = [ pkgs.hplip ];
-  };
+  # Touchpads
+  services.libinput.enable = true;
 
   # etc settings
   environment.etc = {
@@ -78,64 +73,81 @@
     '';
   };
 
-  environment.variables.XCURSOR_SIZE = "24";
+  # Sway
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true; # so that gtk works properly
+    xwayland.enable = true;
+    extraPackages = let p = pkgs; in [
+      p.swaylock
+      p.swayidle
+      p.wl-clipboard
+      p.wf-recorder
+      p.grim
+      p.sway-contrib.grimshot
+      p.slurp
+      p.nwg-bar
+      p.micro
+      p.tofi
+      p.wdisplays
+      p.wlogout
+      p.wallutils
+      p.swww
+      p.swappy
+      p.foot
+    ];
+    extraSessionCommands = ''
+      export SDL_VIDEODRIVER=wayland
+      export QT_QPA_PLATFORM=wayland
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+      export _JAVA_AWT_WM_NONREPARENTING=1
+      export MOZ_ENABLE_WAYLAND=1
+      export XDG_CURRENT_DESKTOP=sway
+      export XDG_SESSION_DESKTOP=sway
+      export XWAYLAND_NO_GLAMOR=1
+      export WLR_RENDERER=vulkan
+    '';
+  };
 
-  # X11
-  services = {
-    displayManager.defaultSession = "none+i3";
+  # Gnome keyring
+  services.gnome.gnome-keyring.enable = true;
 
-    # Touchpads
-    libinput.enable = true;
-
-    xserver = {
-      enable = true;
-      xkb = {
-        layout = "us,us";
-        variant = ",intl";
-        options = "grp:alt_shift_toggle,ctrl:nocaps,compose:rctrl";
-      };
-
-      # Video drivers
-      # Nvidia
-      videoDrivers = [ "nvidia" ];
-
-      dpi = lib.mkForce 120;
-
-      displayManager = {
-        startx.enable = true;
-        lightdm = {
-          enable = true;
-          greeters = {
-            gtk = {
-              enable = true;
-              theme = {
-                name = "Sierra-dark";
-                package = pkgs.sierra-gtk-theme;
-              };
-            };
-          };
-        };
-
-        sessionCommands = "${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr";
-      };
-
-      windowManager.awesome = {
-        enable = true;
-        luaModules = with pkgs.luaPackages; [
-          luarocks
-        ];
-      };
-
-      windowManager.i3 = {
-        enable = true;
+  # Display Manager
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember-session --cmd 'sway --unsupported-gpu'";
       };
     };
   };
 
-  # Picom
-  services.picom = {
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal"; # Without this errors will spam on screen
+    # Without these bootlogs will spam on screen
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
+  };
+
+  # X11
+  services.xserver = {
     enable = true;
-    vSync = true;
+    xkb = {
+      options = "ctrl:nocaps";
+      layout = "us";
+      variant = "";
+    };
+
+    # Video drivers
+    # Nvidia
+    videoDrivers = [ "nvidia" ];
+
+    # displayManager.gdm.enable = true;
+    # desktopManager.gnome.enable = true;
   };
 
   console.useXkbConfig = true;
@@ -163,7 +175,6 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-
   # Allow python 2.7 and nodejs 16
   nixpkgs.config.permittedInsecurePackages = [
     "python-2.7.18.7"
@@ -188,18 +199,12 @@
       # Browsers
       p.firefox
 
-      # OBS
-      (p.wrapOBS {
-        plugins = with p.obs-studio-plugins; [
-          obs-backgroundremoval
-          obs-pipewire-audio-capture
-        ];
-      })
+      # Wayland
+      p.glxinfo
+      p.vulkan-tools
+      p.glmark2
 
       # Work
-      notes-script.packages.${p.system}.notes
-      notes-script.packages.${p.system}.todo
-      notes-script.packages.${p.system}.todo-done
       p.git
       p.tree-sitter
       p.nixd
@@ -225,27 +230,10 @@
       p.rust-analyzer
       p.clippy
       p.terraform
-      nd.typescript-language-server
-      p.vscode-langservers-extracted
       p.bash-language-server
       p.python
       p.python3
       p.marksman
-
-      # Environment
-      p.rofi
-      p.dmenu
-      p.feh
-      p.arc-theme
-      p.alsa-lib
-      p.alsa-utils
-      p.alsa-tools
-      p.pamixer
-      p.pulseaudio
-
-      # Audio
-      p.pavucontrol
-      p.playerctl
 
       # Utilities
       p.wget
@@ -256,7 +244,6 @@
       p.eza
       p.gzip
       p.htop
-      p.nvtopPackages.full
       p.btop
       p.jq
       p.iftop
@@ -270,7 +257,6 @@
       p.xclip
       p.which
       p.ripgrep
-      p.simplescreenrecorder
       p.bc
       p.pciutils
       p.psmisc
@@ -282,10 +268,15 @@
       p.parted
       p.system-config-printer
       p.dig
-      p.outils
-      p.xorg.xev
-      p.vial  
     ];
+
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
 
   # Zsh
   programs.zsh = {
@@ -307,41 +298,11 @@
 
   # List services that you want to enable:
 
-  # Pipewire.
-  services.pipewire = {
-    enable = true;
-    alsa = {
-      enable = true;
-      support32Bit = true;
-    };
-    pulse.enable = true;
-  };
-
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    localNetworkGameTransfers.openFirewall = true;
-  };
-
   # Open ports in the firewall.
-  networking.firewall = lib.mkMerge [
-    # Work
-    { allowedTCPPorts = [ 11111 6443 ]; }
-
-    # Steam
-    {
-      allowedTCPPorts = [ 27036 27015 27040 ];
-      allowedUDPPorts = [ 27015 ];
-      allowedUDPPortRanges = [{
-        from = 27031;
-        to = 27035;
-      }];
-    }
-  ];
+  networking.firewall.allowedTCPPorts = [ 11111 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
@@ -361,10 +322,13 @@
   services.flatpak.enable = true;
   xdg.portal = {
     enable = true;
+    wlr.enable = true;
     configPackages = with pkgs; [
+      xdg-desktop-portal-wlr
       xdg-desktop-portal-gtk
     ];
     extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr
       xdg-desktop-portal-gtk
     ];
   };
@@ -383,13 +347,10 @@
     };
   };
 
-  nix = {
-    optimise.automatic = true;
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
   };
 
   # This value determines the NixOS release from which the default
@@ -400,4 +361,3 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "unstable";
 }
-

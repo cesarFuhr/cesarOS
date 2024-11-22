@@ -129,6 +129,28 @@
             }
           ];
         };
+
+	rogstrix = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          modules = [
+            ./systems/rogstrix.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.cesar = { config, pkgs, ... }: {
+                imports = [
+                  ./home/cesar.nix
+                  # With Sway.
+                  ./home/programs/sway.nix
+                  ./home/programs/waybar.nix
+                  ./home/programs/foot.nix
+                ];
+              };
+            }
+          ];
+        };
       };
     };
 }
