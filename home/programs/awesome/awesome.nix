@@ -8,4 +8,3 @@
   home.file.".config/awesome/rc.lua".source = ./rc.lua;
   home.file.".config/awesome/lain".source = ./lain;
 }
-

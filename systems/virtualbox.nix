@@ -5,11 +5,10 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Making nix ready for flakes.
   nix.package = pkgs.nixVersions.stable;
@@ -53,7 +52,6 @@
     LC_TIME = "pt_BR.UTF-8";
   };
 
-
   # Video drivers
   services.xserver.videoDrivers = [ "modesetting" ];
 
@@ -67,7 +65,9 @@
     xkbVariant = "";
 
     displayManager = {
-      gdm = { enable = true; };
+      gdm = {
+        enable = true;
+      };
       defaultSession = "none+awesome";
     };
 
@@ -88,7 +88,12 @@
       cesar = {
         isNormalUser = true;
         description = "cesar";
-        extraGroups = [ "networkmanager" "wheel" "audio" "docker" ];
+        extraGroups = [
+          "networkmanager"
+          "wheel"
+          "audio"
+          "docker"
+        ];
 
         shell = pkgs.zsh;
       };
@@ -186,7 +191,12 @@
     enableDefaultFonts = true;
 
     fonts = with pkgs; [
-      (nerdfonts.override { fonts = [ "Mononoki" "FiraCode" ]; })
+      (nerdfonts.override {
+        fonts = [
+          "Mononoki"
+          "FiraCode"
+        ];
+      })
     ];
   };
 

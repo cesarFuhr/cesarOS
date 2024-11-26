@@ -1,30 +1,40 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}:
 
 {
-  imports =
-    [
-      (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
 
-  boot.initrd.availableKernelModules = [ "nvidia" "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [
+    "nvidia"
+    "nvme"
+    "xhci_pci"
+    "ahci"
+    "usb_storage"
+    "usbhid"
+    "sd_mod"
+  ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
 
-  fileSystems."/" =
-    {
-      device = "/dev/disk/by-label/n-nixos";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-label/n-nixos";
+    fsType = "ext4";
+  };
 
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-label/N-BOOT";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-label/N-BOOT";
+    fsType = "vfat";
+  };
 
-  swapDevices =
-    [{ device = "/dev/disk/by-label/n-swap"; }];
+  swapDevices = [ { device = "/dev/disk/by-label/n-swap"; } ];
 
   services.fstrim.enable = lib.mkDefault true;
 
@@ -38,15 +48,14 @@
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # Nvidia
-  hardware.graphics =
-    {
-      enable = true;
-      enable32Bit = true;
-      extraPackages = with pkgs; [
-        vaapiVdpau
-        vulkan-validation-layers
-      ];
-    };
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [
+      vaapiVdpau
+      vulkan-validation-layers
+    ];
+  };
 
   hardware.nvidia = {
     # Modesetting is required.
@@ -70,4 +79,3 @@
 
   hardware.enableAllFirmware = true;
 }
-

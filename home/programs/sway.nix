@@ -26,9 +26,11 @@
         }
       ];
 
-      bars = [{
-        command = "${pkgs.waybar}/bin/waybar";
-      }];
+      bars = [
+        {
+          command = "${pkgs.waybar}/bin/waybar";
+        }
+      ];
 
       window = {
         titlebar = false;
@@ -80,8 +82,7 @@
 
           "${modifier}+Shift+c" = "reload";
           "${modifier}+q" = "kill";
-          "${modifier}+Shift+e" =
-            "kxec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
+          "${modifier}+Shift+e" = "kxec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
           "${modifier}+Shift+p" = "exec wlogout";
 
           # Screenshot
@@ -196,4 +197,3 @@
     };
   };
 }
-

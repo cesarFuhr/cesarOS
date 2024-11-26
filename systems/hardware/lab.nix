@@ -1,37 +1,48 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}:
 
 let
   nverStable = config.boot.kernelPackages.nvidiaPackages.stable.version;
   nverBeta = config.boot.kernelPackages.nvidiaPackages.beta.version;
   nvidiaPackage =
-    if (lib.versionOlder nverBeta nverStable)
-    then config.boot.kernelPackages.nvidiaPackages.stable
-    else config.boot.kernelPackages.nvidiaPackages.beta;
+    if (lib.versionOlder nverBeta nverStable) then
+      config.boot.kernelPackages.nvidiaPackages.stable
+    else
+      config.boot.kernelPackages.nvidiaPackages.beta;
 in
 {
-  imports =
-    [
-      (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
 
-  boot.initrd.availableKernelModules = [ "nvidia" "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [
+    "nvidia"
+    "nvme"
+    "xhci_pci"
+    "ahci"
+    "usb_storage"
+    "usbhid"
+    "sd_mod"
+  ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
 
-  fileSystems."/" =
-    {
-      device = "/dev/disk/by-label/nixos";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-label/nixos";
+    fsType = "ext4";
+  };
 
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-label/boot";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-label/boot";
+    fsType = "vfat";
+  };
 
-  swapDevices =
-    [{ device = "/dev/disk/by-label/swap"; }];
+  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
 
   services.fstrim.enable = lib.mkDefault true;
 
@@ -64,4 +75,3 @@ in
 
   hardware.enableAllFirmware = true;
 }
-

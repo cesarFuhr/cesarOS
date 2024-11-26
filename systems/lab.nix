@@ -2,14 +2,18 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware/lab.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware/lab.nix
+  ];
 
   # Making nix ready for flakes.
   nix.package = pkgs.nixVersions.stable;
@@ -78,24 +82,28 @@
     enable = true;
     wrapperFeatures.gtk = true; # so that gtk works properly
     xwayland.enable = true;
-    extraPackages = let p = pkgs; in [
-      p.swaylock
-      p.swayidle
-      p.wl-clipboard
-      p.wf-recorder
-      p.grim
-      p.sway-contrib.grimshot
-      p.slurp
-      p.nwg-bar
-      p.micro
-      p.tofi
-      p.wdisplays
-      p.wlogout
-      p.wallutils
-      p.swww
-      p.swappy
-      p.foot
-    ];
+    extraPackages =
+      let
+        p = pkgs;
+      in
+      [
+        p.swaylock
+        p.swayidle
+        p.wl-clipboard
+        p.wf-recorder
+        p.grim
+        p.sway-contrib.grimshot
+        p.slurp
+        p.nwg-bar
+        p.micro
+        p.tofi
+        p.wdisplays
+        p.wlogout
+        p.wallutils
+        p.swww
+        p.swappy
+        p.foot
+      ];
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland
       export QT_QPA_PLATFORM=wayland
@@ -174,7 +182,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
 
   # Allow python 2.7 and nodejs 16
   nixpkgs.config.permittedInsecurePackages = [

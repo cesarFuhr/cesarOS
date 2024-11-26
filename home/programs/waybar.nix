@@ -16,7 +16,11 @@ in
         edpOut
       ];
 
-      modules-left = [ "custom/logo" "sway/workspaces" "sway/mode" ];
+      modules-left = [
+        "custom/logo"
+        "sway/workspaces"
+        "sway/mode"
+      ];
       modules-center = [ "sway/window" ];
       modules-right = [
         "tray"
@@ -111,50 +115,50 @@ in
   };
 
   programs.waybar.style = ''
-  
-  * {
-    border: none;
-    border-radius: 0;
-    padding: 0;
-    margin: 0;
-    font-size: 13px;
-  }
 
-  window#waybar {
-    background: #292828;
-    color: #ffffff;
-  }
-  
-  #custom-logo {
-    font-size: 18px;
-    margin: 0;
-    margin-left: 7px;
-    margin-right: 12px;
-    padding: 0;
-    font-family: NotoSans Nerd Font Mono;
-  }
-  
-  #workspaces button {
-    margin-right: 10px;
-    color: #ffffff;
-  }
-  
-  #workspaces button:hover, #workspaces button:active {
-    background-color: #292828;
-    color: #ffffff;
-  }
+    * {
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      margin: 0;
+      font-size: 13px;
+    }
 
-  #workspaces button.focused {
-    background-color: #383737;
-  }
+    window#waybar {
+      background: #292828;
+      color: #ffffff;
+    }
 
-  #language {
-    margin-right: 7px;		
-  }
+    #custom-logo {
+      font-size: 18px;
+      margin: 0;
+      margin-left: 7px;
+      margin-right: 12px;
+      padding: 0;
+      font-family: NotoSans Nerd Font Mono;
+    }
 
-  #battery {
-    margin-left: 7px;
-    margin-right: 3px;
-  }
+    #workspaces button {
+      margin-right: 10px;
+      color: #ffffff;
+    }
+
+    #workspaces button:hover, #workspaces button:active {
+      background-color: #292828;
+      color: #ffffff;
+    }
+
+    #workspaces button.focused {
+      background-color: #383737;
+    }
+
+    #language {
+      margin-right: 7px;		
+    }
+
+    #battery {
+      margin-left: 7px;
+      margin-right: 3px;
+    }
   '';
 }

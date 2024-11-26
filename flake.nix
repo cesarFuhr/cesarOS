@@ -17,7 +17,13 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, notes-script, ... }:
+  outputs =
+    {
+      nixpkgs,
+      home-manager,
+      notes-script,
+      ...
+    }:
     let
       system = "x86_64-linux";
     in
@@ -40,34 +46,43 @@
         };
 
         # Inspiron
-        inspiron = nixpkgs.lib.nixosSystem
-          {
-            inherit system;
+        inspiron = nixpkgs.lib.nixosSystem {
+          inherit system;
 
-            specialArgs = { inherit notes-script; };
-            modules = [
-              ./systems/inspiron.nix
-              {
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.users.cesar = import ./home/cesar.nix;
-              }
-            ];
+          specialArgs = {
+            inherit notes-script;
           };
+          modules = [
+            ./systems/inspiron.nix
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.cesar = import ./home/cesar.nix;
+            }
+          ];
+        };
 
         # Vaio
-        vaio = nixpkgs.lib.nixosSystem
-          {
-            inherit system;
+        vaio = nixpkgs.lib.nixosSystem {
+          inherit system;
 
-            specialArgs = { inherit notes-script; };
-            modules = [
-              ./systems/vaio.nix
-              home-manager.nixosModules.home-manager
-              {
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.users.cesar = { config, pkgs, lib, ... }: {
+          specialArgs = {
+            inherit notes-script;
+          };
+          modules = [
+            ./systems/vaio.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.cesar =
+                {
+                  config,
+                  pkgs,
+                  lib,
+                  ...
+                }:
+                {
                   imports = [
                     ./home/cesar.nix
                     # With Wayland.
@@ -78,31 +93,35 @@
 
                   programs.alacritty.settings.font.size = lib.mkForce 15;
                 };
-              }
-            ];
-          };
+            }
+          ];
+        };
 
         # Currently, is what I am using on a daily basis.
         legion = nixpkgs.lib.nixosSystem {
           inherit system;
 
-          specialArgs = { inherit notes-script; };
+          specialArgs = {
+            inherit notes-script;
+          };
           modules = [
             ./systems/legion.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.cesar = { config, pkgs, ... }: {
-                imports = [
-                  ./home/cesar.nix
-                  # With window manager.
-                  ./home/programs/awesome/awesome.nix
-                  ./home/programs/i3.nix
-                  ./home/programs/polybar/polybar.nix
-                  ./home/programs/rofi.nix
-                ];
-              };
+              home-manager.users.cesar =
+                { config, pkgs, ... }:
+                {
+                  imports = [
+                    ./home/cesar.nix
+                    # With window manager.
+                    ./home/programs/awesome/awesome.nix
+                    ./home/programs/i3.nix
+                    ./home/programs/polybar/polybar.nix
+                    ./home/programs/rofi.nix
+                  ];
+                };
             }
           ];
         };
@@ -117,15 +136,17 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.cesar = { config, pkgs, ... }: {
-                imports = [
-                  ./home/cesar.nix
-                  # With Sway.
-                  ./home/programs/sway.nix
-                  ./home/programs/waybar.nix
-                  ./home/programs/foot.nix
-                ];
-              };
+              home-manager.users.cesar =
+                { config, pkgs, ... }:
+                {
+                  imports = [
+                    ./home/cesar.nix
+                    # With Sway.
+                    ./home/programs/sway.nix
+                    ./home/programs/waybar.nix
+                    ./home/programs/foot.nix
+                  ];
+                };
             }
           ];
         };

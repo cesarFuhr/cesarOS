@@ -31,10 +31,10 @@
           command = "feh -z --bg-fill $HOME/Wallpapers";
           always = true;
           notification = false;
-         }
+        }
       ];
 
-      bars = [];
+      bars = [ ];
 
       window = {
         titlebar = false;
@@ -172,4 +172,3 @@
     };
   };
 }
-

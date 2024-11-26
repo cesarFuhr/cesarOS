@@ -36,7 +36,10 @@
   };
 
   # Packages to install.
-  home.packages = let p = pkgs; in
+  home.packages =
+    let
+      p = pkgs;
+    in
     [
       # Utils
       p.neofetch
@@ -140,7 +143,9 @@
         defaultBranch = "main";
       };
       url = {
-        "ssh://git@github.com/" = { insteadOf = "https://github.com/"; };
+        "ssh://git@github.com/" = {
+          insteadOf = "https://github.com/";
+        };
       };
     };
   };
@@ -164,12 +169,12 @@
       User ec2-user
       IdentityFile ~/.ssh/bnet-stable-bastion.pem
       ProxyCommand bash -c "aws ssm start-session --document-name AWS-StartSSHSession --parameters 'portNumber=%p' --target $(aws ec2 describe-instances --filter "Name=tag:Name,Values=LinuxBastion" "Name=tag:Environment,Values=Stable" "Name=tag:Business Unit,Values=BNET" --query "Reservations[].Instances[?State.Name == 'running'].InstanceId[] | [0]" --output text)"
-    
+
     Host i-* mi-*
       StrictHostKeyChecking no
       User ec2-user
       ProxyCommand sh -c "aws --profile stable-bastion ssm start-session --target %h --document-name AWS-StartSSHSession --parameters 'portNumber=%p'"
-    
+
     Host prod-bastion
       StrictHostKeyChecking no
       User ec2-user
@@ -210,4 +215,3 @@
     };
   };
 }
-

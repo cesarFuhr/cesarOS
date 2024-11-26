@@ -2,14 +2,19 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ notes-script, config, pkgs, lib, ... }:
+{
+  notes-script,
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware/inspiron.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware/inspiron.nix
+  ];
 
   # Making nix ready for flakes.
   nix.package = pkgs.nixVersions.stable;

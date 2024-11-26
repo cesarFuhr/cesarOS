@@ -2,14 +2,18 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ notes-script, pkgs, lib, ... }:
+{
+  notes-script,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware/legion.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware/legion.nix
+  ];
 
   # Making nix ready for flakes.
   nix.package = pkgs.nixVersions.stable;
@@ -156,7 +160,6 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-
   # Allow python 2.7 and nodejs 16
   nixpkgs.config.permittedInsecurePackages = [
     "python-2.7.18.7"
@@ -196,7 +199,7 @@
       p.git
       p.tree-sitter
       p.nixd
-      p.nixpkgs-fmt
+      p.nixfmt-rfc-style
       p.nixpkgs-lint
       p.nixd
       p.docker
@@ -277,7 +280,7 @@
       p.dig
       p.outils
       p.xorg.xev
-      p.vial  
+      p.vial
     ];
 
   # Zsh
@@ -323,16 +326,27 @@
   # Open ports in the firewall.
   networking.firewall = lib.mkMerge [
     # Work
-    { allowedTCPPorts = [ 11111 6443 ]; }
+    {
+      allowedTCPPorts = [
+        11111
+        6443
+      ];
+    }
 
     # Steam
     {
-      allowedTCPPorts = [ 27036 27015 27040 ];
+      allowedTCPPorts = [
+        27036
+        27015
+        27040
+      ];
       allowedUDPPorts = [ 27015 ];
-      allowedUDPPortRanges = [{
-        from = 27031;
-        to = 27035;
-      }];
+      allowedUDPPortRanges = [
+        {
+          from = 27031;
+          to = 27035;
+        }
+      ];
     }
   ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -393,4 +407,3 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "unstable";
 }
-
