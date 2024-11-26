@@ -6,6 +6,8 @@
       url = "github:nixos/nixpkgs/nixos-unstable";
     };
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,6 +22,7 @@
   outputs =
     {
       nixpkgs,
+      nixos-hardware,
       home-manager,
       notes-script,
       ...
@@ -77,8 +80,6 @@
               home-manager.useUserPackages = true;
               home-manager.users.cesar =
                 {
-                  config,
-                  pkgs,
                   lib,
                   ...
                 }:
@@ -106,12 +107,16 @@
           };
           modules = [
             ./systems/legion.nix
+            nixos-hardware.nixosModules.common-cpu-amd
+            nixos-hardware.nixosModules.common-cpu-amd-pstate
+            nixos-hardware.nixosModules.common-gpu-amd
+            nixos-hardware.nixosModules.common-gpu-nvidia-sync
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.cesar =
-                { config, pkgs, ... }:
+                { ... }:
                 {
                   imports = [
                     ./home/cesar.nix
@@ -137,7 +142,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.cesar =
-                { config, pkgs, ... }:
+                { ... }:
                 {
                   imports = [
                     ./home/cesar.nix
@@ -151,25 +156,29 @@
           ];
         };
 
-	rogstrix = nixpkgs.lib.nixosSystem {
+        rogstrix = nixpkgs.lib.nixosSystem {
           inherit system;
 
-          specialArgs = { inherit notes-script; };
+          specialArgs = {
+            inherit notes-script;
+          };
           modules = [
             ./systems/rogstrix.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.cesar = { config, pkgs, ... }: {
-                imports = [
-                  ./home/cesar.nix
-                  # With window manager.
-                  ./home/programs/i3.nix
-                  ./home/programs/polybar/polybar.nix
-                  ./home/programs/rofi.nix
-                ];
-              };
+              home-manager.users.cesar =
+                { ... }:
+                {
+                  imports = [
+                    ./home/cesar.nix
+                    # With window manager.
+                    ./home/programs/i3.nix
+                    ./home/programs/polybar/polybar.nix
+                    ./home/programs/rofi.nix
+                  ];
+                };
             }
           ];
         };

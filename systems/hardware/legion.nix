@@ -45,8 +45,6 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
 
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
   # Nvidia
   hardware.graphics = {
     enable = true;
@@ -57,20 +55,20 @@
     ];
   };
 
-  hardware.nvidia = {
-    # Modesetting is required.
-    modesetting.enable = true;
+  hardware.nvidia =
+    let
+      nvidiaPackage = config.boot.kernelPackages.nvidiaPackages.stable;
+    in
+    {
+      package = nvidiaPackage;
+      open = lib.mkOverride 990 (nvidiaPackage ? open && nvidiaPackage ? firmware);
+      nvidiaSettings = true;
 
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-
-    powerManagement = {
-      enable = false;
-      finegrained = false;
+      prime = {
+        amdgpuBusId = "PCI:5:0:0";
+        nvidiaBusId = "PCI:1:0:0";
+      };
     };
-
-    open = true;
-    nvidiaSettings = true;
-  };
 
   # Prevent lid from suspending.
   services.logind.lidSwitchExternalPower = "ignore";
