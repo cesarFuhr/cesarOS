@@ -182,11 +182,11 @@
                     ./home/programs/polybar/polybar.nix
                     ./home/programs/rofi.nix
                   ];
+                  polybar = {
+                    primaryMonitor = "HDMI-0";
+                    secondaryMonitor = "eDP-1-1";
+                  };
                 };
-              polybar = {
-                primaryMonitor = "HDMI-0";
-                secondaryMonitor = "eDP-1-1";
-              };
             }
           ];
         };
