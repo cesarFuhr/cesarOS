@@ -179,7 +179,7 @@
       p.git
       p.tree-sitter
       p.nixd
-      p.nixpkgs-fmt
+      p.nixfmt-rfc-style
       p.nixpkgs-lint
       p.nixd
       p.docker
@@ -293,6 +293,13 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+  };
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 11111 ];

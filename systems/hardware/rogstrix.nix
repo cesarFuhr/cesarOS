@@ -11,7 +11,7 @@
   boot.initrd.availableKernelModules = [ "nvidia" "vmd" "xhci_pci" "thunderbolt" "nvme" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-label/nixos";
@@ -51,12 +51,22 @@
   hardware.nvidia = {
     modesetting.enable = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
+
     powerManagement = {
       enable = true;
       finegrained = false;
     };
 
+    prime = {
+      sync.enable = true;
+      intelBusId = "PCI:00:2:0";
+      nvidiaBusId = "PCI:01:0:0";
+    };
+
+    nvidiaPersistenced = true;
+
     open = true;
+    nvidiaSettings = true;
   };
 
   hardware.enableAllFirmware = true;
