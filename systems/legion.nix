@@ -298,7 +298,7 @@
     packages = with pkgs; [
       fira-code
       fira-code-symbols
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      nerd-fonts.jetbrains-mono
     ];
   };
 

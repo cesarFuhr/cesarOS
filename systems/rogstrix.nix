@@ -2,14 +2,18 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ notes-script, pkgs, lib, ... }:
+{
+  notes-script,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware/rogstrix.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware/rogstrix.nix
+  ];
 
   # Making nix ready for flakes.
   nix.package = pkgs.nixVersions.stable;
@@ -260,7 +264,7 @@
       p.dig
       p.outils
       p.xorg.xev
-      p.vial  
+      p.vial
     ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -285,7 +289,7 @@
     packages = with pkgs; [
       fira-code
       fira-code-symbols
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      nerd-fonts.jetbrains-mono
     ];
   };
 
