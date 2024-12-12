@@ -169,12 +169,7 @@
       p.firefox
 
       # OBS
-      (p.wrapOBS {
-        plugins = with p.obs-studio-plugins; [
-          obs-backgroundremoval
-          obs-pipewire-audio-capture
-        ];
-      })
+      p.v4l-utils
 
       # Work
       notes-script.packages.${p.system}.notes
@@ -280,7 +275,21 @@
     enable = true;
   };
 
-  # Manually enabling dconf. 
+  # OBS
+  programs.obs-studio = {
+    enable = true;
+    enableVirtualCamera = true;
+    plugins =
+      let
+        plugs = pkgs.obs-studio-plugins;
+      in
+      [
+        plugs.obs-backgroundremoval
+        plugs.obs-pipewire-audio-capture
+      ];
+  };
+
+  # Manually enabling dconf.
   # (needed because gnome is not a dep anymore, moved from gdm to lightdm)
   programs.dconf.enable = true;
 

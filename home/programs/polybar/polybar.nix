@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.polybar;
@@ -25,9 +30,10 @@ in
       ${pkgs.polybar}/bin/polybar --reload external &
     '';
 
-    extraConfig = builtins.replaceStrings 
-      ["{{primaryMonitor}}" "{{secondaryMonitor}}"] 
-      [ cfg.primaryMonitor cfg.secondaryMonitor] 
-      (builtins.readFile (builtins.toString ./config.ini));
+    extraConfig =
+      builtins.replaceStrings
+        [ "{{primaryMonitor}}" "{{secondaryMonitor}}" ]
+        [ cfg.primaryMonitor cfg.secondaryMonitor ]
+        (builtins.readFile (builtins.toString ./config.ini));
   };
 }
