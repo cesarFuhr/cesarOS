@@ -30,6 +30,10 @@ in
       ${pkgs.polybar}/bin/polybar --reload external &
     '';
 
+    package = pkgs.polybar.override {
+      pulseSupport = true;
+    };
+
     extraConfig =
       builtins.replaceStrings
         [ "{{primaryMonitor}}" "{{secondaryMonitor}}" ]
