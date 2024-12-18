@@ -260,7 +260,16 @@
       p.outils
       p.xorg.xev
       p.vial
+      p.via
     ];
+
+  # Vial
+  services.udev.packages = with pkgs; [
+    vial
+    via
+  ];
+
+  # Gnome keyring
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
