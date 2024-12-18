@@ -209,7 +209,7 @@
 
       # Environment
       p.rofi
-      p.dmenu
+      p.dmenu-rs-enable-plugins
       p.feh
       p.arc-theme
       p.alsa-lib

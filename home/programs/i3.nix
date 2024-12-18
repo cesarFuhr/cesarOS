@@ -56,8 +56,8 @@
         {
           "${modifier}+Shift+Return" = "exec ${terminal}";
           "${modifier}+Return" = "exec ${terminal}";
-          "${modifier}+space" = "exec $(${p.dmenu}/bin/dmenu_run)";
-          "${modifier}+semicolon" = "exec $(${p.dmenu}/bin/demnu_run)";
+          "${modifier}+space" = "exec $(${p.dmenu-rs-enable-plugins}/bin/dmenu_run -i)";
+          "${modifier}+semicolon" = "exec $(${p.dmenu-rs-enable-plugins}/bin/demnu_run -i)";
 
           "${modifier}+Shift+c" = "reload";
           "${modifier}+q" = "kill";
