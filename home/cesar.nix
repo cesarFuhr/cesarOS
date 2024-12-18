@@ -109,6 +109,9 @@
     };
   };
 
+  # Keyboard
+  home.file.".config/kb.vil".source = ./kb.vil;
+
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
