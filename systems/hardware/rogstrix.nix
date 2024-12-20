@@ -31,12 +31,12 @@
   ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-label/nixos";
+    device = "/dev/disk/by-label/n-nixos";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-label/BOOT";
+    device = "/dev/disk/by-label/N-BOOT";
     fsType = "vfat";
     options = [
       "fmask=0077"
@@ -45,7 +45,7 @@
   };
 
   swapDevices = [
-    { device = "/dev/disk/by-label/swap"; }
+    { device = "/dev/disk/by-label/n-swap"; }
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
