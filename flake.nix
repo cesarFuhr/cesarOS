@@ -184,7 +184,7 @@
                   ];
                   polybar = {
                     primaryMonitor = "HDMI-0";
-                    secondaryMonitor = "eDP-1-1";
+                    secondaryMonitor = "eDP-1";
                   };
                 };
             }
