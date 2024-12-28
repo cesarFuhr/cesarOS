@@ -7,7 +7,7 @@
 
     config = rec {
       modifier = "Mod4";
-      terminal = "alacritty";
+      terminal = "ghostty";
       menu = "dmenu_run";
       defaultWorkspace = "1";
 

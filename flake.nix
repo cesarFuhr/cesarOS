@@ -13,6 +13,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+    };
+
     notes-script = {
       url = "github:cesarFuhr/notes-script";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,7 +30,7 @@
       home-manager,
       notes-script,
       ...
-    }:
+    }@inputs:
     let
       system = "x86_64-linux";
     in
@@ -170,23 +174,29 @@
             ./systems/rogstrix.nix
             home-manager.nixosModules.home-manager
             {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.cesar =
-                { ... }:
-                {
-                  imports = [
-                    ./home/cesar.nix
-                    # With window manager.
-                    ./home/programs/i3.nix
-                    ./home/programs/polybar/polybar.nix
-                    ./home/programs/rofi.nix
-                  ];
-                  polybar = {
-                    primaryMonitor = "HDMI-1-0";
-                    secondaryMonitor = "eDP-1";
-                  };
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = {
+                  inherit inputs;
                 };
+                users.cesar =
+                  { ... }:
+                  {
+                    imports = [
+                      ./home/cesar.nix
+                      # With window manager.
+                      ./home/programs/i3.nix
+                      ./home/programs/polybar/polybar.nix
+                      ./home/programs/rofi.nix
+                      ./home/programs/ghostty.nix
+                    ];
+                    polybar = {
+                      primaryMonitor = "HDMI-1-0";
+                      secondaryMonitor = "eDP-1";
+                    };
+                  };
+              };
             }
           ];
         };

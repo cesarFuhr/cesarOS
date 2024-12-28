@@ -27,6 +27,7 @@
     BROWSER = "google-chrome-stable";
     COMPOSE_COMPATIBILITY = "true";
     GTK_THEME = "Sierra-dark";
+    SHELL = "zsh";
   };
 
   home.pointerCursor = {
