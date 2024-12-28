@@ -12,7 +12,7 @@
   home.file.".config/ghostty/config".text = ''
     cursor-style=underline
     font-size=15
-    command=${pkgs.zsh}
+    command=${pkgs.zsh}/bin/zsh
 
     background=#262626
     window-decoration=false
