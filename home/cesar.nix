@@ -23,11 +23,10 @@
   home.sessionVariables = {
     FZF_DEFAULT_COMMAND = "rg --files -uu -g '!.git'";
     EDITOR = "nvim";
-    TERMINAL = "alacritty";
+    TERMINAL = "ghostty";
     BROWSER = "google-chrome-stable";
     COMPOSE_COMPATIBILITY = "true";
     GTK_THEME = "Sierra-dark";
-    SHELL = "zsh";
   };
 
   home.pointerCursor = {
