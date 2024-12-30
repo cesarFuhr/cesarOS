@@ -257,7 +257,6 @@
       p.parted
       p.system-config-printer
       p.dig
-      p.outils
       p.xorg.xev
       p.vial
       p.via
