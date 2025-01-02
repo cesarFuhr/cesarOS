@@ -78,7 +78,7 @@
     };
 
     prime = {
-      offload.enable = true;
+      sync.enable = true;
       intelBusId = "PCI:00:2:0";
       nvidiaBusId = "PCI:01:0:0";
     };

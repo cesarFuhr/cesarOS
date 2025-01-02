@@ -194,8 +194,8 @@
                       ./home/programs/ghostty.nix
                     ];
                     polybar = {
-                      primaryMonitor = "HDMI-1-0";
-                      secondaryMonitor = "eDP-1";
+                      primaryMonitor = "HDMI-0";
+                      secondaryMonitor = "eDP-1-1";
                     };
                   };
               };
