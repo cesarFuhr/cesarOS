@@ -301,7 +301,7 @@
     enable = true;
   };
 
-  # Manually enabling dconf. 
+  # Manually enabling dconf.
   # (needed because gnome is not a dep anymore, moved from gdm to lightdm)
   programs.dconf.enable = true;
 

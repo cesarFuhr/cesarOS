@@ -24,7 +24,6 @@
   # Setting env var to mark this build as rogstrix.
   environment.variables = {
     CESAR_OS_BUILD = "rogstrix";
-    WLR_NO_HARDWARE_CURSORS = "1";
   };
 
   # Latest kernel.
@@ -293,13 +292,16 @@
       in
       [
         plugs.obs-backgroundremoval
-        plugs.obs-pipewire-audio-capture
+        #plugs.obs-pipewire-audio-capture
       ];
   };
 
   # Manually enabling dconf.
   # (needed because gnome is not a dep anymore, moved from gdm to lightdm)
   programs.dconf.enable = true;
+
+  # Gnome keyring
+  services.gnome.gnome-keyring.enable = true;
 
   fonts = {
     enableDefaultPackages = true;
@@ -310,44 +312,52 @@
     ];
   };
 
-  # Pipewire.
-  services.pipewire = {
+  # Pulse audio.
+  services.pulseaudio = {
     enable = true;
-    alsa = {
-      enable = true;
-      support32Bit = true;
-    };
-    pulse.enable = true;
-
-    extraConfig = {
-      pipewire."92-low-latency" = {
-        "context.properties" = {
-          "default.clock.rate" = 48000;
-          "default.clock.quantum" = 32;
-          "default.clock.min-quantum" = 32;
-          "default.clock.max-quantum" = 32;
-        };
-      };
-      pipewire-pulse."92-low-latency" = {
-        context.modules = [
-          {
-            name = "libpipewire-module-protocol-pulse";
-            args = {
-              pulse.min.req = "32/48000";
-              pulse.default.req = "32/48000";
-              pulse.max.req = "32/48000";
-              pulse.min.quantum = "32/48000";
-              pulse.max.quantum = "32/48000";
-            };
-          }
-        ];
-        stream.properties = {
-          node.latency = "32/48000";
-          resample.quality = 1;
-        };
-      };
-    };
+    support32Bit = true;
   };
+
+  services.pipewire.enable = false;
+
+  # # Pipewire.
+  # services.pipewire = {
+  #   enable = true;
+  #   alsa = {
+  #     enable = true;
+  #     support32Bit = true;
+  #   };
+  #   pulse.enable = true;
+  #
+  #   extraConfig = {
+  #     pipewire."92-low-latency" = {
+  #       "context.properties" = {
+  #         "default.clock.rate" = 48000;
+  #         "default.clock.quantum" = 32;
+  #         "default.clock.min-quantum" = 32;
+  #         "default.clock.max-quantum" = 32;
+  #       };
+  #     };
+  #     pipewire-pulse."92-low-latency" = {
+  #       context.modules = [
+  #         {
+  #           name = "libpipewire-module-protocol-pulse";
+  #           args = {
+  #             pulse.min.req = "32/48000";
+  #             pulse.default.req = "32/48000";
+  #             pulse.max.req = "32/48000";
+  #             pulse.min.quantum = "32/48000";
+  #             pulse.max.quantum = "32/48000";
+  #           };
+  #         }
+  #       ];
+  #       stream.properties = {
+  #         node.latency = "32/48000";
+  #         resample.quality = 1;
+  #       };
+  #     };
+  #   };
+  # };
 
   # List services that you want to enable:
 
