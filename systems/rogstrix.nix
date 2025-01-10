@@ -364,12 +364,13 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  # programs.steam = {
-  #   enable = true;
-  #   remotePlay.openFirewall = true;
-  #   dedicatedServer.openFirewall = true;
-  #   localNetworkGameTransfers.openFirewall = true;
-  # };
+  # Steam.
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+  };
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 11111 ];
