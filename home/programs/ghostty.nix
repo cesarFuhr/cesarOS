@@ -17,5 +17,7 @@
     font-size = 15
     background = #262626
     cursor-style = underline
+
+    keybind = ctrl+shift+k=toggle_window_decorations
   '';
 }
