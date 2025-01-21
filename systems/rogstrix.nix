@@ -297,7 +297,7 @@
       in
       [
         plugs.obs-backgroundremoval
-        #plugs.obs-pipewire-audio-capture
+        plugs.obs-pipewire-audio-capture
       ];
   };
 
@@ -308,6 +308,8 @@
   # Gnome keyring
   services.gnome.gnome-keyring.enable = true;
 
+  # List services that you want to enable:
+
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
@@ -317,54 +319,50 @@
     ];
   };
 
-  # Pulse audio.
-  services.pulseaudio = {
+  # Pipewire.
+  services.pipewire = {
     enable = true;
-    support32Bit = true;
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
+    wireplumber = {
+      enable = true;
+    };
+    pulse.enable = true;
+
+    extraConfig = {
+      pipewire."92-low-latency" = {
+        "context.properties" = {
+          "default.clock.rate" = 48000;
+          "default.clock.quantum" = 128;
+          "default.clock.min-quantum" = 128;
+          "default.clock.max-quantum" = 128;
+        };
+      };
+      pipewire-pulse."92-low-latency" = {
+        context.modules = [
+          {
+            name = "libpipewire-module-protocol-pulse";
+            args = {
+              pulse.min.req = "128/48000";
+              pulse.default.req = "128/48000";
+              pulse.max.req = "128/48000";
+              pulse.min.quantum = "128/48000";
+              pulse.max.quantum = "128/48000";
+            };
+          }
+        ];
+        stream.properties = {
+          node.latency = "128/48000";
+          resample.quality = 1;
+        };
+      };
+    };
   };
 
-  services.pipewire.enable = false;
-
-  # # Pipewire.
-  # services.pipewire = {
-  #   enable = true;
-  #   alsa = {
-  #     enable = true;
-  #     support32Bit = true;
-  #   };
-  #   pulse.enable = true;
-  #
-  #   extraConfig = {
-  #     pipewire."92-low-latency" = {
-  #       "context.properties" = {
-  #         "default.clock.rate" = 48000;
-  #         "default.clock.quantum" = 32;
-  #         "default.clock.min-quantum" = 32;
-  #         "default.clock.max-quantum" = 32;
-  #       };
-  #     };
-  #     pipewire-pulse."92-low-latency" = {
-  #       context.modules = [
-  #         {
-  #           name = "libpipewire-module-protocol-pulse";
-  #           args = {
-  #             pulse.min.req = "32/48000";
-  #             pulse.default.req = "32/48000";
-  #             pulse.max.req = "32/48000";
-  #             pulse.min.quantum = "32/48000";
-  #             pulse.max.quantum = "32/48000";
-  #           };
-  #         }
-  #       ];
-  #       stream.properties = {
-  #         node.latency = "32/48000";
-  #         resample.quality = 1;
-  #       };
-  #     };
-  #   };
-  # };
-
-  # List services that you want to enable:
+  # Remove sound crackling:
+  security.rtkit.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
