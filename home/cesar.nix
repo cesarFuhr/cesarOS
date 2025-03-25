@@ -127,14 +127,12 @@
   # Git
   programs.git = {
     enable = true;
-    userEmail = "cesar.cara@protonmail.com";
     userName = "Cesar Cara";
-
     diff-so-fancy.enable = true;
 
     signing = {
-      key = "AB688197ABB2A0D4";
       signByDefault = true;
+      key = "AB688197ABB2A0D4";
     };
 
     extraConfig = {
@@ -149,17 +147,35 @@
           insteadOf = "https://github.com/";
         };
       };
+      include = {
+        path = "./user_config";
+      };
     };
   };
+
+  # Git user management.
+  home.file.".config/git/user_config".text = ''
+    [user]
+      email = "cesar.cara@protonmail.com"
+
+    [core]
+      sshCommand = ssh -o "IdentitiesOnly=yes" -i /home/cesar/.ssh/id_ed25519
+
+    [includeIf "gitdir:/home/cesar/work/ardanlabs/bethesda/"]
+      path = "./work_config"
+  '';
+
+  home.file.".config/git/work_config".text = ''
+    [user]
+      email = "cesar.cara@contractor.zenimax.com"
+
+    [core]
+      sshCommand = ssh -o "IdentitiesOnly=yes" -i /home/cesar/.ssh/ardan-bnet
+  '';
 
   # SSH
   home.file.".ssh/config".text = ''
     AddKeysToAgent yes
-
-    Host github.com
-      HostName github.com
-      User git
-      IdentityFile ~/.ssh/id_ed25519
 
     Host *sr.ht
       User git
