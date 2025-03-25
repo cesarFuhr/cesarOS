@@ -48,6 +48,7 @@
     extraHosts = ''
       127.0.0.1 aws
       127.0.0.1 local-site.bnet.run
+      127.0.0.1 local-creations.bnet.run
       127.0.0.1 local-api.bnet.run
     '';
   };
@@ -331,32 +332,13 @@
     };
     pulse.enable = true;
 
-    extraConfig = {
-      pipewire."92-low-latency" = {
-        "context.properties" = {
-          "default.clock.rate" = 48000;
-          "default.clock.quantum" = 128;
-          "default.clock.min-quantum" = 128;
-          "default.clock.max-quantum" = 128;
-        };
-      };
-      pipewire-pulse."92-low-latency" = {
-        context.modules = [
-          {
-            name = "libpipewire-module-protocol-pulse";
-            args = {
-              pulse.min.req = "128/48000";
-              pulse.default.req = "128/48000";
-              pulse.max.req = "128/48000";
-              pulse.min.quantum = "128/48000";
-              pulse.max.quantum = "128/48000";
-            };
-          }
+    extraConfig.pipewire.noresample = {
+      "context.properties" = {
+        "default.clock.allowed-rates" = [
+          44100
+          48000
+          192000
         ];
-        stream.properties = {
-          node.latency = "128/48000";
-          resample.quality = 1;
-        };
       };
     };
   };
@@ -376,7 +358,10 @@
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 11111 ];
+  networking.firewall.allowedTCPPorts = [
+    11111
+    22222 # internalssh
+  ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
@@ -421,17 +406,14 @@
     };
   };
 
+  # Virtualbox
+  virtualisation.virtualbox.host.enable = true;
+  boot.kernelParams = [ "kvm.enable_virt_at_load=0" ];
+  users.extraGroups.vboxusers.members = [ "cesar" ];
+
   nix.gc = {
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 7d";
   };
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leavecatenate(variables, "bootdev", bootdev)
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "unstable";
 }
