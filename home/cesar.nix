@@ -132,7 +132,6 @@
 
     signing = {
       signByDefault = true;
-      key = "AB688197ABB2A0D4";
     };
 
     extraConfig = {
@@ -157,6 +156,7 @@
   home.file.".config/git/user_config".text = ''
     [user]
       email = "cesar.cara@protonmail.com"
+      signingKey = "AB688197ABB2A0D4"
 
     [core]
       sshCommand = ssh -o "IdentitiesOnly=yes" -i /home/cesar/.ssh/id_ed25519
@@ -168,6 +168,7 @@
   home.file.".config/git/work_config".text = ''
     [user]
       email = "cesar.cara@contractor.zenimax.com"
+      signingKey = "C086847788CF3554"
 
     [core]
       sshCommand = ssh -o "IdentitiesOnly=yes" -i /home/cesar/.ssh/ardan-bnet
