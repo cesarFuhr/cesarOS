@@ -72,6 +72,7 @@
     ./programs/nvim/nvim.nix
     ./programs/alacritty.nix
     ./programs/zsh.nix
+    ./programs/zed_config.nix
   ];
 
   gtk = {
