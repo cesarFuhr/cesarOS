@@ -43,7 +43,7 @@
       td = "todo .";
     };
 
-    initExtra = ''
+    initContent = ''
       export PROMPT='%(!.%{$fg[red]%}.%{$fg[cyan]%})λ %(!.%{$fg[red]%}.%{$fg[green]%})%2c$(git_prompt_info)%{$reset_color%} '
 
       export ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg_bold[blue]%}("
