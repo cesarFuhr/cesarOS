@@ -120,9 +120,13 @@
 
   # Vial
   services.udev.packages = with pkgs; [
+    qmk-udev-rules
     vial
     via
   ];
+
+  # Enabling QMK devices
+  hardware.keyboard.qmk.enable = true;
 
   # Gnome keyring
   services.gnome.gnome-keyring.enable = true;
@@ -284,6 +288,7 @@
       p.dig
       p.pavucontrol
       p.playerctl
+      p.qmk
       p.vial
       p.via
     ];

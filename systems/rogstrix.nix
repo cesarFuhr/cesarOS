@@ -263,15 +263,20 @@
       p.system-config-printer
       p.dig
       p.xorg.xev
+      p.qmk
       p.vial
       p.via
     ];
 
   # Vial
   services.udev.packages = with pkgs; [
+    qmk-udev-rules
     vial
     via
   ];
+
+  # Enabling QMK devices
+  hardware.keyboard.qmk.enable = true;
 
   # Gnome keyring
 
