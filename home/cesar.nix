@@ -59,6 +59,7 @@
       # Work
       p.openconnect
       p.bruno
+      p.vscode
     ];
 
   # Bigger configurations.
