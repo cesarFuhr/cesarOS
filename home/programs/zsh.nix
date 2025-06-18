@@ -63,9 +63,6 @@
       # zoxide
       eval "$(zoxide init zsh)"
 
-      # vi mode
-      set -o vi
-
       # Accept autosuggestions with Ctrl+;
       bindkey '^ ' autosuggest-accept
     '';
