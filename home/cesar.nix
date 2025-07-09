@@ -60,6 +60,7 @@
       p.openconnect
       p.bruno
       p.vscode
+      p.amp-cli
     ];
 
   # Bigger configurations.
