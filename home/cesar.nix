@@ -61,6 +61,7 @@
       p.bruno
       p.vscode
       p.amp-cli
+      p.claude-code
     ];
 
   # Bigger configurations.
