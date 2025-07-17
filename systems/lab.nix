@@ -35,6 +35,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   networking.hostName = "lab"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -153,9 +156,15 @@
     # Video drivers
     # Nvidia
     videoDrivers = [ "nvidia" ];
+  };
 
-    # displayManager.gdm.enable = true;
-    # desktopManager.gnome.enable = true;
+  fonts = {
+    enableDefaultPackages = true;
+    packages = with pkgs; [
+      fira-code
+      fira-code-symbols
+      nerd-fonts.jetbrains-mono
+    ];
   };
 
   console.useXkbConfig = true;
@@ -179,9 +188,6 @@
       };
     };
   };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # Allow python 2.7 and nodejs 16
   nixpkgs.config.permittedInsecurePackages = [
@@ -239,14 +245,19 @@
       p.clippy
       p.terraform
       p.bash-language-server
+      nd.typescript-language-server
+      p.vscode-langservers-extracted
       p.python
       p.python3
       p.marksman
 
+      # Audio
+      p.pavucontrol
+      p.playerctl
+
       # Utilities
       p.wget
       p.curl
-      p.arandr
       p.nemo
       p.bat
       p.eza
@@ -276,7 +287,20 @@
       p.parted
       p.system-config-printer
       p.dig
+      p.qmk
+      p.vial
+      p.via
     ];
+
+  # Vial
+  services.udev.packages = with pkgs; [
+    qmk-udev-rules
+    vial
+    via
+  ];
+
+  # Enabling QMK devices
+  hardware.keyboard.qmk.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -291,26 +315,68 @@
     enable = true;
   };
 
-  # Manually enabling dconf. 
-  # (needed because gnome is not a dep anymore, moved from gdm to lightdm)
-  programs.dconf.enable = true;
 
-  fonts = {
-    enableDefaultPackages = true;
-    packages = with pkgs; [
-      fira-code
-      fira-code-symbols
-      nerd-fonts.jetbrains-mono
-    ];
+  # OBS
+  programs.obs-studio = {
+    enable = true;
+    enableVirtualCamera = true;
+    plugins =
+      let
+        plugs = pkgs.obs-studio-plugins;
+      in
+      [
+        plugs.obs-backgroundremoval
+        plugs.obs-pipewire-audio-capture
+      ];
   };
 
+
+  # Manually enabling dconf.
+  # (needed because gnome is not a dep anymore, moved from gdm to lightdm)
+  programs.dconf.enable = true;
+  
+  # Steam.
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+  };
+
+
   # List services that you want to enable:
+
+  # Pipewire.
+  services.pipewire = {
+    enable = true;
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
+    wireplumber = {
+      enable = true;
+    };
+    pulse.enable = true;
+
+    extraConfig.pipewire.noresample = {
+      "context.properties" = {
+        "default.clock.allowed-rates" = [
+          44100
+          48000
+          192000
+        ];
+      };
+    };
+  };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 11111 ];
+  networking.firewall.allowedTCPPorts = [
+    11111 
+    22222
+  ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
@@ -355,17 +421,16 @@
     };
   };
 
+  # Virtualbox
+  virtualisation.virtualbox.host.enable = true;
+  boot.kernelParams = [ "kvm.enable_virt_at_load=0" ];
+  users.extraGroups.vboxusers.members = [ "cesar" ];
+
   nix.gc = {
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 7d";
   };
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leavecatenate(variables, "bootdev", bootdev)
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "unstable";
+  system.stateVersion = "25.05";
 }

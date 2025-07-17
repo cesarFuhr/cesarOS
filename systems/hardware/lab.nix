@@ -6,15 +6,6 @@
   ...
 }:
 
-let
-  nverStable = config.boot.kernelPackages.nvidiaPackages.stable.version;
-  nverBeta = config.boot.kernelPackages.nvidiaPackages.beta.version;
-  nvidiaPackage =
-    if (lib.versionOlder nverBeta nverStable) then
-      config.boot.kernelPackages.nvidiaPackages.stable
-    else
-      config.boot.kernelPackages.nvidiaPackages.beta;
-in
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -22,15 +13,17 @@ in
 
   boot.initrd.availableKernelModules = [
     "nvidia"
-    "nvme"
+    "vmd"
     "xhci_pci"
-    "ahci"
+    "thunderbolt"
+    "nvme"
     "usb_storage"
     "usbhid"
     "sd_mod"
   ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
@@ -38,11 +31,17 @@ in
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-label/boot";
+    device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
+    options = [
+      "fmask=0077"
+      "dmask=0077"
+    ];
   };
 
-  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
+  swapDevices = [
+    { device = "/dev/disk/by-label/swap"; }
+  ];
 
   services.fstrim.enable = lib.mkDefault true;
 
@@ -51,21 +50,40 @@ in
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp108s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
 
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    extraPackages = [
+      pkgs.vaapiVdpau
+      pkgs.vulkan-validation-layers
+    ];
+  };
 
   hardware.nvidia = {
-    # Modesetting is required.
     modesetting.enable = true;
-
-    package = nvidiaPackage;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
 
     powerManagement = {
-      enable = false;
+      enable = true;
       finegrained = false;
     };
+
+    prime = {
+      sync.enable = true;
+      intelBusId = "PCI:00:2:0";
+      nvidiaBusId = "PCI:01:0:0";
+    };
+
+    nvidiaPersistenced = true;
+
     open = true;
+    nvidiaSettings = true;
   };
 
   # Prevent lid from suspending.

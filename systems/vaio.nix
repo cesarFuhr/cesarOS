@@ -209,7 +209,6 @@
   environment.systemPackages =
     let
       p = pkgs;
-      nd = pkgs.nodePackages;
     in
     [
       # Editors
@@ -256,7 +255,6 @@
       # Utilities
       p.wget
       p.curl
-      p.arandr
       p.nemo
       p.bat
       p.eza
