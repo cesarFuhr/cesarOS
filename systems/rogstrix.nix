@@ -128,9 +128,9 @@
     xserver = {
       enable = true;
       xkb = {
-        options = "ctrl:nocaps";
         layout = "us";
         variant = "";
+        options = "grp:alt_shift_toggle,ctrl:nocaps,compose:rctrl";
       };
 
       # Video drivers

@@ -52,6 +52,10 @@
           tap = "enable";
           drag = "enable";
         };
+
+        "type:pointer" = {
+          middle_emulation = "enable";
+        };
       };
 
       output = {
