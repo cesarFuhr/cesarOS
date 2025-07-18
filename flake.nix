@@ -99,6 +99,10 @@
                   ];
 
                   programs.alacritty.settings.font.size = lib.mkForce 15;
+                  waybar = {
+                    primaryMonitor = "HDMI-A-1";
+                    secondaryMonitor = "eDP-1";
+                  };
                 };
             }
           ];
@@ -161,6 +165,10 @@
                     ./home/programs/waybar.nix
                     ./home/programs/foot.nix
                   ];
+                  waybar = {
+                    primaryMonitor = "HDMI-A-3";
+                    secondaryMonitor = "eDP-1";
+                  };
                 };
             }
           ];

@@ -93,7 +93,6 @@
         p.swaylock
         p.swayidle
         p.wl-clipboard
-        p.wf-recorder
         p.grim
         p.sway-contrib.grimshot
         p.slurp
@@ -117,6 +116,7 @@
       export XDG_SESSION_DESKTOP=sway
       export XWAYLAND_NO_GLAMOR=1
       export WLR_RENDERER=vulkan
+      export PROTON_ENABLE_WAYLAND=1
     '';
   };
 
@@ -144,7 +144,6 @@
     TTYVTDisallocate = true;
   };
 
-  # X11
   services.xserver = {
     enable = true;
     xkb = {
@@ -218,13 +217,15 @@
       p.vulkan-tools
       p.glmark2
 
+      # OBS
+      p.v4l-utils
+
       # Work
       p.git
       p.tree-sitter
       p.nixd
-      p.nixpkgs-fmt
+      p.nixfmt-rfc-style
       p.nixpkgs-lint
-      p.nixd
       p.docker
       p.docker-compose
       p.gnumake
@@ -315,7 +316,6 @@
     enable = true;
   };
 
-
   # OBS
   programs.obs-studio = {
     enable = true;
@@ -330,11 +330,10 @@
       ];
   };
 
-
   # Manually enabling dconf.
   # (needed because gnome is not a dep anymore, moved from gdm to lightdm)
   programs.dconf.enable = true;
-  
+
   # Steam.
   programs.steam = {
     enable = true;
@@ -342,7 +341,6 @@
     dedicatedServer.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
   };
-
 
   # List services that you want to enable:
 
@@ -374,7 +372,7 @@
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
-    11111 
+    11111
     22222
   ];
   # networking.firewall.allowedUDPPorts = [ ... ];

@@ -185,7 +185,6 @@
       p.nixd
       p.nixfmt-rfc-style
       p.nixpkgs-lint
-      p.nixd
       p.docker
       p.docker-compose
       p.gnumake
