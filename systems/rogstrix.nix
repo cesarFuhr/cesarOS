@@ -71,57 +71,72 @@
     LC_TIME = "pt_BR.UTF-8";
   };
 
-  environment.variables.XCURSOR_SIZE = "24";
+  # Sway
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true; # so that gtk works properly
+    xwayland.enable = true;
+    extraPackages =
+      let
+        p = pkgs;
+      in
+      [
+        p.swaylock
+        p.swayidle
+        p.wl-clipboard
+        p.grim
+        p.sway-contrib.grimshot
+        p.slurp
+        p.nwg-bar
+        p.micro
+        p.tofi
+        p.wdisplays
+        p.wlogout
+        p.wallutils
+        p.swww
+        p.swappy
+        p.foot
+      ];
+    extraSessionCommands = ''
+      export SDL_VIDEODRIVER=wayland
+      export QT_QPA_PLATFORM=wayland
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+      export _JAVA_AWT_WM_NONREPARENTING=1
+      export MOZ_ENABLE_WAYLAND=1
+      export XDG_CURRENT_DESKTOP=sway
+      export XDG_SESSION_DESKTOP=sway
+      export XWAYLAND_NO_GLAMOR=1
+      export WLR_RENDERER=vulkan
+      export PROTON_ENABLE_WAYLAND=1
+    '';
+  };
 
-  # X11
   services = {
-    displayManager.defaultSession = "none+i3";
-
     # Touchpads
     libinput.enable = true;
+
+    # Display Manager
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember-session --cmd 'sway --unsupported-gpu'";
+        };
+      };
+    };
 
     xserver = {
       enable = true;
       xkb = {
-        layout = "us,us";
-        variant = ",intl";
-        options = "grp:alt_shift_toggle,ctrl:nocaps,compose:rctrl";
+        options = "ctrl:nocaps";
+        layout = "us";
+        variant = "";
       };
 
       # Video drivers
       # Nvidia
       videoDrivers = [ "nvidia" ];
-
-      dpi = lib.mkForce 120;
-
-      displayManager = {
-        startx.enable = true;
-        lightdm = {
-          enable = true;
-          greeters = {
-            gtk = {
-              enable = true;
-              theme = {
-                name = "Sierra-dark";
-                package = pkgs.sierra-gtk-theme;
-              };
-            };
-          };
-        };
-
-        sessionCommands = "${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr";
-      };
-
-      windowManager.i3 = {
-        enable = true;
-      };
     };
-  };
-
-  # Picom
-  services.picom = {
-    enable = true;
-    vSync = true;
   };
 
   console.useXkbConfig = true;
@@ -172,6 +187,11 @@
 
       # Browsers
       p.firefox
+
+      # Wayland
+      p.glxinfo
+      p.vulkan-tools
+      p.glmark2
 
       # OBS
       p.v4l-utils
@@ -229,7 +249,6 @@
       # Utilities
       p.wget
       p.curl
-      p.arandr
       p.nemo
       p.bat
       p.eza
@@ -249,7 +268,6 @@
       p.xclip
       p.which
       p.ripgrep
-      p.simplescreenrecorder
       p.bc
       p.pciutils
       p.psmisc
@@ -259,13 +277,15 @@
       p.inxi
       p.glxinfo
       p.parted
-      p.system-config-printer
       p.dig
-      p.xorg.xev
       p.qmk
       p.vial
       p.via
+      p.gamescope
     ];
+
+  # Enabling QMK devices
+  hardware.keyboard.qmk.enable = true;
 
   # Vial
   services.udev.packages = with pkgs; [
@@ -273,11 +293,6 @@
     vial
     via
   ];
-
-  # Enabling QMK devices
-  hardware.keyboard.qmk.enable = true;
-
-  # Gnome keyring
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -420,4 +435,6 @@
     dates = "weekly";
     options = "--delete-older-than 7d";
   };
+
+  system.stateVersion = "25.05";
 }

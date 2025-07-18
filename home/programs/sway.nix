@@ -21,7 +21,7 @@
         {
           command = ''
             exec swww-daemon
-            exec ${pkgs.swww}/bin/swww img $(find ~/wallpapers -maxdepth 1 -type f | shuf -n 1)
+            exec ${pkgs.swww}/bin/swww img $(find ~/Wallpapers -maxdepth 1 -type f | shuf -n 1)
           '';
         }
       ];

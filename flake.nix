@@ -195,15 +195,14 @@
                   {
                     imports = [
                       ./home/cesar.nix
-                      # With window manager.
-                      ./home/programs/i3.nix
-                      ./home/programs/polybar/polybar.nix
-                      ./home/programs/rofi.nix
-                      ./home/programs/ghostty.nix
+                      # With Sway.
+                      ./home/programs/sway.nix
+                      ./home/programs/waybar.nix
+                      ./home/programs/foot.nix
                     ];
-                    polybar = {
-                      primaryMonitor = "HDMI-0";
-                      secondaryMonitor = "eDP-1-1";
+                    waybar = {
+                      primaryMonitor = "HDMI-A-3";
+                      secondaryMonitor = "eDP-1";
                     };
                   };
               };
