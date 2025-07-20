@@ -88,7 +88,7 @@ in
 
         "${cfg.secondaryDisplay}" = {
           mode = "1920x1080@60.001Hz";
-          position = "5760,1080";
+          position = "5760,960";
         };
       };
 
