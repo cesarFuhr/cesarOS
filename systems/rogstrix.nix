@@ -108,6 +108,7 @@
       export XWAYLAND_NO_GLAMOR=1
       export WLR_RENDERER=vulkan
       export PROTON_ENABLE_WAYLAND=1
+      export XKB_DEFAULT_OPTIONS=ctrl:swapcaps
     '';
   };
 

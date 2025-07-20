@@ -12,12 +12,12 @@ in
 {
   options = {
     polybar = {
-      primaryMonitor = lib.mkOption {
-        default = "missingMonitor";
+      primaryDisplay = lib.mkOption {
+        default = "missingDisplay";
         type = lib.types.str;
       };
-      secondaryMonitor = lib.mkOption {
-        default = "missingMonitor";
+      secondaryDisplay = lib.mkOption {
+        default = "missingDisplay";
         type = lib.types.str;
       };
     };
@@ -36,8 +36,8 @@ in
 
     extraConfig =
       builtins.replaceStrings
-        [ "{{primaryMonitor}}" "{{secondaryMonitor}}" ]
-        [ cfg.primaryMonitor cfg.secondaryMonitor ]
+        [ "{{primaryDisplay}}" "{{secondaryDisplay}}" ]
+        [ cfg.primaryDisplay cfg.secondaryDisplay ]
         (builtins.readFile (builtins.toString ./config.ini));
   };
 }

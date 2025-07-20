@@ -12,12 +12,12 @@ in
 {
   options = {
     waybar = {
-      primaryMonitor = lib.mkOption {
-        default = "missingMonitor";
+      primaryDisplay = lib.mkOption {
+        default = "missingDisplay";
         type = lib.types.str;
       };
-      secondaryMonitor = lib.mkOption {
-        default = "missingMonitor";
+      secondaryDisplay = lib.mkOption {
+        default = "missingDisplay";
         type = lib.types.str;
       };
     };
@@ -31,8 +31,8 @@ in
         position = "top";
         height = 26;
         output = [
-          cfg.primaryMonitor
-          cfg.secondaryMonitor
+          cfg.primaryDisplay
+          cfg.secondaryDisplay
         ];
 
         modules-left = [

@@ -1,8 +1,30 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+
+let
+  cfg = config.sway;
+in
 
 {
+  options = {
+    sway = {
+      primaryDisplay = lib.mkOption {
+        default = "missingDisplay";
+        type = lib.types.str;
+      };
+      secondaryDisplay = lib.mkOption {
+        default = "missingDisplay";
+        type = lib.types.str;
+      };
+    };
+  };
+
   # Sway configuration.
-  wayland.windowManager.sway = {
+  config.wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
 
@@ -59,12 +81,12 @@
       };
 
       output = {
-        "HDMI-A-1" = {
+        "${cfg.primaryDisplay}" = {
           mode = "3840x2160@60.000Hz";
           position = "1920,0";
         };
 
-        "eDP-1" = {
+        "${cfg.secondaryDisplay}" = {
           mode = "1920x1080@60.001Hz";
           position = "5760,1080";
         };
@@ -174,12 +196,12 @@
     };
   };
 
-  gtk.font = {
+  config.gtk.font = {
     name = "Sans";
     size = 11;
   };
 
-  programs.tofi = {
+  config.programs.tofi = {
     enable = true;
     settings = {
       anchor = "top";

@@ -89,6 +89,12 @@
                   lib,
                   ...
                 }:
+                let
+                  displays = {
+                    primaryDisplay = "HDMI-A-1";
+                    secondaryDisplay = "eDP-1";
+                  };
+                in
                 {
                   imports = [
                     ./home/cesar.nix
@@ -99,10 +105,8 @@
                   ];
 
                   programs.alacritty.settings.font.size = lib.mkForce 15;
-                  waybar = {
-                    primaryMonitor = "HDMI-A-1";
-                    secondaryMonitor = "eDP-1";
-                  };
+                  waybar = displays;
+                  sway = displays;
                 };
             }
           ];
@@ -137,8 +141,8 @@
                     ./home/programs/rofi.nix
                   ];
                   polybar = {
-                    primaryMonitor = "HDMI-0";
-                    secondaryMonitor = "DP-4";
+                    primaryDisplay = "HDMI-0";
+                    secondaryDisplay = "DP-4";
                   };
                 };
             }
@@ -157,6 +161,12 @@
               home-manager.useUserPackages = true;
               home-manager.users.cesar =
                 { ... }:
+                let
+                  displays = {
+                    primaryDisplay = "HDMI-A-3";
+                    secondaryDisplay = "eDP-1";
+                  };
+                in
                 {
                   imports = [
                     ./home/cesar.nix
@@ -165,10 +175,8 @@
                     ./home/programs/waybar.nix
                     ./home/programs/foot.nix
                   ];
-                  waybar = {
-                    primaryMonitor = "HDMI-A-3";
-                    secondaryMonitor = "eDP-1";
-                  };
+                  waybar = displays;
+                  sway = displays;
                 };
             }
           ];
@@ -192,6 +200,12 @@
                 };
                 users.cesar =
                   { ... }:
+                  let
+                    displays = {
+                      primaryDisplay = "HDMI-A-3";
+                      secondaryDisplay = "eDP-1";
+                    };
+                  in
                   {
                     imports = [
                       ./home/cesar.nix
@@ -200,10 +214,8 @@
                       ./home/programs/waybar.nix
                       ./home/programs/foot.nix
                     ];
-                    waybar = {
-                      primaryMonitor = "HDMI-A-3";
-                      secondaryMonitor = "eDP-1";
-                    };
+                    waybar = displays;
+                    sway = displays;
                   };
               };
             }
