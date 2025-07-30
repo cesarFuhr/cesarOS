@@ -15,10 +15,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-    };
-
     notes-script = {
       url = "github:cesarFuhr/notes-script";
       inputs.nixpkgs.follows = "nixpkgs";

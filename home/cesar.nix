@@ -23,7 +23,7 @@
   home.sessionVariables = {
     FZF_DEFAULT_COMMAND = "rg --files -uu -g '!.git'";
     EDITOR = "nvim";
-    TERMINAL = "ghostty";
+    TERMINAL = "foot";
     BROWSER = "google-chrome-stable";
     COMPOSE_COMPATIBILITY = "true";
     GTK_THEME = "Sierra-dark";
@@ -62,6 +62,7 @@
       p.vscode
       p.amp-cli
       p.claude-code
+      p.ghostty
     ];
 
   # Bigger configurations.
