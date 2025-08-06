@@ -113,9 +113,16 @@
       export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
       export _JAVA_AWT_WM_NONREPARENTING=1
       export MOZ_ENABLE_WAYLAND=1
-      export XDG_CURRENT_DESKTOP=sway
-      export XDG_SESSION_DESKTOP=sway
+      export XDG_CURRENT_DESKTOP=hyprland
+      export XDG_SESSION_DESKTOP=hyprland
     '';
+  };
+
+  programs.hyprland = {
+    enable = true;
+    xwayland = {
+      enable = true;
+    };
   };
 
   # Vial
@@ -136,7 +143,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember-session --cmd sway";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember-session --cmd hyprland";
       };
     };
   };
@@ -223,6 +230,9 @@
       p.vulkan-tools
       p.glmark2
 
+      # OBS
+      p.v4l-utils
+
       # Work
       notes-script.packages.${p.system}.notes
       notes-script.packages.${p.system}.todo
@@ -253,6 +263,7 @@
       p.marksman
 
       # Utilities
+      p.kitty
       p.wget
       p.curl
       p.nemo
@@ -347,11 +358,27 @@
     configPackages = with pkgs; [
       xdg-desktop-portal-gtk
       xdg-desktop-portal-wlr
+      xdg-desktop-portal-hyprland
     ];
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
       xdg-desktop-portal-wlr
+      xdg-desktop-portal-hyprland
     ];
+  };
+
+  # OBS
+  programs.obs-studio = {
+    enable = true;
+    enableVirtualCamera = true;
+    plugins =
+      let
+        plugs = pkgs.obs-studio-plugins;
+      in
+      [
+        plugs.obs-backgroundremoval
+        plugs.obs-pipewire-audio-capture
+      ];
   };
 
   # Docker service deamon

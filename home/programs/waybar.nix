@@ -37,10 +37,10 @@ in
 
         modules-left = [
           "custom/logo"
-          "sway/workspaces"
-          "sway/mode"
+          "hyprland/workspaces"
+          "hyprland/mode"
         ];
-        modules-center = [ "sway/window" ];
+        modules-center = [ "hyprland/window" ];
         modules-right = [
           "tray"
           "custom/sep"
@@ -159,7 +159,7 @@ in
         color: #ffffff;
       }
 
-      #workspaces button.focused {
+      #workspaces button.active {
         background-color: #383737;
       }
 

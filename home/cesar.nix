@@ -30,9 +30,10 @@
   };
 
   home.pointerCursor = {
-    package = pkgs.apple-cursor;
-    name = "macOS-BigSur";
-    x11.defaultCursor = "macOS-BigSur";
+    package = pkgs.capitaine-cursors;
+    name = "capitaine-cursors";
+    x11.defaultCursor = "capitaine-cursors";
+    size = 24;
   };
 
   # Packages to install.
@@ -63,6 +64,7 @@
       p.amp-cli
       p.claude-code
       p.ghostty
+      p.ffmpeg
     ];
 
   # Bigger configurations.
