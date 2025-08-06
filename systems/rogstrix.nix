@@ -331,6 +331,7 @@
       [
         plugs.obs-backgroundremoval
         plugs.obs-pipewire-audio-capture
+        plugs.wlrobs
       ];
   };
 
