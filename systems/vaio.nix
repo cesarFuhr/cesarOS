@@ -86,27 +86,6 @@
     enable = true;
     wrapperFeatures.gtk = true; # so that gtk works properly
     xwayland.enable = true;
-    extraPackages =
-      let
-        p = pkgs;
-      in
-      [
-        p.swaylock
-        p.swayidle
-        p.wl-clipboard
-        p.grim
-        p.sway-contrib.grimshot
-        p.slurp
-        p.nwg-bar
-        p.micro
-        p.tofi
-        p.wdisplays
-        p.wlogout
-        p.wallutils
-        p.swww
-        p.swappy
-        p.foot
-      ];
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland
       export QT_QPA_PLATFORM=wayland
@@ -116,13 +95,6 @@
       export XDG_CURRENT_DESKTOP=hyprland
       export XDG_SESSION_DESKTOP=hyprland
     '';
-  };
-
-  programs.hyprland = {
-    enable = true;
-    xwayland = {
-      enable = true;
-    };
   };
 
   # Vial
@@ -261,6 +233,23 @@
       p.python
       p.python3
       p.marksman
+
+      # Wayland
+      p.swaylock
+      p.swayidle
+      p.wl-clipboard
+      p.grim
+      p.sway-contrib.grimshot
+      p.slurp
+      p.nwg-bar
+      p.micro
+      p.tofi
+      p.wdisplays
+      p.wlogout
+      p.wallutils
+      p.swww
+      p.swappy
+      p.foot
 
       # Utilities
       p.kitty

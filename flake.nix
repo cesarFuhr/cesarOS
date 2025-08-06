@@ -95,51 +95,13 @@
                   imports = [
                     ./home/cesar.nix
                     # With Wayland.
-                    ./home/programs/sway.nix
+                    ./home/programs/hyprland.nix
                     ./home/programs/waybar.nix
                     ./home/programs/foot.nix
                   ];
 
-                  programs.alacritty.settings.font.size = lib.mkForce 15;
                   waybar = displays;
-                  sway = displays;
-                };
-            }
-          ];
-        };
-
-        # Currently, is what I am using on a daily basis.
-        legion = nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          specialArgs = {
-            inherit notes-script;
-          };
-          modules = [
-            ./systems/legion.nix
-            nixos-hardware.nixosModules.common-cpu-amd
-            nixos-hardware.nixosModules.common-cpu-amd-pstate
-            nixos-hardware.nixosModules.common-gpu-amd
-            nixos-hardware.nixosModules.common-gpu-nvidia-sync
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.cesar =
-                { ... }:
-                {
-                  imports = [
-                    ./home/cesar.nix
-                    # With window manager.
-                    ./home/programs/awesome/awesome.nix
-                    ./home/programs/i3.nix
-                    ./home/programs/polybar/polybar.nix
-                    ./home/programs/rofi.nix
-                  ];
-                  polybar = {
-                    primaryDisplay = "HDMI-0";
-                    secondaryDisplay = "DP-4";
-                  };
+                  hyprland = displays;
                 };
             }
           ];
@@ -206,12 +168,12 @@
                     imports = [
                       ./home/cesar.nix
                       # With Sway.
-                      ./home/programs/sway.nix
+                      ./home/programs/hyprland.nix
                       ./home/programs/waybar.nix
                       ./home/programs/foot.nix
                     ];
                     waybar = displays;
-                    sway = displays;
+                    hyprland = displays;
                   };
               };
             }

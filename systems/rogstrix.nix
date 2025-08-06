@@ -21,8 +21,8 @@
     experimental-features = nix-command flakes
   '';
 
-  # Setting env var to mark this build as rogstrix.
   environment.variables = {
+    # Setting env var to mark this build as rogstrix.
     CESAR_OS_BUILD = "rogstrix";
   };
 
@@ -76,39 +76,9 @@
     enable = true;
     wrapperFeatures.gtk = true; # so that gtk works properly
     xwayland.enable = true;
-    extraPackages =
-      let
-        p = pkgs;
-      in
-      [
-        p.swaylock
-        p.swayidle
-        p.wl-clipboard
-        p.grim
-        p.sway-contrib.grimshot
-        p.slurp
-        p.nwg-bar
-        p.micro
-        p.tofi
-        p.wdisplays
-        p.wlogout
-        p.wallutils
-        p.swww
-        p.swappy
-        p.foot
-      ];
     extraSessionCommands = ''
-      export SDL_VIDEODRIVER=wayland
-      export QT_QPA_PLATFORM=wayland
-      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-      export _JAVA_AWT_WM_NONREPARENTING=1
-      export MOZ_ENABLE_WAYLAND=1
       export XDG_CURRENT_DESKTOP=sway
       export XDG_SESSION_DESKTOP=sway
-      export XWAYLAND_NO_GLAMOR=1
-      export WLR_RENDERER=vulkan
-      export PROTON_ENABLE_WAYLAND=1
-      export XKB_DEFAULT_OPTIONS=ctrl:swapcaps
     '';
   };
 
@@ -121,7 +91,7 @@
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember-session --cmd 'sway --unsupported-gpu'";
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember-session --cmd hyprland";
         };
       };
     };
@@ -138,6 +108,17 @@
       # Nvidia
       videoDrivers = [ "nvidia" ];
     };
+  };
+
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal"; # Without this errors will spam on screen
+    # Without these bootlogs will spam on screen
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
   };
 
   console.useXkbConfig = true;
@@ -231,6 +212,23 @@
       p.python
       p.python3
       p.marksman
+
+      # Wayland
+      p.swaylock
+      p.swayidle
+      p.wl-clipboard
+      p.grim
+      p.sway-contrib.grimshot
+      p.slurp
+      p.nwg-bar
+      p.micro
+      p.tofi
+      p.wdisplays
+      p.wlogout
+      p.wallutils
+      p.swww
+      p.swappy
+      p.foot
 
       # Environment
       p.rofi
