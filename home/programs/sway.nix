@@ -35,8 +35,8 @@ in
     checkConfig = true;
     config = rec {
       modifier = "Mod4";
-      terminal = "foot";
-      menu = "tofi";
+      terminal = "${pkgs.foot}/bin/foot";
+      menu = "${pkgs.tofi}/bin/tofi-run";
       defaultWorkspace = "1";
 
       startup = [
@@ -103,8 +103,8 @@ in
         {
           "${modifier}+Shift+Return" = "exec ${terminal}";
           "${modifier}+Return" = "exec ${terminal}";
-          "${modifier}+space" = "exec $(${p.tofi}/bin/tofi-run)";
-          "${modifier}+colon" = "exec $(${p.tofi}/bin/tofi-run)";
+          "${modifier}+space" = "exec $(${menu})";
+          "${modifier}+colon" = "exec $(${menu})";
 
           "${modifier}+Shift+c" = "reload";
           "${modifier}+q" = "kill";
