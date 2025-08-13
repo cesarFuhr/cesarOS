@@ -121,7 +121,7 @@
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember-session --cmd 'sway --unsupported-gpu'";
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --remember-session --cmd 'sway --unsupported-gpu'";
         };
       };
     };
