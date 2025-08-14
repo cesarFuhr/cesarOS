@@ -131,7 +131,6 @@
     lua5_3
     lua53Packages.luarocks
     sumneko-lua-language-server
-    rust-analyzer
     nodePackages.typescript-language-server
 
     # Environment

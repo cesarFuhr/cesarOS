@@ -234,7 +234,6 @@
       p.cargo
       p.rustc
       p.rustup
-      p.rust-analyzer
       p.clippy
       p.terraform
       nd.typescript-language-server
