@@ -245,7 +245,6 @@
 
       # Environment
       p.rofi
-      p.dmenu-rs-enable-plugins
       p.feh
       p.arc-theme
       p.alsa-lib
