@@ -164,6 +164,46 @@
             }
           ];
         };
+
+        aorus = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          specialArgs = {
+            inherit notes-script;
+          };
+          modules = [
+            ./systems/aorus.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = {
+                  inherit inputs;
+                };
+                users.cesar =
+                  { ... }:
+                  let
+                    displays = {
+                      primaryDisplay = "HDMI-A-3";
+                      secondaryDisplay = "eDP-1";
+                    };
+                  in
+                  {
+                    imports = [
+                      ./home/cesar.nix
+                      # With Sway.
+                      ./home/programs/sway.nix
+                      ./home/programs/waybar.nix
+                      ./home/programs/foot.nix
+                    ];
+                    waybar = displays;
+                    sway = displays;
+                  };
+              };
+            }
+          ];
+        };
       };
     };
 }
