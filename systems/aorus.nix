@@ -135,8 +135,7 @@
       };
 
       # Video drivers
-      # Nvidia
-      videoDrivers = [ "nvidia" ];
+      videoDrivers = [ "amdgpu" ];
     };
 
   };
