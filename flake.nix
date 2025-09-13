@@ -34,22 +34,6 @@
     in
     {
       nixosConfigurations = {
-        # This drifted a lot from what I am actually using now a days,
-        # but I will leave it be.
-        virtualbox = nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          modules = [
-            ./systems/virtualbox.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.cesar = import ./home/cesar.nix;
-            }
-          ];
-        };
-
         # Inspiron
         inspiron = nixpkgs.lib.nixosSystem {
           inherit system;
@@ -103,43 +87,6 @@
                   programs.alacritty.settings.font.size = lib.mkForce 15;
                   waybar = displays;
                   sway = displays;
-                };
-            }
-          ];
-        };
-
-        # Currently, is what I am using on a daily basis.
-        legion = nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          specialArgs = {
-            inherit notes-script;
-          };
-          modules = [
-            ./systems/legion.nix
-            nixos-hardware.nixosModules.common-cpu-amd
-            nixos-hardware.nixosModules.common-cpu-amd-pstate
-            nixos-hardware.nixosModules.common-gpu-amd
-            nixos-hardware.nixosModules.common-gpu-nvidia-sync
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.cesar =
-                { ... }:
-                {
-                  imports = [
-                    ./home/cesar.nix
-                    # With window manager.
-                    ./home/programs/awesome/awesome.nix
-                    ./home/programs/i3.nix
-                    ./home/programs/polybar/polybar.nix
-                    ./home/programs/rofi.nix
-                  ];
-                  polybar = {
-                    primaryDisplay = "HDMI-0";
-                    secondaryDisplay = "DP-4";
-                  };
                 };
             }
           ];
