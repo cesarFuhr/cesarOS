@@ -22,7 +22,6 @@ require 'nvim-treesitter.configs'.setup {
     "tsx",
     "dockerfile",
     "python",
-    "org",
   },
   highlight = {
     enable = true,
