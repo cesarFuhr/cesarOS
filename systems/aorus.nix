@@ -136,8 +136,8 @@
 
       # Video drivers
       videoDrivers = [ "amdgpu" ];
+      enableTearFree = true;
     };
-
   };
 
   systemd.services.greetd.serviceConfig = {
