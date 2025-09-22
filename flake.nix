@@ -186,6 +186,7 @@
                   let
                     displays = {
                       primaryDisplay = "DP-1";
+                      secondaryDisplay = "DP-2";
                     };
                   in
                   {

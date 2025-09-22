@@ -62,7 +62,6 @@
       p.vscode
       p.amp-cli
       p.claude-code
-      p.ghostty
     ];
 
   # Bigger configurations.
@@ -77,6 +76,7 @@
     ./programs/alacritty.nix
     ./programs/zsh.nix
     ./programs/zed_config.nix
+    ./programs/ghostty.nix
   ];
 
   gtk = {

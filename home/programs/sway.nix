@@ -87,8 +87,9 @@ in
         };
 
         "${cfg.secondaryDisplay}" = {
-          mode = "1920x1080@60.001Hz";
-          position = "5760,960";
+          mode = "2560x1440@179.999Hz";
+          position = "5760,0";
+          transform = "270";
         };
       };
 

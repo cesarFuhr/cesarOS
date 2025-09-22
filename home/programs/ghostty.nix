@@ -7,7 +7,7 @@
 }:
 
 {
-  home.packages = [ inputs.ghostty.packages.${pkgs.system}.default ];
+  home.packages = [ pkgs.ghostty ];
 
   home.file.".config/ghostty/config".text = ''
     command = ${pkgs.zsh}/bin/zsh
