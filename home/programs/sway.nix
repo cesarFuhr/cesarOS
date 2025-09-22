@@ -89,7 +89,7 @@ in
         "${cfg.secondaryDisplay}" = {
           mode = "2560x1440@179.999Hz";
           position = "5760,0";
-          transform = "270";
+          transform = "90";
         };
       };
 
