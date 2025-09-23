@@ -125,8 +125,10 @@
   # Golang setup.
   programs.go = {
     enable = true;
-    goBin = "go/bin";
-    goPath = "go";
+    env = {
+      GOBIN = "/home/cesar/go/bin";
+      GOPATH = "/home/cesar/go";
+    };
   };
 
   # Git
