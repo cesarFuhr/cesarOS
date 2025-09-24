@@ -71,8 +71,8 @@
                 }:
                 let
                   displays = {
-                    primaryDisplay = "HDMI-A-1";
-                    secondaryDisplay = "eDP-1";
+                    primaryDisplay = "eDP-1";
+                    secondaryDisplay = "HDMI-A-1";
                   };
                 in
                 {
