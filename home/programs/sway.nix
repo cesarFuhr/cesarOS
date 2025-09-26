@@ -5,24 +5,7 @@
   ...
 }:
 
-let
-  cfg = config.sway;
-in
-
 {
-  options = {
-    sway = {
-      primaryDisplay = lib.mkOption {
-        default = "missingDisplay";
-        type = lib.types.str;
-      };
-      secondaryDisplay = lib.mkOption {
-        default = "missingDisplay";
-        type = lib.types.str;
-      };
-    };
-  };
-
   # Sway configuration.
   config.wayland.windowManager.sway = {
     enable = true;
@@ -35,7 +18,7 @@ in
     checkConfig = true;
     config = rec {
       modifier = "Mod4";
-      terminal = "${pkgs.foot}/bin/foot";
+      terminal = lib.getExe config.cesarOS.terminal.package;
       menu = "${pkgs.tofi}/bin/tofi-run";
       defaultWorkspace = "1";
 
@@ -80,18 +63,12 @@ in
         };
       };
 
-      output = {
-        "${cfg.primaryDisplay}" = {
-          mode = "3840x2160@60.000Hz";
-          position = "1920,0";
-        };
-
-        "${cfg.secondaryDisplay}" = {
-          mode = "2560x1440@179.999Hz";
-          position = "5760,0";
-          transform = "90";
-        };
-      };
+      output = lib.mapAttrs (name: displayCfg: {
+        mode = "${displayCfg.resolution}@${displayCfg.frequency}Hz";
+        position = displayCfg.position;
+        scale = toString (displayCfg.scale or 1.0);
+        transform = displayCfg.transform;
+      }) config.cesarOS.displays;
 
       keybindings =
         let

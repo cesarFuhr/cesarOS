@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  pkgs,
   ...
 }:
 
@@ -10,19 +9,6 @@ let
 in
 
 {
-  options = {
-    waybar = {
-      primaryDisplay = lib.mkOption {
-        default = "missingDisplay";
-        type = lib.types.str;
-      };
-      secondaryDisplay = lib.mkOption {
-        default = "missingDisplay";
-        type = lib.types.str;
-      };
-    };
-  };
-
   config.programs.waybar = {
     enable = true;
     settings = {
@@ -30,10 +16,7 @@ in
         layer = "top";
         position = "top";
         height = 26;
-        output = [
-          cfg.primaryDisplay
-          cfg.secondaryDisplay
-        ];
+        output = lib.mapAttrsToList (name: displayCfg: name) config.cesarOS.displays;
 
         modules-left = [
           "custom/logo"

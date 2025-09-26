@@ -6,10 +6,6 @@
       url = "github:nixos/nixpkgs/nixos-unstable";
     };
 
-    nixos-hardware = {
-      url = "github:NixOS/nixos-hardware/master";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +20,6 @@
   outputs =
     {
       nixpkgs,
-      nixos-hardware,
       home-manager,
       notes-script,
       ...
@@ -65,16 +60,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.cesar =
-                {
-                  lib,
-                  ...
-                }:
-                let
-                  displays = {
-                    primaryDisplay = "eDP-1";
-                    secondaryDisplay = "HDMI-A-1";
-                  };
-                in
+                { pkgs, ... }:
                 {
                   imports = [
                     ./home/cesar.nix
@@ -83,10 +69,18 @@
                     ./home/programs/waybar.nix
                     ./home/programs/foot.nix
                   ];
-
-                  programs.alacritty.settings.font.size = lib.mkForce 15;
-                  waybar = displays;
-                  sway = displays;
+                  cesarOS = {
+                    terminal.package = pkgs.foot;
+                    displays = {
+                      "eDP-1" = {
+                        resolution = "1920x1080";
+                        position = "0,0";
+                        frequency = "60.000";
+                        primary = true;
+                        scale = 1.0;
+                      };
+                    };
+                  };
                 };
             }
           ];
@@ -103,13 +97,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.cesar =
-                { ... }:
-                let
-                  displays = {
-                    primaryDisplay = "HDMI-A-3";
-                    secondaryDisplay = "eDP-1";
-                  };
-                in
+                { pkgs, ... }:
                 {
                   imports = [
                     ./home/cesar.nix
@@ -118,8 +106,6 @@
                     ./home/programs/waybar.nix
                     ./home/programs/foot.nix
                   ];
-                  waybar = displays;
-                  sway = displays;
                 };
             }
           ];
@@ -142,13 +128,7 @@
                   inherit inputs;
                 };
                 users.cesar =
-                  { ... }:
-                  let
-                    displays = {
-                      primaryDisplay = "HDMI-A-3";
-                      secondaryDisplay = "eDP-1";
-                    };
-                  in
+                  { pkgs, ... }:
                   {
                     imports = [
                       ./home/cesar.nix
@@ -157,8 +137,18 @@
                       ./home/programs/waybar.nix
                       ./home/programs/foot.nix
                     ];
-                    waybar = displays;
-                    sway = displays;
+                    cesarOS = {
+                      terminal.package = pkgs.foot;
+                      displays = {
+                        "eDP-1" = {
+                          resolution = "1920x1200";
+                          position = "0,0";
+                          frequency = "145.000";
+                          primary = true;
+                          scale = 1.0;
+                        };
+                      };
+                    };
                   };
               };
             }
@@ -182,13 +172,7 @@
                   inherit inputs;
                 };
                 users.cesar =
-                  { ... }:
-                  let
-                    displays = {
-                      primaryDisplay = "DP-1";
-                      secondaryDisplay = "DP-2";
-                    };
-                  in
+                  { pkgs, ... }:
                   {
                     imports = [
                       ./home/cesar.nix
@@ -196,9 +180,29 @@
                       ./home/programs/sway.nix
                       ./home/programs/waybar.nix
                       ./home/programs/foot.nix
+                      ./home/programs/ghostty.nix
                     ];
-                    waybar = displays;
-                    sway = displays;
+                    cesarOS = {
+                      terminal.package = pkgs.foot;
+                      displays = {
+                        "DP-1" = {
+                          resolution = "3840x2160";
+                          position = "1920,0";
+                          frequency = "60.000";
+                          primary = true;
+                          scale = 1.0;
+                        };
+
+                        "DP-2" = {
+                          resolution = "2560x1440";
+                          position = "5760,0";
+                          frequency = "179.999";
+                          transform = "90";
+                          primary = false;
+                          scale = 1.0;
+                        };
+                      };
+                    };
                   };
               };
             }
