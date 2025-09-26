@@ -75,7 +75,7 @@
                       "eDP-1" = {
                         resolution = "1920x1080";
                         position = "0,0";
-                        frequency = "60.000";
+                        frequency = "60.001";
                         primary = true;
                         scale = 1.0;
                       };
