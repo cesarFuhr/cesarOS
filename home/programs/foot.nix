@@ -19,7 +19,7 @@
 
       colors = {
         foreground = "b1bac9";
-        background = "262626";
+        background = "202020";
         regular0 = "282c34"; # black
         regular1 = "e06c75"; # red
         regular2 = "98c379"; # green

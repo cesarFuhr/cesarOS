@@ -6,7 +6,7 @@ local material = require 'material'
 local colors = require 'material.colors'
 
 local custom_colors = {
-  bg     = "#262626",
+  bg     = "#202020",
   border = "#404040",
 }
 
