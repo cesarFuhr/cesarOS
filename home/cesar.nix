@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  notes-script,
   ...
 }:
 
@@ -118,12 +119,6 @@ in
       GTK_THEME = "Sierra-dark";
     };
 
-    home.pointerCursor = {
-      package = pkgs.apple-cursor;
-      name = "macOS-BigSur";
-      x11.defaultCursor = "macOS-BigSur";
-    };
-
     # Packages to install.
     home.packages =
       let
@@ -138,7 +133,6 @@ in
         p.xdg-utils
 
         # Browsers
-        p.brave
         p.google-chrome
 
         # Communication
@@ -158,11 +152,6 @@ in
       theme = {
         name = "Sierra-dark";
         package = pkgs.sierra-gtk-theme;
-      };
-
-      cursorTheme = {
-        package = pkgs.apple-cursor;
-        name = "macOS-BigSur";
       };
 
       gtk3.extraConfig = {
@@ -208,14 +197,8 @@ in
     # Git
     programs.git = {
       enable = true;
-      userName = "Cesar Cara";
-      diff-so-fancy.enable = true;
-
-      signing = {
-        signByDefault = true;
-      };
-
-      extraConfig = {
+      settings = {
+        user.name = "Cesar Cara";
         core = {
           editor = "nvim";
         };
@@ -231,6 +214,15 @@ in
           path = "./user_config";
         };
       };
+
+      signing = {
+        signByDefault = true;
+      };
+    };
+
+    programs.diff-so-fancy = {
+      enable = true;
+      enableGitIntegration = true;
     };
 
     # Git user management.

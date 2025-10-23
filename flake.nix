@@ -29,24 +29,6 @@
     in
     {
       nixosConfigurations = {
-        # Inspiron
-        inspiron = nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          specialArgs = {
-            inherit notes-script;
-          };
-          modules = [
-            ./systems/inspiron.nix
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.cesar = import ./home/cesar.nix;
-            }
-          ];
-        };
-
-        # Vaio
         vaio = nixpkgs.lib.nixosSystem {
           inherit system;
 
@@ -54,6 +36,7 @@
             inherit notes-script;
           };
           modules = [
+            ./systems/common.nix
             ./systems/vaio.nix
             home-manager.nixosModules.home-manager
             {
@@ -91,13 +74,14 @@
           inherit system;
 
           modules = [
+            ./systems/common.nix
             ./systems/lab.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.cesar =
-                { pkgs, ... }:
+                { ... }:
                 {
                   imports = [
                     ./home/cesar.nix
@@ -111,50 +95,6 @@
           ];
         };
 
-        rogstrix = nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          specialArgs = {
-            inherit notes-script;
-          };
-          modules = [
-            ./systems/rogstrix.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                extraSpecialArgs = {
-                  inherit inputs;
-                };
-                users.cesar =
-                  { pkgs, ... }:
-                  {
-                    imports = [
-                      ./home/cesar.nix
-                      # With Sway.
-                      ./home/programs/sway.nix
-                      ./home/programs/waybar.nix
-                      ./home/programs/foot.nix
-                    ];
-                    cesarOS = {
-                      terminal.package = pkgs.foot;
-                      displays = {
-                        "eDP-1" = {
-                          resolution = "1920x1200";
-                          position = "0,0";
-                          frequency = "145.000";
-                          primary = true;
-                          scale = 1.0;
-                        };
-                      };
-                    };
-                  };
-              };
-            }
-          ];
-        };
-
         aorus = nixpkgs.lib.nixosSystem {
           inherit system;
 
@@ -162,6 +102,7 @@
             inherit notes-script;
           };
           modules = [
+            ./systems/common.nix
             ./systems/aorus.nix
             home-manager.nixosModules.home-manager
             {

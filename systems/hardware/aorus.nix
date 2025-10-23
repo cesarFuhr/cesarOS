@@ -14,6 +14,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+  boot.kernelParams = [ "amd_pstate=active" ];
   boot.initrd.availableKernelModules = [
     "nvme"
     "xhci_pci"
@@ -55,11 +56,17 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.enableAllFirmware = true;
+  hardware.enableRedistributableFirmware = true;
 
   # AMD GPU
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+    extraPackages = with pkgs; [
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
   };
 
   hardware.amdgpu = {

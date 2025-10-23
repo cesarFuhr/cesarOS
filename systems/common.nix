@@ -1,30 +1,15 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 {
   notes-script,
   pkgs,
   lib,
   ...
 }:
-
 {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware/rogstrix.nix
-  ];
-
   # Making nix ready for flakes.
   nix.package = pkgs.nixVersions.stable;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
-
-  # Setting env var to mark this build as rogstrix.
-  environment.variables = {
-    CESAR_OS_BUILD = "rogstrix";
-  };
 
   # Latest kernel.
   boot.kernelPackages = pkgs.linuxPackages;
@@ -33,13 +18,6 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "rogstrix"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking = {
@@ -98,105 +76,24 @@
         p.foot
       ];
     extraSessionCommands = ''
-      export SDL_VIDEODRIVER=wayland
       export QT_QPA_PLATFORM=wayland
-      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
       export _JAVA_AWT_WM_NONREPARENTING=1
       export MOZ_ENABLE_WAYLAND=1
       export XDG_CURRENT_DESKTOP=sway
       export XDG_SESSION_DESKTOP=sway
-      export XWAYLAND_NO_GLAMOR=1
-      export WLR_RENDERER=vulkan
-      export PROTON_ENABLE_WAYLAND=1
-      export XKB_DEFAULT_OPTIONS=ctrl:swapcaps
+      LIBVA_DRIVER_NAME=radeonsi
     '';
   };
 
-  services = {
-    # Touchpads
-    libinput.enable = true;
-
-    # Display Manager
-    greetd = {
-      enable = true;
-      settings = {
-        default_session = {
-          command = "${pkgs.tuigreet}/bin/tuigreet --time --remember-session --cmd 'sway --unsupported-gpu'";
-        };
-      };
-    };
-
-    xserver = {
-      enable = true;
-      xkb = {
-        layout = "us";
-        variant = "";
-        options = "grp:alt_shift_toggle,ctrl:nocaps,compose:rctrl";
-      };
-
-      # Video drivers
-      # Nvidia
-      videoDrivers = [ "nvidia" ];
-    };
-
-  };
-
-  systemd.services.greetd.serviceConfig = {
-    Type = "idle";
-    StandardInput = "tty";
-    StandardOutput = "tty";
-    StandardError = "journal"; # Without this errors will spam on screen
-    # Without these bootlogs will spam on screen
-    TTYReset = true;
-    TTYVHangup = true;
-    TTYVTDisallocate = true;
-  };
-
-  console.useXkbConfig = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users = {
-    defaultUserShell = pkgs.zsh;
-
-    users = {
-      cesar = {
-        isNormalUser = true;
-        description = "cesar";
-        extraGroups = [
-          "networkmanager"
-          "wheel"
-          "audio"
-          "docker"
-        ];
-
-        shell = pkgs.zsh;
-      };
-    };
-  };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # Allow python 2.7 and nodejs 16
-  nixpkgs.config.permittedInsecurePackages = [
-    "python-2.7.18.7"
-    "python-2.7.18.8"
-    "nodejs-16.20.0"
-  ];
-
-  # List packages installed in system profile.
   environment.systemPackages =
     let
       p = pkgs;
       nd = pkgs.nodePackages;
     in
     [
+
       # Editors
       p.neovim
-      p.vim
-
-      # Terminal
-      p.alacritty
 
       # Browsers
       p.firefox
@@ -235,17 +132,13 @@
       p.rustc
       p.rustup
       p.clippy
-      p.terraform
       nd.typescript-language-server
       p.vscode-langservers-extracted
       p.bash-language-server
-      p.python
       p.python3
       p.marksman
 
       # Environment
-      p.rofi
-      p.feh
       p.arc-theme
       p.alsa-lib
       p.alsa-utils
@@ -274,9 +167,7 @@
       p.vlc
       p.zip
       p.usbutils
-      p.zoom
       p.gparted
-      p.xclip
       p.which
       p.ripgrep
       p.bc
@@ -292,8 +183,71 @@
       p.qmk
       p.vial
       p.via
-      p.gamescope
     ];
+
+  services = {
+    # Touchpads
+    libinput.enable = true;
+
+    # Display Manager
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --remember-session --cmd 'sway'";
+        };
+      };
+    };
+
+    xserver = {
+      enable = true;
+      xkb = {
+        layout = "us";
+        variant = "";
+        options = "grp:alt_shift_toggle,ctrl:nocaps,compose:rctrl";
+      };
+
+      # Video drivers
+      videoDrivers = [ "amdgpu" ];
+      enableTearFree = true;
+    };
+  };
+
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal"; # Without this errors will spam on screen
+    # Without these bootlogs will spam on screen
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
+  };
+
+  console.useXkbConfig = true;
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users = {
+    defaultUserShell = pkgs.zsh;
+
+    users = {
+      cesar = {
+        isNormalUser = true;
+        description = "cesar";
+        extraGroups = [
+          "networkmanager"
+          "wheel"
+          "audio"
+          "docker"
+        ];
+
+        shell = pkgs.zsh;
+      };
+    };
+  };
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
   # Enabling QMK devices
   hardware.keyboard.qmk.enable = true;
@@ -340,8 +294,6 @@
   # Gnome keyring
   services.gnome.gnome-keyring.enable = true;
 
-  # List services that you want to enable:
-
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
@@ -374,19 +326,8 @@
     };
   };
 
-  # Remove sound crackling:
-  security.rtkit.enable = true;
-
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-
-  # Steam.
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    localNetworkGameTransfers.openFirewall = true;
-  };
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
@@ -437,16 +378,9 @@
     };
   };
 
-  # Virtualbox
-  virtualisation.virtualbox.host.enable = true;
-  boot.kernelParams = [ "kvm.enable_virt_at_load=0" ];
-  users.extraGroups.vboxusers.members = [ "cesar" ];
-
   nix.gc = {
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 7d";
   };
-
-  system.stateVersion = "25.05";
 }
