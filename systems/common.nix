@@ -99,9 +99,9 @@
       p.firefox
 
       # Wayland
-      p.glxinfo
       p.vulkan-tools
       p.glmark2
+      p.mesa-demos
 
       # OBS
       p.v4l-utils
@@ -177,7 +177,6 @@
       p.openssl
       p.lshw
       p.inxi
-      p.glxinfo
       p.parted
       p.dig
       p.qmk
