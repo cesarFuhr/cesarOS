@@ -158,7 +158,7 @@
       p.eza
       p.gzip
       p.htop
-      p.nvtopPackages.full
+      p.nvtopPackages.amd
       p.btop
       p.jq
       p.iftop
