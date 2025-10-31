@@ -91,6 +91,7 @@
       nd = pkgs.nodePackages;
     in
     [
+      p.tmux
 
       # Editors
       p.neovim
