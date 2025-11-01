@@ -294,7 +294,7 @@
     secureSocket = true;
     shortcut = "s";
     keyMode = "vi";
-    terminal = "screen-256color";
+    terminal = "tmux-256color";
     extraConfig = ''
       set -s extended-keys on
       unbind C-\;
