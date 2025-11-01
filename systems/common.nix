@@ -334,9 +334,8 @@
     11111
     22222 # internalssh
   ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+
+  services.tailscale.enable = true;
 
   # Bluetooth
   services.blueman.enable = true;
