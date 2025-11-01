@@ -91,8 +91,6 @@
       nd = pkgs.nodePackages;
     in
     [
-      p.tmux
-
       # Editors
       p.neovim
 
@@ -290,6 +288,33 @@
   # Manually enabling dconf.
   # (needed because gnome is not a dep anymore, moved from gdm to lightdm)
   programs.dconf.enable = true;
+
+  programs.tmux = {
+    enable = true;
+    secureSocket = true;
+    shortcut = "s";
+    keyMode = "vi";
+    extraConfig = ''
+      set -s extended-keys on
+      unbind C-\;
+
+      # Clock
+      set-window-option -g clock-mode-colour cyan
+      set-window-option -g clock-mode-style 24
+
+      # Statusline
+      set-option -g status-position top
+      set -wg status-justify right
+      set -wg window-status-format '  #I|#W  '
+      set -wg window-status-current-format '#[bg=#111316]  #[fg=cyan,bold]#I|#W  '
+      set -wg 'status-format[1]' '#[bg=#002F343F] #[fg=#002F343F]'
+      set  -g window-status-activity-style 'bg=#12131D,fg=yellow,blink'
+      set  -g message-style 'bg=#12131D fg=colour5,bright'
+      set  -g status-style 'bg=#12131D fg=#3B4260'
+      set  -g status-left  '#[fg=white,bright]'
+      set  -g status-right '  #[fg=colour105,bright][#[fg=colour5,bright] #S / #P #[fg=colour105,bright]]'
+    '';
+  };
 
   # Gnome keyring
   services.gnome.gnome-keyring.enable = true;
