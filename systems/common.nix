@@ -297,7 +297,9 @@
     terminal = "tmux-256color";
     extraConfig = ''
       set -s extended-keys on
+      set -g mode-keys vi
       unbind C-\;
+      set -g mouse on 
 
       # Clock
       set-window-option -g clock-mode-colour cyan
