@@ -292,13 +292,13 @@
   programs.tmux = {
     enable = true;
     secureSocket = true;
-    shortcut = "s";
+    shortcut = "a";
     keyMode = "vi";
     terminal = "tmux-256color";
     extraConfig = ''
       set -s extended-keys on
       set -g mode-keys vi
-      set-option -g escape-time 10
+      set-option -g escape-time 100
       unbind C-\;
       set -g mouse on 
 
