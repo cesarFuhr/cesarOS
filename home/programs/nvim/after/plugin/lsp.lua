@@ -70,7 +70,6 @@ cmp.setup({
 -- Warns the lsp that it can suggest snippets.
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local lspconfig = require 'lspconfig'
 local telescopeBuiltin = require 'telescope.builtin'
 
 local map = vim.keymap.set
@@ -124,7 +123,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   callback = function() ardango.OrgBufImports(1000) end,
 })
 
-lspconfig.gopls.setup {
+vim.lsp.config('gopls', {
   -- warns the LSP that it can send snippets suggestions.
   capabilities = capabilities,
   -- sets up lsp related functionality.
@@ -153,7 +152,7 @@ lspconfig.gopls.setup {
       staticcheck = true,
     }
   }
-}
+})
 
 local formatter_augroup = vim.api.nvim_create_augroup("lsp_formatters", { clear = true })
 -- Formats the file on save.
@@ -165,7 +164,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 
 -- Rust
-lspconfig.rust_analyzer.setup {
+vim.lsp.config('rust_analyzer', {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
   cmd = { "rust-analyzer" },
@@ -189,10 +188,10 @@ lspconfig.rust_analyzer.setup {
       },
     }
   }
-}
+})
 
 -- Lua
-lspconfig.lua_ls.setup {
+vim.lsp.config('lua_ls', {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
   settings = {
@@ -203,10 +202,10 @@ lspconfig.lua_ls.setup {
       },
     },
   },
-}
+})
 
 -- Nix
-lspconfig.nixd.setup {
+vim.lsp.config('nixd', {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
   settings = {
@@ -216,89 +215,89 @@ lspconfig.nixd.setup {
       },
     },
   },
-}
+})
 
 -- JS/TS
-lspconfig.ts_ls.setup {
+vim.lsp.config('ts_ls', {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
-}
+})
 
 -- C lang
-lspconfig.clangd.setup {
+vim.lsp.config('clang', {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
-}
+})
 
 -- Latex
-lspconfig.texlab.setup {
+vim.lsp.config('texlab', {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
-}
+})
 
 -- JSON
-lspconfig.jsonls.setup {
+vim.lsp.config('jsonls', {
   -- Next line only for nix users
   cmd = { "vscode-json-language-server", "--stdio" },
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
-}
+})
 
 -- HTML
-lspconfig.html.setup {
+vim.lsp.config('html', {
   -- Next line only for nix users
   cmd = { "vscode-html-language-server", "--stdio" },
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
-}
+})
 
 -- CSS
-lspconfig.html.setup {
+vim.lsp.config('html', {
   -- Next line only for nix users
   cmd = { "vscode-css-language-server", "--stdio" },
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
-}
+})
 
 -- Python
-lspconfig.pyright.setup {
+vim.lsp.config('pyright', {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
-}
+})
 
 -- Zig
-lspconfig.zls.setup {
+vim.lsp.config('zls', {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
-}
+})
 
 -- Elixir
-lspconfig.elixirls.setup {
+vim.lsp.config('elixirls', {
   cmd = { "elixir-ls" },
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
-}
+})
 
 -- Terraform
-lspconfig.terraformls.setup {
+vim.lsp.config('terraformls', {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
-}
+})
 
 -- Markdown
-lspconfig.marksman.setup {
+vim.lsp.config('marksman', {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
-}
+})
 
 -- Bash
-lspconfig.bashls.setup {
+vim.lsp.config('bashls', {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
-}
+})
 
 -- C#
-lspconfig.csharp_ls.setup {
+vim.lsp.config('csharp_ls', {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
-}
+})
