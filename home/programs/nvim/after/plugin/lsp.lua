@@ -153,6 +153,7 @@ vim.lsp.config('gopls', {
     }
   }
 })
+vim.lsp.enable('gopls')
 
 local formatter_augroup = vim.api.nvim_create_augroup("lsp_formatters", { clear = true })
 -- Formats the file on save.
@@ -189,6 +190,7 @@ vim.lsp.config('rust_analyzer', {
     }
   }
 })
+vim.lsp.enable('rust_analyzer')
 
 -- Lua
 vim.lsp.config('lua_ls', {
@@ -203,6 +205,7 @@ vim.lsp.config('lua_ls', {
     },
   },
 })
+vim.lsp.enable('lua_ls')
 
 -- Nix
 vim.lsp.config('nixd', {
@@ -216,24 +219,28 @@ vim.lsp.config('nixd', {
     },
   },
 })
+vim.lsp.enable('nixd')
 
 -- JS/TS
 vim.lsp.config('ts_ls', {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
 })
+vim.lsp.enable('ts_ls')
 
 -- C lang
 vim.lsp.config('clang', {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
 })
+vim.lsp.enable('clang')
 
 -- Latex
 vim.lsp.config('texlab', {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
 })
+vim.lsp.enable('texlab')
 
 -- JSON
 vim.lsp.config('jsonls', {
@@ -242,6 +249,7 @@ vim.lsp.config('jsonls', {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
 })
+vim.lsp.enable('jsonls')
 
 -- HTML
 vim.lsp.config('html', {
@@ -250,26 +258,30 @@ vim.lsp.config('html', {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
 })
+vim.lsp.enable('html')
 
 -- CSS
-vim.lsp.config('html', {
+vim.lsp.config('css', {
   -- Next line only for nix users
   cmd = { "vscode-css-language-server", "--stdio" },
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
 })
+vim.lsp.enable('css')
 
 -- Python
 vim.lsp.config('pyright', {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
 })
+vim.lsp.enable('pyright')
 
 -- Zig
 vim.lsp.config('zls', {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
 })
+vim.lsp.enable('zls')
 
 -- Elixir
 vim.lsp.config('elixirls', {
@@ -277,27 +289,32 @@ vim.lsp.config('elixirls', {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
 })
+vim.lsp.enable('elixirls')
 
 -- Terraform
 vim.lsp.config('terraformls', {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
 })
+vim.lsp.enable('terraformls')
 
 -- Markdown
 vim.lsp.config('marksman', {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
 })
+vim.lsp.enable('marksman')
 
 -- Bash
 vim.lsp.config('bashls', {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
 })
+vim.lsp.enable('bashls')
 
 -- C#
 vim.lsp.config('csharp_ls', {
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
 })
+vim.lsp.enable('csharp_ls')
