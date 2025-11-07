@@ -303,6 +303,11 @@
       unbind C-\;
       set -g mouse on 
 
+      # Vi-style copy/paste
+      bind-key -T copy-mode-vi 'v' send-keys -X begin-selection
+      bind-key -T copy-mode-vi 'C-v' send-keys -X rectangle-toggle
+      bind-key -T copy-mode-vi 'y' send-keys -X copy-selection-and-cancel
+
       # Clock
       set-window-option -g clock-mode-colour cyan
       set-window-option -g clock-mode-style 24
