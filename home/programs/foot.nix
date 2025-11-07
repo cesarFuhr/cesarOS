@@ -6,11 +6,13 @@
 
     settings = {
       main = {
-        font = "JetBrainsMono Nerd Font Mono:size=15";
+        font = "JetBrainsMono Nerd Font Mono:size=12";
+        dpi-aware = true;
       };
 
       cursor = {
         style = "underline";
+        blink = true;
       };
 
       mouse = {

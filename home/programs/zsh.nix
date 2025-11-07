@@ -35,6 +35,7 @@
       renvimpure = "NIXPKGS_ALLOW_UNFREE=1 nix develop --impure --profile /tmp/\${\${PWD//\\//:}:1} --command zsh";
       senv = "nix develop /tmp/\${\${PWD//\\//:}:1} --command zsh";
       envup = "if [[ -e /tmp/\${\${PWD//\\//:}:1} ]]; then senv; else if [[ flake_is_proprietary ]]; then renvimpure; else renv; fi; fi";
+      envclean = "[[ -e /tmp/\${\${PWD//\\//:}:1} ]] && rm /tmp/\${\${PWD//\\//:}:1}*";
 
       # Notes/Todo system
       na = "notes .";
