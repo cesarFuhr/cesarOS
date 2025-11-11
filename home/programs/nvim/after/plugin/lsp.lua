@@ -266,6 +266,7 @@ vim.lsp.config('css', {
   cmd = { "vscode-css-language-server", "--stdio" },
   capabilities = capabilities,
   on_attach = custom_lsp_attach,
+  filetypes = { 'css' },
 })
 vim.lsp.enable('css')
 

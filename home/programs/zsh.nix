@@ -13,6 +13,7 @@
       plugins = [
         "git"
         "docker"
+        "kubectl"
       ];
     };
 
