@@ -296,7 +296,6 @@
     keyMode = "vi";
     terminal = "tmux-256color";
     extraConfig = ''
-      set -s extended-keys on
       set -g mode-keys vi
       set-window-option -g mode-keys vi
       set-option -g escape-time 100
@@ -307,6 +306,13 @@
       bind-key -T copy-mode-vi 'v' send-keys -X begin-selection
       bind-key -T copy-mode-vi 'C-v' send-keys -X rectangle-toggle
       bind-key -T copy-mode-vi 'y' send-keys -X copy-selection-and-cancel
+
+      # Creating panes with vim keys
+      bind h select-pane -L
+      bind j select-pane -D
+      bind k select-pane -U
+      unbind l
+      bind l select-pane -R
 
       # Clock
       set-window-option -g clock-mode-colour cyan
