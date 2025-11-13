@@ -131,6 +131,8 @@ in
         p.zoxide
         p.entr
         p.xdg-utils
+        p.proton-pass
+        p.protonvpn-gui
 
         # Browsers
         p.google-chrome
