@@ -18,15 +18,15 @@ cmp.setup({
     ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-3), { 'i', 'c' }),
     -- Control + f to scroll up inside the docs of the suggestion.
     ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(3), { 'i', 'c' }),
-    -- Control + space to invoque the autocompletion menu.
-    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    -- Control + h to invoque the autocompletion menu.
+    ['<C-h>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
     -- Control + e to close the suggestion menu/window.
     ['<C-e>'] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     }),
     -- Return to confirm the selected suggestion.
-    ['<C-;>'] = cmp.mapping.confirm({
+    ['<C-Space>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
     }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.

@@ -296,7 +296,6 @@
     keyMode = "vi";
     terminal = "tmux-256color";
     extraConfig = ''
-      set -s extended-keys on
       set -g mode-keys vi
       set-window-option -g mode-keys vi
       set-option -g escape-time 100
