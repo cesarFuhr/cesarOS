@@ -44,8 +44,8 @@
       td = "todo .";
 
       # Tmux sessions
-      tflakesession = "start_tmux_flake_session";
-      tsession = "start_tmux_session";
+      tfs = "start_tmux_flake_session";
+      ts = "start_tmux_session";
 
     };
 
