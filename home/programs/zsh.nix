@@ -46,7 +46,7 @@
       # Tmux sessions
       tfs = "start_tmux_flake_session";
       ts = "start_tmux_session";
-
+      ta = "tmux a";
     };
 
     initContent = ''

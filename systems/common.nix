@@ -298,7 +298,7 @@
     extraConfig = ''
       set -g mode-keys vi
       set-window-option -g mode-keys vi
-      set-option -g escape-time 100
+      set-option -g escape-time 10
       unbind C-\;
       set -g mouse on 
 
