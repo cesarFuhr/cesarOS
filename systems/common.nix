@@ -292,7 +292,7 @@
   programs.tmux = {
     enable = true;
     secureSocket = true;
-    shortcut = "a";
+    shortcut = "b";
     keyMode = "vi";
     terminal = "tmux-256color";
     extraConfig = ''
