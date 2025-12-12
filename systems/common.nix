@@ -109,6 +109,7 @@
       notes-script.packages.${p.system}.notes
       notes-script.packages.${p.system}.todo
       notes-script.packages.${p.system}.todo-done
+      p.ffmpeg
       p.git
       p.tree-sitter
       p.nixd
