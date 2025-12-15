@@ -33,6 +33,4 @@
       options hid_apple fnmode=1
     '';
   };
-
-  system.stateVersion = "25.11";
 }
