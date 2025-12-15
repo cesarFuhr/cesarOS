@@ -106,9 +106,9 @@
       p.v4l-utils
 
       # Work
-      notes-script.packages.${p.system}.notes
-      notes-script.packages.${p.system}.todo
-      notes-script.packages.${p.system}.todo-done
+      notes-script.packages.${p.stdenv.hostPlatform.system}.notes
+      notes-script.packages.${p.stdenv.hostPlatform.system}.todo
+      notes-script.packages.${p.stdenv.hostPlatform.system}.todo-done
       p.ffmpeg
       p.git
       p.tree-sitter

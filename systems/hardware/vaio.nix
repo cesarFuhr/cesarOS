@@ -48,9 +48,11 @@
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
 
   # Prevent lid from suspending.
-  services.logind.lidSwitchExternalPower = "ignore";
-  services.logind.lidSwitchDocked = "ignore";
-  services.logind.lidSwitch = "ignore";
+  services.logind.settings.Login = {
+    HandleLidSwitchExternalPower = "ignore";
+    HandleLidSwitchDocked = "ignore";
+    HandleLidSwitch = "ignore";
+  };
 
   hardware = {
     enableAllFirmware = true;

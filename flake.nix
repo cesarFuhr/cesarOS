@@ -24,18 +24,14 @@
       notes-script,
       ...
     }@inputs:
-    let
-      system = "x86_64-linux";
-    in
     {
       nixosConfigurations = {
         vaio = nixpkgs.lib.nixosSystem {
-          inherit system;
-
           specialArgs = {
             inherit notes-script;
           };
           modules = [
+            { nixpkgs.hostPlatform = "x86_64-linux"; }
             ./systems/common.nix
             ./systems/vaio.nix
             home-manager.nixosModules.home-manager
@@ -69,39 +65,12 @@
           ];
         };
 
-        # Little laboratory, only exisits to keep the main config more stable.
-        lab = nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          modules = [
-            ./systems/common.nix
-            ./systems/lab.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.cesar =
-                { ... }:
-                {
-                  imports = [
-                    ./home/cesar.nix
-                    # With Sway.
-                    ./home/programs/sway.nix
-                    ./home/programs/waybar.nix
-                    ./home/programs/foot.nix
-                  ];
-                };
-            }
-          ];
-        };
-
         aorus = nixpkgs.lib.nixosSystem {
-          inherit system;
-
           specialArgs = {
             inherit notes-script;
           };
           modules = [
+            { nixpkgs.hostPlatform = "x86_64-linux"; }
             ./systems/common.nix
             ./systems/aorus.nix
             home-manager.nixosModules.home-manager
