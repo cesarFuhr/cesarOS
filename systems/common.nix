@@ -12,7 +12,8 @@
   '';
 
   # Latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  system.stateVersion = "26.05";
 
   # Bootloader.
   # Use the systemd-boot EFI boot loader.
