@@ -309,7 +309,10 @@
       bind-key -T copy-mode-vi 'C-v' send-keys -X rectangle-toggle
       bind-key -T copy-mode-vi 'y' send-keys -X copy-selection-and-cancel
 
-      # Creating panes with vim keys
+      # Jumping to the last window
+      bind-key C-b last-window
+
+      # Selecting panes with vim keys
       bind h select-pane -L
       bind j select-pane -D
       bind k select-pane -U
