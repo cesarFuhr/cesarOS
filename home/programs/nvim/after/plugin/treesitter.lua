@@ -22,12 +22,11 @@ require 'nvim-treesitter.configs'.setup {
     "tsx",
     "dockerfile",
     "python",
+    "helm",
   },
   highlight = {
     enable = true,
-    -- Required for spellcheck, some LaTex highlights and
-    -- code block highlights that do not have ts grammar
-    additional_vim_regex_highlighting = { 'org' },
+    additional_vim_regex_highlighting = false,
   },
   indent = {
     enable = true,
@@ -38,3 +37,10 @@ require 'treesitter-context'.setup {
   enable = true,
   max_lines = 4,
 }
+
+vim.filetype.add({
+  extension = {
+    yaml = 'helm',
+    yml = 'helm',
+  },
+})
