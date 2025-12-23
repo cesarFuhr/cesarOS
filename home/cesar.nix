@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  notes-script,
   ...
 }:
 
@@ -156,22 +155,43 @@ in
         package = pkgs.sierra-gtk-theme;
       };
 
-      gtk3.extraConfig = {
-        Settings = ''
-          gtk-application-prefer-dark-theme=true
-        '';
+      iconTheme = {
+        name = "Adwaita";
+        package = pkgs.adwaita-icon-theme;
       };
 
-      gtk4.extraConfig = {
-        Settings = ''
-          gtk-application-prefer-dark-theme=true
-        '';
+      gtk2 = {
+        iconTheme = {
+          name = "Sierra-dark";
+          package = pkgs.sierra-gtk-theme;
+        };
+      };
+
+      gtk3 = {
+        iconTheme = {
+          name = "Sierra-dark";
+          package = pkgs.sierra-gtk-theme;
+        };
+
+        extraConfig = {
+          Settings = ''
+            gtk-application-prefer-dark-theme=true
+          '';
+        };
+      };
+
+      gtk4 = {
+        extraConfig = {
+          Settings = ''
+            gtk-application-prefer-dark-theme=true
+          '';
+        };
       };
     };
 
     qt = {
       enable = true;
-      platformTheme.name = "adawaita";
+      platformTheme.name = "adwaita";
       style = {
         name = "Sierra-dark";
         package = pkgs.sierra-gtk-theme;
