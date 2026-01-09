@@ -114,7 +114,7 @@
       p.git
       p.tree-sitter
       p.nixd
-      p.nixfmt-rfc-style
+      p.nixfmt
       p.nixpkgs-lint
       p.docker
       p.docker-compose
