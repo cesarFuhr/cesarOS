@@ -27,6 +27,11 @@
           command = ''
             exec swww-daemon
             exec ${pkgs.swww}/bin/swww img $(find ~/Wallpapers -maxdepth 1 -type f | shuf -n 1)
+            exec swayidle -w \
+              timeout 300 'swaylock -f -c 000000' \
+              timeout 600 'swaymsg "output * power off"' \
+              resume 'swaymsg "output * power on"' \
+              before-sleep 'swaylock -f -c 000000' 
           '';
         }
       ];
