@@ -32,9 +32,9 @@
       gitc = "git commit -m";
       gitlog = "git log --oneline --graph -n 10";
 
-      renv = "nix develop --profile /tmp/\${\${PWD//\\//:}:1} --command zsh";
-      renvimpure = "NIXPKGS_ALLOW_UNFREE=1 nix develop --impure --profile /tmp/\${\${PWD//\\//:}:1} --command zsh";
-      senv = "nix develop /tmp/\${\${PWD//\\//:}:1} --command zsh";
+      renv = "nix develop --option connect-timeout 5 --profile /tmp/\${\${PWD//\\//:}:1} --command zsh";
+      renvimpure = "NIXPKGS_ALLOW_UNFREE=1 nix develop --option connect-timeout 5 --impure --profile /tmp/\${\${PWD//\\//:}:1} --command zsh";
+      senv = "nix develop --option connect-timeout 5 /tmp/\${\${PWD//\\//:}:1} --command zsh";
       envup = "if [[ -e /tmp/\${\${PWD//\\//:}:1} ]]; then senv; else if [[ flake_is_proprietary ]]; then renvimpure; else renv; fi; fi";
       envclean = "[[ -e /tmp/\${\${PWD//\\//:}:1} ]] && rm /tmp/\${\${PWD//\\//:}:1}*";
 
