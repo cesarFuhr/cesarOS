@@ -90,15 +90,13 @@
           "${modifier}+colon" = "exec $(${menu})";
 
           "${modifier}+Shift+c" = "reload";
-          "${modifier}+q" = "kill";
+          "${modifier}+Shift+q" = "kill";
           "${modifier}+Shift+e" =
             "kxec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
           "${modifier}+Shift+p" = "exec wlogout";
 
           # Screenshot
-          "${modifier}+home" = "exec grimshot copy area";
           "Print" = ''exec grim -g "$(slurp)" - | swappy -f -  '';
-          "${modifier}+Shift+home" = "exec grimshot save area";
           "Shift+Print" = "exec grimshot copy area";
 
           # Switching keyboard layout/variant
