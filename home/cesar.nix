@@ -127,7 +127,6 @@ in
         # Utils
         p.neofetch
         p.gnome-calculator
-        p.zoxide
         p.entr
         p.xdg-utils
         p.proton-pass
@@ -298,6 +297,11 @@ in
 
     programs.gpg = {
       enable = true;
+    };
+
+    programs.zoxide = {
+      enable = true;
+      enableZshIntegration = true;
     };
 
     services = {

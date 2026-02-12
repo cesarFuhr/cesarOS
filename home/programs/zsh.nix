@@ -8,6 +8,12 @@
     syntaxHighlighting.enable = true;
     autosuggestion.enable = true;
 
+    history = {
+      ignoreDups = true;
+      ignoreSpace = true;
+      size = 100000;
+    };
+
     oh-my-zsh = {
       enable = true;
       plugins = [
