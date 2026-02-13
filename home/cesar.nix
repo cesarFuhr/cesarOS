@@ -145,6 +145,7 @@ in
         p.vscode
         p.amp-cli
         p.claude-code
+        p.github-copilot-cli
       ];
 
     gtk = {
