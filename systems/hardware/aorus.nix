@@ -66,10 +66,13 @@
     extraPackages = with pkgs; [
       libva-vdpau-driver
       libvdpau-va-gl
+      rocmPackages.clr
+      rocmPackages.clr.icd
     ];
   };
 
   hardware.amdgpu = {
     opencl.enable = true;
+    initrd.enable = true;
   };
 }

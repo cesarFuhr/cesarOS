@@ -1,4 +1,5 @@
 {
+  pkgs,
   ...
 }:
 
@@ -18,4 +19,15 @@
   virtualisation.virtualbox.host.enable = true;
   boot.kernelParams = [ "kvm.enable_virt_at_load=0" ];
   users.extraGroups.vboxusers.members = [ "cesar" ];
+
+  # AMD GPU monitoring:
+  environment.systemPackages =
+    let
+      p = pkgs;
+    in
+    [
+      p.rocmPackages.rocminfo
+      p.rocmPackages.rocm-smi
+      p.clinfo
+    ];
 }

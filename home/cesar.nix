@@ -90,63 +90,67 @@ in
   ];
 
   config = {
-    # Home Manager needs a bit of information about you and the
-    # paths it should manage.
-    home.username = "cesar";
-    home.homeDirectory = "/home/cesar";
-
-    # This value determines the Home Manager release that your
-    # configuration is compatible with. This helps avoid breakage
-    # when a new Home Manager release introduces backwards
-    # incompatible changes.
-
-    # You can update Home Manager without changing this value. See
-    # the Home Manager release notes for a list of state version
-    # changes in each release.
-    home.stateVersion = "25.05";
-
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
 
-    # Session Env Vars.
-    home.sessionVariables = {
-      FZF_DEFAULT_COMMAND = "rg --files -uu -g '!.git'";
-      EDITOR = "nvim";
-      TERMINAL = "foot";
-      BROWSER = "google-chrome-stable";
-      COMPOSE_COMPATIBILITY = "true";
-      GTK_THEME = "Sierra-dark";
+    # Home Manager needs a bit of information about you and the
+    # paths it should manage.
+    home = {
+      username = "cesar";
+      homeDirectory = "/home/cesar";
+
+      # This value determines the Home Manager release that your
+      # configuration is compatible with. This helps avoid breakage
+      # when a new Home Manager release introduces backwards
+      # incompatible changes.
+
+      # You can update Home Manager without changing this value. See
+      # the Home Manager release notes for a list of state version
+      # changes in each release.
+      stateVersion = "26.05";
+
+      sessionVariables = {
+        FZF_DEFAULT_COMMAND = "rg --files -uu -g '!.git'";
+        EDITOR = "nvim";
+        TERMINAL = "foot";
+        BROWSER = "google-chrome-stable";
+        COMPOSE_COMPATIBILITY = "true";
+        GTK_THEME = "Sierra-dark";
+      };
+
+      # Packages to install.
+      packages =
+        let
+          p = pkgs;
+        in
+        [
+          # Utils
+          p.neofetch
+          p.gnome-calculator
+          p.entr
+          p.xdg-utils
+          p.proton-pass
+          p.protonvpn-gui
+
+          # Browsers
+          p.google-chrome
+
+          # Communication
+          p.weechat
+          p.slack
+
+          # Work
+          p.openconnect
+          p.bruno
+          p.vscode
+          p.amp-cli
+          p.claude-code
+          p.github-copilot-cli
+        ];
+
+      # Keyboard
+      file.".config/kb.vil".source = ./kb.vil;
     };
-
-    # Packages to install.
-    home.packages =
-      let
-        p = pkgs;
-      in
-      [
-        # Utils
-        p.neofetch
-        p.gnome-calculator
-        p.entr
-        p.xdg-utils
-        p.proton-pass
-        p.protonvpn-gui
-
-        # Browsers
-        p.google-chrome
-
-        # Communication
-        p.weechat
-        p.slack
-
-        # Work
-        p.openconnect
-        p.bruno
-        p.vscode
-        p.amp-cli
-        p.claude-code
-        p.github-copilot-cli
-      ];
 
     gtk = {
       enable = true;
@@ -197,9 +201,6 @@ in
         package = pkgs.sierra-gtk-theme;
       };
     };
-
-    # Keyboard
-    home.file.".config/kb.vil".source = ./kb.vil;
 
     dconf.settings = {
       "org/gnome/desktop/interface" = {
