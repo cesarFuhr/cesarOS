@@ -22,6 +22,11 @@
 
   # Enable networking
   networking = {
+    nameservers = [
+      "8.8.8.8"
+      "1.1.1.1"
+    ];
+
     networkmanager.enable = true;
     enableIPv6 = false;
     extraHosts = ''
@@ -186,6 +191,7 @@
       p.via
       p.ntfs3g
       p.ntfsprogs
+      p.corectrl
     ];
 
   services = {
