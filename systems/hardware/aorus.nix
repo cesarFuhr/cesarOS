@@ -14,7 +14,11 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.kernelParams = [ "amd_pstate=active" ];
+  boot.kernelParams = [
+    "amd_pstate=active"
+    "amdgpu.ppfeaturemask=0xffffffff"
+  ];
+
   boot.initrd.availableKernelModules = [
     "nvme"
     "xhci_pci"
@@ -24,7 +28,7 @@
     "usbhid"
     "sd_mod"
   ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
@@ -63,16 +67,21 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = with pkgs; [
-      libva-vdpau-driver
-      libvdpau-va-gl
-      rocmPackages.clr
-      rocmPackages.clr.icd
+    extraPackages = [
+      pkgs.libva-vdpau-driver
+      pkgs.libvdpau-va-gl
+      pkgs.rocmPackages.clr
+      pkgs.rocmPackages.clr.icd
     ];
   };
 
   hardware.amdgpu = {
     opencl.enable = true;
     initrd.enable = true;
+  };
+
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = "ondemand";
   };
 }

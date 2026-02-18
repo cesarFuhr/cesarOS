@@ -152,6 +152,7 @@
       p.pamixer
       p.pulseaudio
       p.polkit
+      p.mesa
 
       # Audio
       p.pavucontrol
@@ -248,6 +249,8 @@
           "wheel"
           "audio"
           "docker"
+          "video"
+          "render"
         ];
 
         shell = pkgs.zsh;

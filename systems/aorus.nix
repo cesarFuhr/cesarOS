@@ -29,5 +29,8 @@
       p.rocmPackages.rocminfo
       p.rocmPackages.rocm-smi
       p.clinfo
+      p.lact
     ];
+
+  services.lact.enable = true;
 }
