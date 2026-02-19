@@ -15,6 +15,12 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   system.stateVersion = "26.05";
 
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  # Since all my cards are AMD build packages with rocm support.
+  nixpkgs.config.rocmSupport = true;
+
   # Bootloader.
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -257,9 +263,6 @@
       };
     };
   };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # Enabling QMK devices
   hardware.keyboard.qmk.enable = true;
