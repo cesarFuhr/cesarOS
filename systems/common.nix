@@ -199,6 +199,7 @@
       p.ntfs3g
       p.ntfsprogs
       p.corectrl
+      p.rocmPackages.clr
     ];
 
   services = {
