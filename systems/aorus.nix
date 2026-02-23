@@ -15,10 +15,11 @@
   };
   networking.hostName = "aorus"; # Define your hostname.
 
-  # Virtualbox
-  virtualisation.virtualbox.host.enable = true;
-  boot.kernelParams = [ "kvm.enable_virt_at_load=0" ];
-  users.extraGroups.vboxusers.members = [ "cesar" ];
+  # VM Ware
+  virtualisation.vmware.host = {
+    enable = true;
+    extraPackages = [ pkgs.vmware-workstation ];
+  };
 
   # AMD GPU monitoring:
   environment.systemPackages =
@@ -33,4 +34,10 @@
     ];
 
   services.lact.enable = true;
+
+  services.ollama = {
+    enable = true;
+    package = pkgs.ollama-vulkan;
+  };
+  services.nextjs-ollama-llm-ui.enable = true;
 }
