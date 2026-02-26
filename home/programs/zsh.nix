@@ -75,7 +75,7 @@
       # zoxide
       eval "$(zoxide init zsh)"
 
-      # Accept autosuggestions with Ctrl+;
+      # Accept autosuggestions with Ctrl+space
       bindkey '^ ' autosuggest-accept
 
       flake_is_proprietary() {
@@ -98,7 +98,7 @@
         if [ -n "$1" ]; then
           SESSION="$1"
         else
-          SESSION=$(basename "$PWD")
+          SESSION=$(basename "$PWD" | sed 's/[.:]/_/g')
         fi
 
         WORK_DIR="$PWD"
@@ -127,7 +127,7 @@
         if [ -n "$1" ]; then
           SESSION="$1"
         else
-          SESSION=$(basename "$PWD")
+          SESSION=$(basename "$PWD" | sed 's/[.:]/_/g')
         fi
 
         WORK_DIR="$PWD"
