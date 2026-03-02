@@ -212,7 +212,12 @@
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.tuigreet}/bin/tuigreet --time --remember-session --cmd 'sway'";
+          user = "cesar";
+          command = "${pkgs.tuigreet}/bin/tuigreet --asterisks --time --remember-session --cmd 'sway'";
+        };
+        initial_session = {
+          user = "cesar";
+          command = "${pkgs.tuigreet}/bin/tuigreet --asterisks --time --remember-session --cmd 'sway'";
         };
       };
     };
