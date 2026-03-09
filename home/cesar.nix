@@ -232,6 +232,9 @@ in
           "ssh://git@github.com/" = {
             insteadOf = "https://github.com/";
           };
+          "ssh://git@codeberg.org/" = {
+            insteadOf = "https://codeberg.org/";
+          };
         };
         include = {
           path = "./user_config";
@@ -275,6 +278,11 @@ in
       AddKeysToAgent yes
 
       Host *sr.ht
+        User git
+        IdentityFile ~/.ssh/id_ed25519
+        PreferredAuthentications publickey
+
+      Host *codeberg.org
         User git
         IdentityFile ~/.ssh/id_ed25519
         PreferredAuthentications publickey
