@@ -125,7 +125,7 @@ in
         in
         [
           # Utils
-          p.neofetch
+          p.fastfetch
           p.gnome-calculator
           p.entr
           p.xdg-utils
