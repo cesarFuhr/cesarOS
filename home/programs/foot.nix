@@ -19,7 +19,7 @@
         hide-when-typing = "yes";
       };
 
-      colors = {
+      colors-dark = {
         foreground = "b1bac9";
         background = "202020";
         regular0 = "282c34"; # black
